@@ -39,9 +39,9 @@
     "btn_next": "btn_next.png",
 
     "item_icons": {
-      "Зеленорост": "zelenrost.png",
-      "Стланик": "stlanik.png",
-      "Толстоцвет": "tolstocvet.png"
+      "Зеленорост": "items/zelenrost.png",
+      "Стланик": "items/stlanik.png",
+      "Толстоцвет": "items/tolstocvet.png"
     },
 
     "threshold_anchor": 0.8,

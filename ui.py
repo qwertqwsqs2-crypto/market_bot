@@ -392,6 +392,8 @@ class MarketUI:
         We scan the list region (8 slots) and compute slot index by Y.
         """
         import math
+        import os
+        import cv2  # type: ignore
 
         icon_rel = self.cfg.templates.item_icons.get(item_name)
         if not icon_rel:
@@ -404,8 +406,13 @@ class MarketUI:
         else:
             # derived best-effort
             first = self.rel_point(self.cfg.offs.first_slot)
-            h = self.cfg.offs.slot_height * self.cfg.runtime.max_slots + 20
-            region = Rect(first.x - 80, first.y - 10, 600, h)
+            price_rect = self.rel_rect(self.cfg.offs.region_price)
+            top_y = price_rect.y - (self.cfg.offs.slot_height - self.cfg.offs.region_price.h) // 2
+            h = self.cfg.offs.slot_height * self.cfg.runtime.max_slots
+            # focus on the icon + name column instead of the whole list width
+            x = first.x - 100
+            w = max(self.cfg.offs.region_price.x + self.cfg.offs.region_price.w - (self.cfg.offs.first_slot.x - 100), 260)
+            region = Rect(x, top_y, w, h)
 
         try:
             tpl = self._load_tpl(icon_rel)
@@ -420,6 +427,28 @@ class MarketUI:
             threshold=self.cfg.templates.threshold_item_icon,
             multi_scale=self.cfg.templates.multi_scale,
         )
+
+        # Debug visualization of icon search
+        try:
+            os.makedirs("debug_item_icons", exist_ok=True)
+            dbg = hay.copy()
+            safe_name = re.sub(r"[^\w\-]+", "_", item_name)
+
+            if m:
+                th, tw = tpl.shape[:2]
+                top_left = (m.top_left.x, m.top_left.y)
+                bottom_right = (m.top_left.x + tw, m.top_left.y + th)
+                cv2.rectangle(dbg, top_left, bottom_right, (0, 255, 0), 2)
+                cv2.drawMarker(dbg, (m.center.x, m.center.y), (0, 0, 255), markerType=cv2.MARKER_CROSS, markerSize=10, thickness=2)
+                suffix = f"slot{1 + int(math.floor((region.y + m.center.y - self.rel_point(self.cfg.offs.first_slot).y) / self.cfg.offs.slot_height))}_hit"
+            else:
+                cv2.putText(dbg, "not found", (10, 25), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 255), 2, cv2.LINE_AA)
+                suffix = "miss"
+
+            cv2.imwrite(f"debug_item_icons/{safe_name}_{suffix}.png", dbg)
+        except Exception as e:  # pragma: no cover - debug only
+            self.logger.warning("Failed to dump icon debug screenshot: %s", e)
+
         if not m:
             self.logger.info("Item icon not found on current page: %r", item_name)
             return None
@@ -432,6 +461,7 @@ class MarketUI:
 
         self.logger.info("Icon match: item=%r slot=%d score=%.3f", item_name, slot_idx, m.score)
         self._item_icon_cache[item_name] = slot_idx
+
         return slot_idx, m.score
 
     def close_modal_safely(self) -> None:
