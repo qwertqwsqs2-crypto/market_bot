@@ -1,0 +1,59 @@
+{
+  "wait_between_clicks": 0.12,
+  "wait_open_modal": 0.9,
+  "wait_ocr_timeout": 1.0,
+  "max_pages": 10,
+  "max_slots": 8,
+
+  "offs": {
+    "anchor_search": [-312, 65],
+    "cat_trophy": [-218, 379],
+    "cat_res": [-228, 484],
+    "first_slot": [62, 145],
+    "region_price": [166, 118, 140, 44],
+    "buy_input_offset": [180, -87],
+    "buy_btn_fallback": [-11, 293],
+    "buy_cancel_fallback": [170, 211],
+    "next_page": [30, 605],
+    "slot_height": 59,
+
+    "region_slots": [-50, 120, 650, 520]
+  },
+
+  "ocr": {
+    "use_easyocr": true,
+    "easyocr_langs": ["ru", "en"],
+    "use_tesseract_fallback": true,
+    "min_confidence": 0.75,
+    "variants": 4,
+    "scale_factors": [3, 4]
+  },
+
+  "templates": {
+    "templates_dir": "templates",
+    "anchor_market": "anchor_market.png",
+    "btn_buy": "btn_buy.png",
+    "btn_cancel": "btn_cancel.png",
+    "btn_next": "btn_next.png",
+
+    "item_icons": {
+      "Зеленорост": "zelenrost.png",
+      "Стланик": "stlanik.png",
+      "Толстоцвет": "tolstocvet.png"
+    },
+
+    "threshold_anchor": 0.8,
+    "threshold_buttons": 0.82,
+    "threshold_item_icon": 0.86,
+    "multi_scale": true
+  },
+
+  "runtime": {
+    "input_backend": "pyautogui",
+    "simulate_ui_actions": true
+  },
+
+  "safety": {
+    "acknowledge_rights": false
+  }
+}
