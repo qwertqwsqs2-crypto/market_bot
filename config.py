@@ -14,6 +14,8 @@ class TimingConfig:
     wait_between_clicks: float = 0.12
     wait_open_modal: float = 0.9
     wait_ocr_timeout: float = 5.0
+    # pause after switching market pages to let list refresh
+    wait_after_page_switch: float = 0.6
 
 
 
@@ -26,6 +28,8 @@ class OffsetsConfig:
 
     first_slot: Point = Point(62, 145)
     region_price: Rect = Rect(166, 118, 140, 44)
+    price_pad_left: int = 16
+    price_pad_right: int = 8
 
     buy_input_offset: Point = Point(180, -87)
     buy_btn_fallback: Point = Point(-11, 293)
@@ -117,6 +121,7 @@ class AppConfig:
             wait_between_clicks=float(d.get("wait_between_clicks", 0.12)),
             wait_open_modal=float(d.get("wait_open_modal", 0.9)),
             wait_ocr_timeout=float(d.get("wait_ocr_timeout", 5.0)),
+            wait_after_page_switch=float(d.get("wait_after_page_switch", 0.6)),
         )
 
         offs_raw = d.get("offs", {})
@@ -126,6 +131,8 @@ class AppConfig:
             cat_res=Point(*offs_raw.get("cat_res", [-228, 484])),
             first_slot=Point(*offs_raw.get("first_slot", [62, 145])),
             region_price=Rect(*offs_raw.get("region_price", [166, 118, 140, 44])),
+            price_pad_left=int(offs_raw.get("price_pad_left", 16)),
+            price_pad_right=int(offs_raw.get("price_pad_right", 8)),
             buy_input_offset=Point(*offs_raw.get("buy_input_offset", [180, -87])),
             buy_btn_fallback=Point(*offs_raw.get("buy_btn_fallback", [-11, 293])),
             buy_cancel_fallback=Point(*offs_raw.get("buy_cancel_fallback", [170, 211])),

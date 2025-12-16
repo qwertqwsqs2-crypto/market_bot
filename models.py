@@ -34,6 +34,18 @@ class Rect:
     def moved(self, dx: int, dy: int) -> Rect:
         return Rect(self.x + dx, self.y + dy, self.w, self.h)
 
+    def expanded(self, left: int = 0, right: int = 0, top: int = 0, bottom: int = 0) -> Rect:
+        """
+        Return a new rect enlarged by the given paddings on each side.
+        Useful when OCR crops need a bit more context (e.g. coin icon + digits).
+        """
+        return Rect(
+            self.x - left,
+            self.y - top,
+            self.w + left + right,
+            self.h + top + bottom,
+        )
+
 
 @dataclass(frozen=True)
 class QuestItem:

@@ -204,7 +204,11 @@ class MarketUI:
 
     def price_rect_for_slot(self, slot_index_1based: int) -> Rect:
         dy = (slot_index_1based - 1) * self.cfg.offs.slot_height
-        return self.rel_rect(self.cfg.offs.region_price, dy=dy)
+        base = self.rel_rect(self.cfg.offs.region_price, dy=dy)
+        return base.expanded(
+            left=self.cfg.offs.price_pad_left,
+            right=self.cfg.offs.price_pad_right,
+        )
 
     def scan_prices_on_page(self, page: int) -> list[tuple[int, int, float, str]]:
         """
@@ -257,6 +261,9 @@ class MarketUI:
             p = self.rel_point(self.cfg.offs.next_page)
             self.logger.info("Next page fallback click at %s", p)
             self.inp.click(p)
+
+        # give the UI a moment to render the new list before next OCR/template search
+        self.inp.sleep(self.cfg.timing.wait_after_page_switch)
 
     def locate_buy_cancel_buttons(self) -> tuple[Optional[Point], Optional[Point]]:
         """

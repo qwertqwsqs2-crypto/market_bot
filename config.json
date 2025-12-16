@@ -2,6 +2,7 @@
   "wait_between_clicks": 0.12,
   "wait_open_modal": 0.9,
   "wait_ocr_timeout": 1.0,
+  "wait_after_page_switch": 0.6,
   "max_pages": 10,
   "max_slots": 8,
 
@@ -11,6 +12,8 @@
     "cat_res": [-228, 484],
     "first_slot": [62, 145],
     "region_price": [166, 118, 140, 44],
+    "price_pad_left": 16,
+    "price_pad_right": 8,
     "buy_input_offset": [180, -87],
     "buy_btn_fallback": [-11, 293],
     "buy_cancel_fallback": [170, 211],
