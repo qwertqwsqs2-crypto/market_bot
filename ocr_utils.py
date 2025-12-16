@@ -90,6 +90,29 @@ class OCRReader:
             return False
 
     @staticmethod
+    def _gold_mask_variant(img_bgr: np.ndarray, scale: int) -> np.ndarray:
+        import cv2  # type: ignore
+
+        bgr = img_bgr
+        if scale > 1:
+            bgr = cv2.resize(bgr, (bgr.shape[1] * scale, bgr.shape[0] * scale), interpolation=cv2.INTER_CUBIC)
+
+        hsv = cv2.cvtColor(bgr, cv2.COLOR_BGR2HSV)
+
+        # диапазон под "золотые" цифры (можешь чуть подвигать H/S/V при необходимости)
+        lower = np.array([10, 70, 70], dtype=np.uint8)
+        upper = np.array([45, 255, 255], dtype=np.uint8)
+
+        mask = cv2.inRange(hsv, lower, upper)
+
+        # важно: НЕ делай aggressive OPEN 2x2/3x3 — он ломает тонкие штрихи "3"
+        k = np.ones((2, 2), np.uint8)
+        mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, k, iterations=1)
+
+        # easyocr лучше ест белое на чёрном
+        return mask
+
+    @staticmethod
     def _to_gray(img_bgr: np.ndarray) -> np.ndarray:
         import cv2  # type: ignore
 
@@ -113,10 +136,7 @@ class OCRReader:
             gray = cv2.resize(gray, (gray.shape[1] * scale, gray.shape[0] * scale), interpolation=cv2.INTER_CUBIC)
 
         if variant_id == 0:
-            thr = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 31, 8)
-            k = np.ones((2, 2), np.uint8)
-            thr = cv2.morphologyEx(thr, cv2.MORPH_OPEN, k, iterations=1)
-            return cv2.fastNlMeansDenoising(thr, None, 15, 7, 21)
+            return OCRReader._gold_mask_variant(img_bgr, scale)
 
         if variant_id == 1:
             thr = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY, 35, 10)
@@ -170,15 +190,24 @@ class OCRReader:
         if len(img.shape) == 2:
             rgb = np.stack([img, img, img], axis=-1)
         else:
-            # convert BGR->RGB if needed
-            rgb = img[..., ::-1]
+            rgb = img[..., ::-1]  # BGR->RGB
 
         try:
             results = self._easy_reader.readtext(
                 rgb,
                 detail=1,
                 paragraph=False,
-                allowlist="0123456789 "
+                allowlist="0123456789",
+                decoder="beamsearch",
+                beamWidth=10,
+                min_size=8,
+                mag_ratio=1.0,
+                canvas_size=2560,
+                contrast_ths=0.2,
+                adjust_contrast=0.8,
+                text_threshold=0.6,
+                low_text=0.3,
+                link_threshold=0.3,
             )
         except Exception:
             return OCRResult(None, 0.0, "", "easyocr")
@@ -192,6 +221,7 @@ class OCRReader:
                 best_val = val
                 best_conf = float(conf)
                 best_raw = text
+
         return OCRResult(best_val, best_conf, best_raw, "easyocr")
 
     def _tesseract_read(self, img: np.ndarray) -> OCRResult:

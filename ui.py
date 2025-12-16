@@ -233,30 +233,11 @@ class MarketUI:
         return out
 
     def next_page(self) -> None:
-        """
-        Prefer template matching for "Next", fallback to configured offset.
-        """
-        screen = self.screen.screenshot_bgr()
-        clicked = False
+        p = self.rel_point(self.cfg.offs.next_page)
+        self.logger.info("Next page click at %s", p)
+        self.inp.click(p)
+        time.sleep(self.cfg.timing.wait_page_flip)
 
-        try:
-            tpl = self._load_tpl(self.cfg.templates.btn_next)
-            m = self.matcher.match_template(
-                screen, tpl,
-                threshold=self.cfg.templates.threshold_buttons,
-                multi_scale=self.cfg.templates.multi_scale
-            )
-            if m:
-                self.logger.info("Next page button found by template at %s (score=%.3f)", m.center, m.score)
-                self.inp.click(m.center)
-                clicked = True
-        except Exception as e:
-            self.logger.warning("Next button template error: %s", e)
-
-        if not clicked:
-            p = self.rel_point(self.cfg.offs.next_page)
-            self.logger.info("Next page fallback click at %s", p)
-            self.inp.click(p)
 
     def locate_buy_cancel_buttons(self) -> tuple[Optional[Point], Optional[Point]]:
         """

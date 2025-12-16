@@ -15,7 +15,8 @@ class TimingConfig:
     wait_open_modal: float = 0.9
     # How long to wait after typing into the search input for the list to refresh.
     wait_after_search: float = 0.7
-    wait_ocr_timeout: float = 5.0
+    wait_ocr_timeout: float = 2.0
+    wait_page_flip: float = 1.0
 
 
 
@@ -51,7 +52,7 @@ class OCRConfig:
     # For price OCR robustness
     min_confidence: float = 0.35
     # how many preprocessing variants to try
-    variants: int = 3
+    variants: int = 5
     scale_factors: list[int] = field(default_factory=lambda: [2, 3])
 
 
