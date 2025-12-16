@@ -1,6 +1,7 @@
 {
   "wait_between_clicks": 0.12,
   "wait_open_modal": 0.9,
+  "wait_after_search": 0.6,
   "wait_ocr_timeout": 1.0,
   "max_pages": 10,
   "max_slots": 8,
@@ -23,6 +24,7 @@
   "ocr": {
     "use_easyocr": true,
     "easyocr_langs": ["ru", "en"],
+    "easyocr_gpu": true,
     "use_tesseract_fallback": true,
     "min_confidence": 0.75,
     "variants": 4,

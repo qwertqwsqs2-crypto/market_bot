@@ -13,6 +13,8 @@ class TimingConfig:
     startup_delay: float = 3.0
     wait_between_clicks: float = 0.12
     wait_open_modal: float = 0.9
+    # How long to wait after typing into the search input for the list to refresh.
+    wait_after_search: float = 0.7
     wait_ocr_timeout: float = 5.0
 
 
@@ -43,6 +45,7 @@ class OffsetsConfig:
 class OCRConfig:
     use_easyocr: bool = True
     easyocr_langs: list[str] = field(default_factory=lambda: ["ru", "en"])
+    easyocr_gpu: bool = True
     use_tesseract_fallback: bool = True
 
     # For price OCR robustness
@@ -116,6 +119,7 @@ class AppConfig:
             startup_delay=float(d.get("startup_delay", 3.0)),
             wait_between_clicks=float(d.get("wait_between_clicks", 0.12)),
             wait_open_modal=float(d.get("wait_open_modal", 0.9)),
+            wait_after_search=float(d.get("wait_after_search", 0.7)),
             wait_ocr_timeout=float(d.get("wait_ocr_timeout", 5.0)),
         )
 
@@ -138,6 +142,7 @@ class AppConfig:
         ocr = OCRConfig(
             use_easyocr=bool(ocr_raw.get("use_easyocr", True)),
             easyocr_langs=list(ocr_raw.get("easyocr_langs", ["ru", "en"])),
+            easyocr_gpu=bool(ocr_raw.get("easyocr_gpu", True)),
             use_tesseract_fallback=bool(ocr_raw.get("use_tesseract_fallback", True)),
             min_confidence=float(ocr_raw.get("min_confidence", 0.35)),
             variants=int(ocr_raw.get("variants", 3)),

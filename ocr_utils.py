@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import logging
 import re
 import time
 from dataclasses import dataclass
@@ -53,7 +54,7 @@ class OCRReader:
       - fallback to tesseract (optional)
       - pick best result by confidence and/or majority vote
     """
-    def __init__(self, use_easyocr: bool, langs: Sequence[str], use_tesseract: bool, min_conf: float) -> None:
+    def __init__(self, use_easyocr: bool, langs: Sequence[str], use_tesseract: bool, min_conf: float, prefer_gpu: bool = True) -> None:
         self.use_easyocr = use_easyocr
         self.use_tesseract = use_tesseract
         self.min_conf = min_conf
@@ -62,7 +63,10 @@ class OCRReader:
         if self.use_easyocr:
             try:
                 import easyocr  # type: ignore
-                self._easy_reader = easyocr.Reader(list(langs), gpu=False)
+                gpu_flag = prefer_gpu and self._gpu_available()
+                self._easy_reader = easyocr.Reader(list(langs), gpu=gpu_flag)
+                if gpu_flag and getattr(self._easy_reader, "device", "cpu") == "cpu":
+                    logging.getLogger(__name__).warning("easyocr GPU requested but CPU was selected; check CUDA setup")
             except Exception:
                 self._easy_reader = None
                 self.use_easyocr = False
@@ -75,6 +79,15 @@ class OCRReader:
             except Exception:
                 self._tesseract_ok = False
                 self.use_tesseract = False
+
+    @staticmethod
+    def _gpu_available() -> bool:
+        try:
+            import torch  # type: ignore
+
+            return bool(torch.cuda.is_available())
+        except Exception:
+            return False
 
     @staticmethod
     def _to_gray(img_bgr: np.ndarray) -> np.ndarray:
@@ -111,6 +124,15 @@ class OCRReader:
             thr = cv2.morphologyEx(thr, cv2.MORPH_OPEN, k, iterations=1)
             return cv2.fastNlMeansDenoising(thr, None, 18, 7, 21)
 
+        if variant_id == 2:
+            clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(6, 6))
+            eq = clahe.apply(gray)
+            eq = cv2.GaussianBlur(eq, (3, 3), 0)
+            _, thr = cv2.threshold(eq, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+            k = np.ones((2, 2), np.uint8)
+            thr = cv2.morphologyEx(thr, cv2.MORPH_OPEN, k, iterations=1)
+            return thr
+
         if variant_id == 3:
             bgr = img_bgr
             if scale > 1:
@@ -118,18 +140,22 @@ class OCRReader:
 
             hsv = cv2.cvtColor(bgr, cv2.COLOR_BGR2HSV)
 
-            # диапазон под “желто-оранжевые” цифры (как в v8; можно потом подстроить)
-            lower = np.array([10, 60, 80])
-            upper = np.array([55, 255, 255])
+            # узкий диапазон под “желто-оранжевые” цифры
+            lower = np.array([8, 80, 80])
+            upper = np.array([40, 255, 255])
             mask = cv2.inRange(hsv, lower, upper)
 
+            # подчистить шум и подчеркнуть разрывы дуг у «3», чтобы не превращались в «8»
             k = np.ones((2, 2), np.uint8)
             mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN, k, iterations=1)
+            mask = cv2.erode(mask, k, iterations=1)
+            mask = cv2.GaussianBlur(mask, (3, 3), 0)
 
             # делаем “черный текст на белом”, OCR так стабильнее
             mask = cv2.bitwise_not(mask)
             return mask
-        # variant 2+
+
+        # default fallback
         _, thr = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
         k = np.ones((2, 2), np.uint8)
         thr = cv2.morphologyEx(thr, cv2.MORPH_OPEN, k, iterations=1)

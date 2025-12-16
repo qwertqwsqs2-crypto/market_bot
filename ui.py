@@ -193,7 +193,7 @@ class MarketUI:
         self.inp.sleep(0.15)
 
         self._fill_text_field(query, verify=True, field_name="search")
-        self.inp.sleep(1.5)
+        self.inp.sleep(self.cfg.timing.wait_after_search)
         self._last_search_query = query
 
     def slot_click_point(self, slot_index_1based: int) -> Point:

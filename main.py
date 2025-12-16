@@ -59,6 +59,7 @@ def main() -> None:
         langs=cfg.ocr.easyocr_langs,
         use_tesseract=cfg.ocr.use_tesseract_fallback,
         min_conf=cfg.ocr.min_confidence,
+        prefer_gpu=cfg.ocr.easyocr_gpu,
     )
 
     ui = MarketUI(cfg=cfg, inp=inp, ocr=ocr, logger=logger)
