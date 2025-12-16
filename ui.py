@@ -401,18 +401,20 @@ class MarketUI:
             return None
 
         # region for scanning slots
+        regions: list[tuple[str, Rect]] = []
         if self.cfg.offs.region_slots is not None:
-            region = self.rel_rect(self.cfg.offs.region_slots)
-        else:
-            # derived best-effort
-            first = self.rel_point(self.cfg.offs.first_slot)
-            price_rect = self.rel_rect(self.cfg.offs.region_price)
-            top_y = price_rect.y - (self.cfg.offs.slot_height - self.cfg.offs.region_price.h) // 2
-            h = self.cfg.offs.slot_height * self.cfg.runtime.max_slots
-            # focus on the icon + name column instead of the whole list width
-            x = first.x - 100
-            w = max(self.cfg.offs.region_price.x + self.cfg.offs.region_price.w - (self.cfg.offs.first_slot.x - 100), 260)
-            region = Rect(x, top_y, w, h)
+            regions.append(("config", self.rel_rect(self.cfg.offs.region_slots)))
+
+        # derived best-effort column around the item icons
+        first = self.rel_point(self.cfg.offs.first_slot)
+        price_rect = self.rel_rect(self.cfg.offs.region_price)
+        top_y = price_rect.y - (self.cfg.offs.slot_height - self.cfg.offs.region_price.h) // 2
+        h = self.cfg.offs.slot_height * self.cfg.runtime.max_slots
+        # focus on the icon + name column instead of the whole list width
+        x = first.x - 100
+        w = max(self.cfg.offs.region_price.x + self.cfg.offs.region_price.w - (self.cfg.offs.first_slot.x - 100), 260)
+        derived_region = Rect(x, top_y, w, h)
+        regions.append(("derived", derived_region))
 
         try:
             tpl = self._load_tpl(icon_rel)
@@ -420,41 +422,50 @@ class MarketUI:
             self.logger.error("Item icon template load failed (%r): %s", item_name, e)
             return None
 
-        hay = self.screen.grab_region_bgr(region)
-        m = self.matcher.match_template(
-            hay,
-            tpl,
-            threshold=self.cfg.templates.threshold_item_icon,
-            multi_scale=self.cfg.templates.multi_scale,
-        )
+        chosen_region: Optional[Rect] = None
+        m: Optional[Match] = None
 
-        # Debug visualization of icon search
-        try:
-            os.makedirs("debug_item_icons", exist_ok=True)
-            dbg = hay.copy()
-            safe_name = re.sub(r"[^\w\-]+", "_", item_name)
+        for source, region in regions:
+            hay = self.screen.grab_region_bgr(region)
+            m = self.matcher.match_template(
+                hay,
+                tpl,
+                threshold=self.cfg.templates.threshold_item_icon,
+                multi_scale=self.cfg.templates.multi_scale,
+            )
+
+            # Debug visualization of icon search
+            try:
+                os.makedirs("debug_item_icons", exist_ok=True)
+                dbg = hay.copy()
+                safe_name = re.sub(r"[^\w\-]+", "_", item_name)
+
+                if m:
+                    th, tw = tpl.shape[:2]
+                    top_left = (m.top_left.x, m.top_left.y)
+                    bottom_right = (m.top_left.x + tw, m.top_left.y + th)
+                    cv2.rectangle(dbg, top_left, bottom_right, (0, 255, 0), 2)
+                    cv2.drawMarker(dbg, (m.center.x, m.center.y), (0, 0, 255), markerType=cv2.MARKER_CROSS, markerSize=10, thickness=2)
+                    suffix = f"slot{1 + int(math.floor((region.y + m.center.y - self.rel_point(self.cfg.offs.first_slot).y) / self.cfg.offs.slot_height))}_hit"
+                else:
+                    cv2.putText(dbg, "not found", (10, 25), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 255), 2, cv2.LINE_AA)
+                    suffix = "miss"
+
+                cv2.putText(dbg, f"region: {source}", (10, hay.shape[0] - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 0), 2, cv2.LINE_AA)
+                cv2.imwrite(f"debug_item_icons/{safe_name}_{source}_{suffix}.png", dbg)
+            except Exception as e:  # pragma: no cover - debug only
+                self.logger.warning("Failed to dump icon debug screenshot: %s", e)
 
             if m:
-                th, tw = tpl.shape[:2]
-                top_left = (m.top_left.x, m.top_left.y)
-                bottom_right = (m.top_left.x + tw, m.top_left.y + th)
-                cv2.rectangle(dbg, top_left, bottom_right, (0, 255, 0), 2)
-                cv2.drawMarker(dbg, (m.center.x, m.center.y), (0, 0, 255), markerType=cv2.MARKER_CROSS, markerSize=10, thickness=2)
-                suffix = f"slot{1 + int(math.floor((region.y + m.center.y - self.rel_point(self.cfg.offs.first_slot).y) / self.cfg.offs.slot_height))}_hit"
-            else:
-                cv2.putText(dbg, "not found", (10, 25), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 255), 2, cv2.LINE_AA)
-                suffix = "miss"
+                chosen_region = region
+                break
 
-            cv2.imwrite(f"debug_item_icons/{safe_name}_{suffix}.png", dbg)
-        except Exception as e:  # pragma: no cover - debug only
-            self.logger.warning("Failed to dump icon debug screenshot: %s", e)
-
-        if not m:
+        if not m or chosen_region is None:
             self.logger.info("Item icon not found on current page: %r", item_name)
             return None
 
         # m.center is relative to region
-        y_abs = region.y + m.center.y
+        y_abs = chosen_region.y + m.center.y
         first_slot_abs_y = self.rel_point(self.cfg.offs.first_slot).y
         slot_idx = 1 + int(math.floor((y_abs - first_slot_abs_y) / self.cfg.offs.slot_height))
         slot_idx = max(1, min(slot_idx, self.cfg.runtime.max_slots))
