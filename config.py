@@ -14,8 +14,8 @@ class TimingConfig:
     wait_between_clicks: float = 0.12
     wait_open_modal: float = 0.9
     # How long to wait after typing into the search input for the list to refresh.
-    wait_after_search: float = 0.7
-    wait_ocr_timeout: float = 2.0
+    wait_after_search: float = 1.4
+    wait_ocr_timeout: float = 1.0
     wait_page_flip: float = 1.0
 
 
@@ -120,8 +120,8 @@ class AppConfig:
             startup_delay=float(d.get("startup_delay", 3.0)),
             wait_between_clicks=float(d.get("wait_between_clicks", 0.12)),
             wait_open_modal=float(d.get("wait_open_modal", 0.9)),
-            wait_after_search=float(d.get("wait_after_search", 0.7)),
-            wait_ocr_timeout=float(d.get("wait_ocr_timeout", 5.0)),
+            wait_after_search=float(d.get("wait_after_search", 1.2)),
+            wait_ocr_timeout=float(d.get("wait_ocr_timeout", 2.0)),
         )
 
         offs_raw = d.get("offs", {})

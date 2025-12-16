@@ -1,8 +1,8 @@
 {
   "wait_between_clicks": 0.12,
-  "wait_open_modal": 0.9,
-  "wait_after_search": 0.6,
-  "wait_ocr_timeout": 1.0,
+  "wait_open_modal": 0.3,
+  "wait_after_search": 1.7,
+  "wait_ocr_timeout": 0.5,
   "max_pages": 10,
   "max_slots": 8,
 
@@ -11,7 +11,7 @@
     "cat_trophy": [-218, 379],
     "cat_res": [-228, 484],
     "first_slot": [62, 145],
-    "region_price": [166, 118, 140, 44],
+    "region_price": [156, 118, 140, 44],
     "buy_input_offset": [180, -87],
     "buy_btn_fallback": [-11, 293],
     "buy_cancel_fallback": [170, 211],

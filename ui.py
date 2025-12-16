@@ -190,7 +190,7 @@ class MarketUI:
 
     def run_search(self, query: str) -> None:
         self.focus_search()
-        self.inp.sleep(0.15)
+        self.inp.sleep(0.1)
 
         self._fill_text_field(query, verify=True, field_name="search")
         self.inp.sleep(self.cfg.timing.wait_after_search)
