@@ -10,14 +10,27 @@ from models import Point, Rect
 
 @dataclass(frozen=True)
 class TimingConfig:
+    # общие
     startup_delay: float = 3.0
-    wait_between_clicks: float = 0.12
+
+    # клики / небольшие паузы
+    wait_between_clicks: float = 0.12   # существующее
+    wait_short: float = 0.03            # очень короткие паузы (нажатия/ctrl)
+    wait_small: float = 0.10            # мелкие паузы (проверки буфера, typewrite fallback)
+    wait_medium: float = 0.25           # средние паузы (подтверждения/остатки)
+
+    # модалки / перелистывание страниц
     wait_open_modal: float = 0.9
-    # How long to wait after typing into the search input for the list to refresh.
-    wait_after_search: float = 1.4
-    wait_ocr_timeout: float = 1.0
     wait_page_flip: float = 1.0
 
+    # поиски / OCR
+    wait_after_search: float = 1.4
+    wait_ocr_timeout: float = 1.0
+
+    # поведение покупки
+    wait_after_buy: float = 0.45
+    wait_after_cancel: float = 0.15
+    wait_between_plan_steps: float = 0.6
 
 
 @dataclass(frozen=True)
@@ -83,18 +96,13 @@ class RuntimeConfig:
     max_slots: int = 8
 
     # Simulate behavior:
-    # - simulate mode by default does not send inputs; it only logs intended actions.
-    # If you set this True, simulate will navigate UI but never clicks "Buy"
-    # (it will still open modals and press Cancel).
     simulate_ui_actions: bool = False
 
-    # Input backend: "pyautogui" recommended.
     input_backend: str = "pyautogui"
 
 
 @dataclass(frozen=True)
 class SafetyConfig:
-    # Must be true to allow run mode (also requires --i-understand).
     acknowledge_rights: bool = False
 
 
@@ -119,9 +127,16 @@ class AppConfig:
         timing = TimingConfig(
             startup_delay=float(d.get("startup_delay", 3.0)),
             wait_between_clicks=float(d.get("wait_between_clicks", 0.12)),
+            wait_short=float(d.get("wait_short", 0.03)),
+            wait_small=float(d.get("wait_small", 0.10)),
+            wait_medium=float(d.get("wait_medium", 0.25)),
             wait_open_modal=float(d.get("wait_open_modal", 0.9)),
-            wait_after_search=float(d.get("wait_after_search", 1.2)),
-            wait_ocr_timeout=float(d.get("wait_ocr_timeout", 2.0)),
+            wait_page_flip=float(d.get("wait_page_flip", 1.0)),
+            wait_after_search=float(d.get("wait_after_search", 1.4)),
+            wait_ocr_timeout=float(d.get("wait_ocr_timeout", 1.0)),
+            wait_after_buy=float(d.get("wait_after_buy", 0.45)),
+            wait_after_cancel=float(d.get("wait_after_cancel", 0.15)),
+            wait_between_plan_steps=float(d.get("wait_between_plan_steps", 0.6)),
         )
 
         offs_raw = d.get("offs", {})

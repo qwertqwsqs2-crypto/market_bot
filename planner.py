@@ -144,7 +144,7 @@ def execute_plan_one_page(
                 return False, spent, bought
 
             ui.click_buy(buy_btn)
-            ui.inp.sleep(0.45)
+            ui.inp.sleep(ui.cfg.timing.wait_after_buy)
         else:
             ui.logger.info("[SIM] Would set qty=%d and click BUY now.", step.take)
 
@@ -154,11 +154,11 @@ def execute_plan_one_page(
         # close modal
         if cancel_btn:
             ui.click_cancel(cancel_btn)
-            ui.inp.sleep(0.15)
+            ui.inp.sleep(ui.cfg.timing.wait_after_cancel)
         else:
             ui.close_modal_safely()
 
-        ui.inp.sleep(0.6)
+        ui.inp.sleep(ui.cfg.timing.wait_between_plan_steps)
 
     return True, spent, bought
 

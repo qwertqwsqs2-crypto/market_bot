@@ -348,17 +348,17 @@ class MarketUI:
 
         for attempt in range(1, 4):
             self.inp.click(input_p)
-            self.inp.sleep(0.12)
+            self.inp.sleep(self.cfg.timing.wait_between_clicks)
 
             # очистить поле максимально надёжно
             self.inp.ctrl_combo("A")
-            self.inp.sleep(0.03)
+            self.inp.sleep(self.cfg.timing.wait_short)
 
             # вставка
             self.inp.set_clipboard(str(qty))
             self.inp.ctrl_combo("V")
             self.inp.press("end")
-            self.inp.sleep(0.10)
+            self.inp.sleep(self.cfg.timing.wait_small)
 
             # verify: Ctrl+A Ctrl+C -> clipboard
             self.inp.ctrl_combo("A")
@@ -373,7 +373,7 @@ class MarketUI:
                 "Paste verify failed for buy_qty: got=%r parsed=%d expected=%d (attempt %d/3)",
                 txt, got, qty, attempt
             )
-            self.inp.sleep(0.12)
+            self.inp.sleep(self.cfg.timing.wait_between_clicks)
 
         return False
 
@@ -551,9 +551,10 @@ class MarketUI:
             if m:
                 self.logger.info("Close modal (cancel template) at %s (score=%.3f)", m.center, m.score)
                 self.inp.click(m.center)
-                self.inp.sleep(0.25)
+                self.inp.sleep(self.cfg.timing.wait_after_cancel)
         except Exception as e:
             self.logger.warning("close_modal_safely error: %s", e)
+
 
     def _fill_text_field(self, text: str, verify: bool = True, field_name: str = "field") -> None:
         """
@@ -564,7 +565,7 @@ class MarketUI:
 
         # Ctrl+A (оставляем как ты просил)
         self.inp.ctrl_combo("A")
-        self.inp.sleep(0.1)
+        self.inp.sleep(self.cfg.timing.wait_small)
         # Ctrl+V
         self.inp.ctrl_combo("V")
 
@@ -574,7 +575,7 @@ class MarketUI:
 
         # Верификация: Ctrl+A Ctrl+C -> проверяем, что реально в поле
         self.inp.ctrl_combo("A")
-        self.inp.sleep(0.1)
+        self.inp.sleep(self.cfg.timing.wait_small)
         self.inp.ctrl_combo("C")
         got = (self.inp.get_clipboard() or "").strip()
         self.inp.press("end")
