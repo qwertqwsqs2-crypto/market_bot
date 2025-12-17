@@ -162,3 +162,4 @@ def execute_plan_one_page(
 
     return True, spent, bought
 
+    

@@ -64,5 +64,14 @@
 
   "safety": {
     "acknowledge_rights": false
+  },
+  "profit": {
+    "enabled": true,
+
+    "mode": "percent",
+
+    "min_profit_percent": 0.15,
+
+    "min_profit_absolute": 500
   }
 }

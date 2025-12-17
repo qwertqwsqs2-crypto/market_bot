@@ -85,6 +85,46 @@ class MarketBot:
 
         log.info("Bot finished.")
 
+    # В bot.py — внутри класса MarketBot
+    def check_profit_threshold(
+            self,
+            *,
+            reward_total: int,
+            plan_total_cost: int,
+            cfg,
+            logger,
+    ) -> bool:
+        """
+        Проверяет, удовлетворяет ли ожидаемый профит порогу, заданному в cfg.profit.
+        Возвращает True если можно выполнять план, False — если нужно пропустить квест.
+        """
+        # если фича выключена — пропускаем проверку
+        if not getattr(cfg, "profit", None) or not cfg.profit.enabled:
+            return True
+
+        expected_profit = int(reward_total) - int(plan_total_cost)
+
+        mode = (cfg.profit.mode or "percent").lower()
+        if mode == "percent":
+            # рассчитываем требуемый абсолютный профит в денежном эквиваленте
+            required = int(round(float(cfg.profit.min_profit_percent) * float(reward_total)))
+            logger.info(
+                "Profit check (PERCENT): expected=%d required>=%d (%.2f%% of reward=%d)",
+                expected_profit, required, float(cfg.profit.min_profit_percent) * 100.0, reward_total,
+            )
+            return expected_profit >= required
+
+        if mode == "absolute":
+            required = int(cfg.profit.min_profit_absolute)
+            logger.info(
+                "Profit check (ABS): expected=%d required>=%d",
+                expected_profit, required,
+            )
+            return expected_profit >= required
+
+        logger.warning("Unknown profit mode=%r — skipping profit check", cfg.profit.mode)
+        return True
+
     def process_quest(self, q: QuestDefinition) -> None:
         log = self.ctx.logger
         reward_per_set = self.reward_for_level(q)
@@ -177,6 +217,42 @@ class MarketBot:
         if self.ctx.mode == Mode.SIMULATE and not cfg.runtime.simulate_ui_actions:
             log.info("SIMULATE mode: no inputs. Would buy items: %s", [d.item.name for d in items_data])
             return
+
+        plans_cost_from_plans = sum((p.total_cost for p in plans_by_item.values()), 0)
+
+        plans_cost_from_items = 0
+        for d in items_data:
+            # if there's already a plan for this item, skip (we counted it)
+            if d.item.name in plans_by_item:
+                continue
+            # use min_cost from ItemMarketData if available
+            if getattr(d, "min_cost", None) is not None:
+                plans_cost_from_items += int(d.min_cost)
+
+        # final combined cost
+        combined_planned_cost = plans_cost_from_plans + plans_cost_from_items
+
+        log.info(
+            "Quest summary: reward=%d planned_cost=%d expected_profit=%d (plans=%d items_est=%d)",
+            reward_total,
+            combined_planned_cost,
+            reward_total - combined_planned_cost,
+            plans_cost_from_plans,
+            plans_cost_from_items,
+        )
+
+        if not self.check_profit_threshold(
+                reward_total=reward_total,
+                plan_total_cost=combined_planned_cost,
+                cfg=self.ctx.cfg,
+                logger=log,
+        ):
+            log.warning(
+                "Quest skipped: profit threshold not met (reward=%d cost=%d)",
+                reward_total,
+                combined_planned_cost,
+            )
+            return False
 
         # -------- Stage B: покупки --------
         for d in items_data:

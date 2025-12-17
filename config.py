@@ -100,6 +100,12 @@ class RuntimeConfig:
 
     input_backend: str = "pyautogui"
 
+@dataclass(frozen=True)
+class ProfitConfig:
+    enabled: bool = True
+    mode: str = "percent"   # "percent" | "absolute"
+    min_profit_percent: float = 0.15
+    min_profit_absolute: int = 0
 
 @dataclass(frozen=True)
 class SafetyConfig:
@@ -114,6 +120,7 @@ class AppConfig:
     templates: TemplateConfig = TemplateConfig()
     runtime: RuntimeConfig = RuntimeConfig()
     safety: SafetyConfig = SafetyConfig()
+    profit: ProfitConfig = ProfitConfig()
 
     @staticmethod
     def load(path: Path) -> "AppConfig":
@@ -196,6 +203,14 @@ class AppConfig:
             acknowledge_rights=bool(safety_raw.get("acknowledge_rights", False))
         )
 
+        profit_raw = d.get("profit", {})
+        profit = ProfitConfig(
+            enabled=bool(profit_raw.get("enabled", True)),
+            mode=str(profit_raw.get("mode", "percent")),
+            min_profit_percent=float(profit_raw.get("min_profit_percent", 0.15)),
+            min_profit_absolute=int(profit_raw.get("min_profit_absolute", 0)),
+        )
+
         return AppConfig(
             timing=timing,
             offs=offs,
@@ -203,4 +218,5 @@ class AppConfig:
             templates=templates,
             runtime=runtime,
             safety=safety,
+            profit=profit,
         )
