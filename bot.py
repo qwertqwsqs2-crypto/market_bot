@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Iterable, Optional
 
 from config import AppConfig
@@ -13,6 +14,7 @@ from models import (
     QuestDefinition,
     QuestItem,
 )
+from purchase_logger import PurchaseLogger
 from ui import MarketUI
 from planner import build_plan_one_page, execute_plan_one_page
 
@@ -58,6 +60,8 @@ class BotContext:
 class MarketBot:
     def __init__(self, ctx: BotContext) -> None:
         self.ctx = ctx
+        default_path = Path("purchases_log.csv")
+        self.purchase_logger = PurchaseLogger(default_path, append=True)
 
     def reward_for_level(self, q: QuestDefinition) -> int:
         return q.reward60 if self.ctx.level == 60 else q.reward65
@@ -80,6 +84,46 @@ class MarketBot:
                 log.exception("Quest failed (skipping): %r error=%s", q.quest, e)
 
         log.info("Bot finished.")
+
+    # В bot.py — внутри класса MarketBot
+    def check_profit_threshold(
+            self,
+            *,
+            reward_total: int,
+            plan_total_cost: int,
+            cfg,
+            logger,
+    ) -> bool:
+        """
+        Проверяет, удовлетворяет ли ожидаемый профит порогу, заданному в cfg.profit.
+        Возвращает True если можно выполнять план, False — если нужно пропустить квест.
+        """
+        # если фича выключена — пропускаем проверку
+        if not getattr(cfg, "profit", None) or not cfg.profit.enabled:
+            return True
+
+        expected_profit = int(reward_total) - int(plan_total_cost)
+
+        mode = (cfg.profit.mode or "percent").lower()
+        if mode == "percent":
+            # рассчитываем требуемый абсолютный профит в денежном эквиваленте
+            required = int(round(float(cfg.profit.min_profit_percent) * float(reward_total)))
+            logger.info(
+                "Profit check (PERCENT): expected=%d required>=%d (%.2f%% of reward=%d)",
+                expected_profit, required, float(cfg.profit.min_profit_percent) * 100.0, reward_total,
+            )
+            return expected_profit >= required
+
+        if mode == "absolute":
+            required = int(cfg.profit.min_profit_absolute)
+            logger.info(
+                "Profit check (ABS): expected=%d required>=%d",
+                expected_profit, required,
+            )
+            return expected_profit >= required
+
+        logger.warning("Unknown profit mode=%r — skipping profit check", cfg.profit.mode)
+        return True
 
     def process_quest(self, q: QuestDefinition) -> None:
         log = self.ctx.logger
@@ -174,6 +218,42 @@ class MarketBot:
             log.info("SIMULATE mode: no inputs. Would buy items: %s", [d.item.name for d in items_data])
             return
 
+        plans_cost_from_plans = sum((p.total_cost for p in plans_by_item.values()), 0)
+
+        plans_cost_from_items = 0
+        for d in items_data:
+            # if there's already a plan for this item, skip (we counted it)
+            if d.item.name in plans_by_item:
+                continue
+            # use min_cost from ItemMarketData if available
+            if getattr(d, "min_cost", None) is not None:
+                plans_cost_from_items += int(d.min_cost)
+
+        # final combined cost
+        combined_planned_cost = plans_cost_from_plans + plans_cost_from_items
+
+        log.info(
+            "Quest summary: reward=%d planned_cost=%d expected_profit=%d (plans=%d items_est=%d)",
+            reward_total,
+            combined_planned_cost,
+            reward_total - combined_planned_cost,
+            plans_cost_from_plans,
+            plans_cost_from_items,
+        )
+
+        if not self.check_profit_threshold(
+                reward_total=reward_total,
+                plan_total_cost=combined_planned_cost,
+                cfg=self.ctx.cfg,
+                logger=log,
+        ):
+            log.warning(
+                "Quest skipped: profit threshold not met (reward=%d cost=%d)",
+                reward_total,
+                combined_planned_cost,
+            )
+            return False
+
         # -------- Stage B: покупки --------
         for d in items_data:
             if d.item.use_image:
@@ -183,6 +263,23 @@ class MarketBot:
                     "Purchase result: item=%r required=%d bought=%d spent=%d success=%s reason=%s",
                     res.item.name, res.required_qty, res.bought_qty, res.spent, res.success, res.reason
                 )
+                plan_for_item = plans_by_item.get(res.item.name)
+                planned_cost = None
+                if plan_for_item is not None:
+                    planned_cost = plan_for_item.total_cost
+                else:
+                    # fallback to ItemMarketData.min_cost if available in items_data
+                    found = next((d for d in items_data if d.item.name == res.item.name), None)
+                    planned_cost = getattr(found, "min_cost", None)
+
+                # compute reward share
+                if total_min_cost and total_min_cost > 0 and planned_cost:
+                    reward_share = int(round(reward_total * (planned_cost / total_min_cost)))
+                else:
+                    # fallback equal split by number of items
+                    reward_share = int(round(reward_total / max(1, len(items_data))))
+
+                self.purchase_logger.record(res.item.name, res.spent, reward_share)
                 continue
 
             # обычный путь: выполнить план, покупая всегда из slot=1
@@ -218,6 +315,23 @@ class MarketBot:
                 "Purchase result: item=%r required=%d bought=%d spent=%d success=%s reason=%s",
                 res.item.name, res.required_qty, res.bought_qty, res.spent, res.success, res.reason
             )
+            plan_for_item = plans_by_item.get(res.item.name)
+            planned_cost = None
+            if plan_for_item is not None:
+                planned_cost = plan_for_item.total_cost
+            else:
+                # fallback to ItemMarketData.min_cost if available in items_data
+                found = next((d for d in items_data if d.item.name == res.item.name), None)
+                planned_cost = getattr(found, "min_cost", None)
+
+            # compute reward share
+            if total_min_cost and total_min_cost > 0 and planned_cost:
+                reward_share = int(round(reward_total * (planned_cost / total_min_cost)))
+            else:
+                # fallback equal split by number of items
+                reward_share = int(round(reward_total / max(1, len(items_data))))
+
+            self.purchase_logger.record(res.item.name, res.spent, reward_share)
 
     def collect_image_item_data(self, item: QuestItem, required_qty: int, budget_left: int) -> ItemMarketData:
         log = self.ctx.logger

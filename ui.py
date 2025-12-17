@@ -238,16 +238,19 @@ class MarketUI:
         self.inp.click(p)
         time.sleep(self.cfg.timing.wait_page_flip)
 
-
     def locate_buy_cancel_buttons(self) -> tuple[Optional[Point], Optional[Point]]:
         """
         Locate Buy/Cancel buttons in modal via templates; fallback offsets relative to anchor.
+        Improvements:
+          - if cancel not found globally, try searching a small region around the found Buy button
+            with a slightly lower threshold and save debug crops for inspection.
         """
         screen = self.screen.screenshot_bgr()
 
         buy_p: Optional[Point] = None
         cancel_p: Optional[Point] = None
 
+        # --- BUY (global) ---
         try:
             buy_tpl = self._load_tpl(self.cfg.templates.btn_buy)
             m = self.matcher.match_template(
@@ -261,6 +264,7 @@ class MarketUI:
         except Exception as e:
             self.logger.warning("Buy button template error: %s", e)
 
+        # --- CANCEL (global) ---
         try:
             cancel_tpl = self._load_tpl(self.cfg.templates.btn_cancel)
             m = self.matcher.match_template(
@@ -274,6 +278,48 @@ class MarketUI:
         except Exception as e:
             self.logger.warning("Cancel button template error: %s", e)
 
+        # --- If cancel not found globally but buy found: search locally around buy ---
+        if cancel_p is None and buy_p is not None:
+            try:
+                # region around the buy button — tune size if needed
+                rx = max(0, buy_p.x - 240)
+                ry = max(0, buy_p.y - 140)
+                rw = 480
+                rh = 280
+                local_rect = Rect(rx, ry, rw, rh)
+                local_hay = self.screen.grab_region_bgr(local_rect)
+
+                # slightly relax threshold for local search
+                local_thr = max(0.60, float(self.cfg.templates.threshold_buttons) * 0.9)
+
+                m_local = self.matcher.match_template(
+                    local_hay, cancel_tpl,
+                    threshold=local_thr,
+                    multi_scale=self.cfg.templates.multi_scale
+                )
+                if m_local:
+                    # m_local.center is relative to local_hay -> convert to absolute
+                    cancel_p = Point(local_rect.x + m_local.center.x, local_rect.y + m_local.center.y)
+                    self.logger.info(
+                        "Cancel button found by local-template at %s (score=%.3f, thr=%.2f)",
+                        cancel_p, m_local.score, local_thr
+                    )
+                else:
+                    # dump debug crop for manual inspection
+                    try:
+                        import os, cv2
+                        os.makedirs("debug_btns", exist_ok=True)
+                        cv2.imwrite("debug_btns/btn_search_local.png", local_hay)
+                        tpl_img = self._load_tpl(self.cfg.templates.btn_cancel)
+                        cv2.imwrite("debug_btns/btn_cancel_tpl.png", tpl_img)
+                        self.logger.info("Wrote debug images to debug_btns/ for cancel local search")
+                    except Exception as e:
+                        self.logger.debug("Failed to write debug images for cancel: %s", e)
+
+            except Exception as e:
+                self.logger.warning("Local cancel search error: %s", e)
+
+        # --- Final fallbacks to offsets if still not found ---
         if buy_p is None:
             buy_p = self.rel_point(self.cfg.offs.buy_btn_fallback)
             self.logger.info("Buy button fallback point: %s", buy_p)
@@ -348,17 +394,17 @@ class MarketUI:
 
         for attempt in range(1, 4):
             self.inp.click(input_p)
-            self.inp.sleep(0.12)
+            self.inp.sleep(self.cfg.timing.wait_between_clicks)
 
             # очистить поле максимально надёжно
             self.inp.ctrl_combo("A")
-            self.inp.sleep(0.03)
+            self.inp.sleep(self.cfg.timing.wait_short)
 
             # вставка
             self.inp.set_clipboard(str(qty))
             self.inp.ctrl_combo("V")
             self.inp.press("end")
-            self.inp.sleep(0.10)
+            self.inp.sleep(self.cfg.timing.wait_small)
 
             # verify: Ctrl+A Ctrl+C -> clipboard
             self.inp.ctrl_combo("A")
@@ -373,7 +419,7 @@ class MarketUI:
                 "Paste verify failed for buy_qty: got=%r parsed=%d expected=%d (attempt %d/3)",
                 txt, got, qty, attempt
             )
-            self.inp.sleep(0.12)
+            self.inp.sleep(self.cfg.timing.wait_between_clicks)
 
         return False
 
@@ -551,9 +597,10 @@ class MarketUI:
             if m:
                 self.logger.info("Close modal (cancel template) at %s (score=%.3f)", m.center, m.score)
                 self.inp.click(m.center)
-                self.inp.sleep(0.25)
+                self.inp.sleep(self.cfg.timing.wait_after_cancel)
         except Exception as e:
             self.logger.warning("close_modal_safely error: %s", e)
+
 
     def _fill_text_field(self, text: str, verify: bool = True, field_name: str = "field") -> None:
         """
@@ -564,7 +611,7 @@ class MarketUI:
 
         # Ctrl+A (оставляем как ты просил)
         self.inp.ctrl_combo("A")
-        self.inp.sleep(0.1)
+        self.inp.sleep(self.cfg.timing.wait_small)
         # Ctrl+V
         self.inp.ctrl_combo("V")
 
@@ -574,7 +621,7 @@ class MarketUI:
 
         # Верификация: Ctrl+A Ctrl+C -> проверяем, что реально в поле
         self.inp.ctrl_combo("A")
-        self.inp.sleep(0.1)
+        self.inp.sleep(self.cfg.timing.wait_small)
         self.inp.ctrl_combo("C")
         got = (self.inp.get_clipboard() or "").strip()
         self.inp.press("end")
