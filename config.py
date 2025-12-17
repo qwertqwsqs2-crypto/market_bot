@@ -10,14 +10,27 @@ from models import Point, Rect
 
 @dataclass(frozen=True)
 class TimingConfig:
+    # общие
     startup_delay: float = 3.0
-    wait_between_clicks: float = 0.12
+
+    # клики / небольшие паузы
+    wait_between_clicks: float = 0.12   # существующее
+    wait_short: float = 0.03            # очень короткие паузы (нажатия/ctrl)
+    wait_small: float = 0.10            # мелкие паузы (проверки буфера, typewrite fallback)
+    wait_medium: float = 0.25           # средние паузы (подтверждения/остатки)
+
+    # модалки / перелистывание страниц
     wait_open_modal: float = 0.9
-    # How long to wait after typing into the search input for the list to refresh.
-    wait_after_search: float = 1.4
-    wait_ocr_timeout: float = 1.0
     wait_page_flip: float = 1.0
 
+    # поиски / OCR
+    wait_after_search: float = 1.4
+    wait_ocr_timeout: float = 1.0
+
+    # поведение покупки
+    wait_after_buy: float = 0.45
+    wait_after_cancel: float = 0.15
+    wait_between_plan_steps: float = 0.6
 
 
 @dataclass(frozen=True)
@@ -83,18 +96,19 @@ class RuntimeConfig:
     max_slots: int = 8
 
     # Simulate behavior:
-    # - simulate mode by default does not send inputs; it only logs intended actions.
-    # If you set this True, simulate will navigate UI but never clicks "Buy"
-    # (it will still open modals and press Cancel).
     simulate_ui_actions: bool = False
 
-    # Input backend: "pyautogui" recommended.
     input_backend: str = "pyautogui"
 
+@dataclass(frozen=True)
+class ProfitConfig:
+    enabled: bool = True
+    mode: str = "percent"   # "percent" | "absolute"
+    min_profit_percent: float = 0.15
+    min_profit_absolute: int = 0
 
 @dataclass(frozen=True)
 class SafetyConfig:
-    # Must be true to allow run mode (also requires --i-understand).
     acknowledge_rights: bool = False
 
 
@@ -106,6 +120,7 @@ class AppConfig:
     templates: TemplateConfig = TemplateConfig()
     runtime: RuntimeConfig = RuntimeConfig()
     safety: SafetyConfig = SafetyConfig()
+    profit: ProfitConfig = ProfitConfig()
 
     @staticmethod
     def load(path: Path) -> "AppConfig":
@@ -119,12 +134,20 @@ class AppConfig:
         timing = TimingConfig(
             startup_delay=float(d.get("startup_delay", 3.0)),
             wait_between_clicks=float(d.get("wait_between_clicks", 0.12)),
+            wait_short=float(d.get("wait_short", 0.03)),
+            wait_small=float(d.get("wait_small", 0.10)),
+            wait_medium=float(d.get("wait_medium", 0.25)),
             wait_open_modal=float(d.get("wait_open_modal", 0.9)),
-            wait_after_search=float(d.get("wait_after_search", 1.2)),
-            wait_ocr_timeout=float(d.get("wait_ocr_timeout", 2.0)),
+            wait_page_flip=float(d.get("wait_page_flip", 1.0)),
+            wait_after_search=float(d.get("wait_after_search", 1.4)),
+            wait_ocr_timeout=float(d.get("wait_ocr_timeout", 1.0)),
+            wait_after_buy=float(d.get("wait_after_buy", 0.45)),
+            wait_after_cancel=float(d.get("wait_after_cancel", 0.15)),
+            wait_between_plan_steps=float(d.get("wait_between_plan_steps", 0.6)),
         )
 
         offs_raw = d.get("offs", {})
+        rs = offs_raw.get("region_slots", None),
         offs = OffsetsConfig(
             anchor_search=Point(*offs_raw.get("anchor_search", [-312, 65])),
             cat_trophy=Point(*offs_raw.get("cat_trophy", [-218, 379])),
@@ -135,8 +158,7 @@ class AppConfig:
             buy_btn_fallback=Point(*offs_raw.get("buy_btn_fallback", [-11, 293])),
             buy_cancel_fallback=Point(*offs_raw.get("buy_cancel_fallback", [170, 211])),
             next_page=Point(*offs_raw.get("next_page", [30, 605])),
-            slot_height=int(offs_raw.get("slot_height", 59)),
-            region_slots=Rect(*offs_raw["region_slots"]) if "region_slots" in offs_raw else None,
+            region_slots = Rect(*rs) if isinstance(rs, (list, tuple)) and len(rs) == 4 else None
         )
 
         ocr_raw = d.get("ocr", {})
@@ -181,6 +203,14 @@ class AppConfig:
             acknowledge_rights=bool(safety_raw.get("acknowledge_rights", False))
         )
 
+        profit_raw = d.get("profit", {})
+        profit = ProfitConfig(
+            enabled=bool(profit_raw.get("enabled", True)),
+            mode=str(profit_raw.get("mode", "percent")),
+            min_profit_percent=float(profit_raw.get("min_profit_percent", 0.15)),
+            min_profit_absolute=int(profit_raw.get("min_profit_absolute", 0)),
+        )
+
         return AppConfig(
             timing=timing,
             offs=offs,
@@ -188,4 +218,5 @@ class AppConfig:
             templates=templates,
             runtime=runtime,
             safety=safety,
+            profit=profit,
         )

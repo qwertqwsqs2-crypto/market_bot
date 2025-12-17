@@ -1,8 +1,17 @@
 {
+  "startup_delay": 3.0,
   "wait_between_clicks": 0.12,
+  "wait_short": 0.03,
+  "wait_small": 0.10,
+  "wait_medium": 0.25,
   "wait_open_modal": 0.3,
   "wait_after_search": 1.7,
   "wait_ocr_timeout": 0.5,
+  "wait_page_flip": 1.0,
+  "wait_after_buy": 0.45,
+  "wait_after_cancel": 0.15,
+  "wait_between_plan_steps": 0.3,
+
   "max_pages": 10,
   "max_slots": 8,
 
@@ -16,9 +25,7 @@
     "buy_btn_fallback": [-11, 293],
     "buy_cancel_fallback": [170, 211],
     "next_page": [30, 605],
-    "slot_height": 59,
-
-    "region_slots": [-50, 120, 650, 520]
+    "slot_height": 59
   },
 
   "ocr": {
@@ -39,9 +46,9 @@
     "btn_next": "btn_next.png",
 
     "item_icons": {
-      "Зеленорост": "zelenrost.png",
-      "Стланик": "stlanik.png",
-      "Толстоцвет": "tolstocvet.png"
+      "Зеленорост": "items/zelenrost.png",
+      "Стланик": "items/stlanik.png",
+      "Толстоцвет": "items/tolstocvet.png"
     },
 
     "threshold_anchor": 0.8,
@@ -57,5 +64,14 @@
 
   "safety": {
     "acknowledge_rights": false
+  },
+  "profit": {
+    "enabled": true,
+
+    "mode": "percent",
+
+    "min_profit_percent": 0.15,
+
+    "min_profit_absolute": 500
   }
 }
