@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Iterable, Optional
 
 from config import AppConfig
@@ -13,6 +14,7 @@ from models import (
     QuestDefinition,
     QuestItem,
 )
+from purchase_logger import PurchaseLogger
 from ui import MarketUI
 from planner import build_plan_one_page, execute_plan_one_page
 
@@ -58,6 +60,8 @@ class BotContext:
 class MarketBot:
     def __init__(self, ctx: BotContext) -> None:
         self.ctx = ctx
+        default_path = Path("purchases_log.csv")
+        self.purchase_logger = PurchaseLogger(default_path, append=True)
 
     def reward_for_level(self, q: QuestDefinition) -> int:
         return q.reward60 if self.ctx.level == 60 else q.reward65
@@ -183,6 +187,23 @@ class MarketBot:
                     "Purchase result: item=%r required=%d bought=%d spent=%d success=%s reason=%s",
                     res.item.name, res.required_qty, res.bought_qty, res.spent, res.success, res.reason
                 )
+                plan_for_item = plans_by_item.get(res.item.name)
+                planned_cost = None
+                if plan_for_item is not None:
+                    planned_cost = plan_for_item.total_cost
+                else:
+                    # fallback to ItemMarketData.min_cost if available in items_data
+                    found = next((d for d in items_data if d.item.name == res.item.name), None)
+                    planned_cost = getattr(found, "min_cost", None)
+
+                # compute reward share
+                if total_min_cost and total_min_cost > 0 and planned_cost:
+                    reward_share = int(round(reward_total * (planned_cost / total_min_cost)))
+                else:
+                    # fallback equal split by number of items
+                    reward_share = int(round(reward_total / max(1, len(items_data))))
+
+                self.purchase_logger.record(res.item.name, res.spent, reward_share)
                 continue
 
             # обычный путь: выполнить план, покупая всегда из slot=1
@@ -218,6 +239,23 @@ class MarketBot:
                 "Purchase result: item=%r required=%d bought=%d spent=%d success=%s reason=%s",
                 res.item.name, res.required_qty, res.bought_qty, res.spent, res.success, res.reason
             )
+            plan_for_item = plans_by_item.get(res.item.name)
+            planned_cost = None
+            if plan_for_item is not None:
+                planned_cost = plan_for_item.total_cost
+            else:
+                # fallback to ItemMarketData.min_cost if available in items_data
+                found = next((d for d in items_data if d.item.name == res.item.name), None)
+                planned_cost = getattr(found, "min_cost", None)
+
+            # compute reward share
+            if total_min_cost and total_min_cost > 0 and planned_cost:
+                reward_share = int(round(reward_total * (planned_cost / total_min_cost)))
+            else:
+                # fallback equal split by number of items
+                reward_share = int(round(reward_total / max(1, len(items_data))))
+
+            self.purchase_logger.record(res.item.name, res.spent, reward_share)
 
     def collect_image_item_data(self, item: QuestItem, required_qty: int, budget_left: int) -> ItemMarketData:
         log = self.ctx.logger
