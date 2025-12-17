@@ -13,7 +13,10 @@ class TimingConfig:
     startup_delay: float = 3.0
     wait_between_clicks: float = 0.12
     wait_open_modal: float = 0.9
-    wait_ocr_timeout: float = 5.0
+    # How long to wait after typing into the search input for the list to refresh.
+    wait_after_search: float = 1.4
+    wait_ocr_timeout: float = 1.0
+    wait_page_flip: float = 1.0
 
 
 
@@ -43,12 +46,13 @@ class OffsetsConfig:
 class OCRConfig:
     use_easyocr: bool = True
     easyocr_langs: list[str] = field(default_factory=lambda: ["ru", "en"])
+    easyocr_gpu: bool = True
     use_tesseract_fallback: bool = True
 
     # For price OCR robustness
     min_confidence: float = 0.35
     # how many preprocessing variants to try
-    variants: int = 3
+    variants: int = 5
     scale_factors: list[int] = field(default_factory=lambda: [2, 3])
 
 
@@ -116,10 +120,12 @@ class AppConfig:
             startup_delay=float(d.get("startup_delay", 3.0)),
             wait_between_clicks=float(d.get("wait_between_clicks", 0.12)),
             wait_open_modal=float(d.get("wait_open_modal", 0.9)),
-            wait_ocr_timeout=float(d.get("wait_ocr_timeout", 5.0)),
+            wait_after_search=float(d.get("wait_after_search", 1.2)),
+            wait_ocr_timeout=float(d.get("wait_ocr_timeout", 2.0)),
         )
 
         offs_raw = d.get("offs", {})
+        rs = offs_raw.get("region_slots", None),
         offs = OffsetsConfig(
             anchor_search=Point(*offs_raw.get("anchor_search", [-312, 65])),
             cat_trophy=Point(*offs_raw.get("cat_trophy", [-218, 379])),
@@ -130,14 +136,14 @@ class AppConfig:
             buy_btn_fallback=Point(*offs_raw.get("buy_btn_fallback", [-11, 293])),
             buy_cancel_fallback=Point(*offs_raw.get("buy_cancel_fallback", [170, 211])),
             next_page=Point(*offs_raw.get("next_page", [30, 605])),
-            slot_height=int(offs_raw.get("slot_height", 59)),
-            region_slots=Rect(*offs_raw["region_slots"]) if "region_slots" in offs_raw else None,
+            region_slots = Rect(*rs) if isinstance(rs, (list, tuple)) and len(rs) == 4 else None
         )
 
         ocr_raw = d.get("ocr", {})
         ocr = OCRConfig(
             use_easyocr=bool(ocr_raw.get("use_easyocr", True)),
             easyocr_langs=list(ocr_raw.get("easyocr_langs", ["ru", "en"])),
+            easyocr_gpu=bool(ocr_raw.get("easyocr_gpu", True)),
             use_tesseract_fallback=bool(ocr_raw.get("use_tesseract_fallback", True)),
             min_confidence=float(ocr_raw.get("min_confidence", 0.35)),
             variants=int(ocr_raw.get("variants", 3)),

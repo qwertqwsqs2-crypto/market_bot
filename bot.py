@@ -110,12 +110,14 @@ class MarketBot:
 
             # --- image items: оставляем старую collect_item_data (там next_page допустим) ---
             if item2.use_image:
-                data = self.collect_item_data(item2, required_qty)
-                items_data.append(data)
+                budget_left = reward_total - total_min_cost  # важно: это безопасный ранний отсев
+                data = self.collect_image_item_data(item2, required_qty, budget_left=budget_left)
 
                 if data.min_cost is None:
                     log.info("Item data incomplete => skip quest. item=%r reason=%s", item2.name, data.reason)
                     return
+
+                items_data.append(data)
 
                 total_min_cost += data.min_cost
                 continue
@@ -217,6 +219,131 @@ class MarketBot:
                 res.item.name, res.required_qty, res.bought_qty, res.spent, res.success, res.reason
             )
 
+    def collect_image_item_data(self, item: QuestItem, required_qty: int, budget_left: int) -> ItemMarketData:
+        log = self.ctx.logger
+        ui = self.ctx.ui
+        cfg = self.ctx.cfg
+
+        log.info("Collect/Plan(image) item: %r required_qty=%d budget_left=%d", item.name, required_qty, budget_left)
+
+        can_open_modals = (self.ctx.mode == Mode.RUN) or cfg.runtime.simulate_ui_actions
+
+        if self.ctx.mode == Mode.RUN or cfg.runtime.simulate_ui_actions:
+            ui.run_search(item.name)
+
+        def ocr_price(slot: int, page: int) -> Optional[int]:
+            rect = ui.price_rect_for_slot(slot)
+            crop = ui.screen.grab_region_bgr(rect)
+            r = ui.ocr.read_price(
+                crop,
+                timeout_s=cfg.timing.wait_ocr_timeout,
+                variants=cfg.ocr.variants,
+                scales=cfg.ocr.scale_factors,
+            )
+            if r.value is None:
+                log.warning("Price OCR failed: item=%r page=%d slot=%d raw=%r", item.name, page, slot, r.raw_text)
+                return None
+            return int(r.value)
+
+        remain = required_qty
+        cost = 0
+        total_available = 0
+        lots: list[LotInfo] = []
+
+        page = 1
+        max_pages = cfg.runtime.max_pages if can_open_modals else 1
+
+        while page <= max_pages and remain > 0:
+            matches = ui.find_item_slots_by_icon(item.name)  # [(slot, score), ...] отсортированы по slot
+            if not matches:
+                if page < max_pages:
+                    ui.next_page()
+                    page += 1
+                    continue
+                break
+
+            # идём сверху вниз; ниже — только дороже
+            progressed_on_page = False
+            for slot, score in matches:
+                price = ocr_price(slot, page)
+                if price is None:
+                    continue
+
+                # РАННИЙ ОТСЕВ:
+                # даже если весь остаток купить по текущей цене (а дальше только дороже),
+                # то в бюджет уже не помещаемся => дальше смотреть бессмысленно
+                if cost + price * remain > budget_left:
+                    return ItemMarketData(
+                        item=item,
+                        required_qty=required_qty,
+                        lots=lots,
+                        total_available=total_available,
+                        min_cost=None,
+                        reason=f"unprofitable: cost={cost} price={price} remain={remain} budget_left={budget_left}",
+                    )
+
+                if not can_open_modals:
+                    # в pure-simulate мы не можем читать qty — даём оптимистичную оценку и выходим
+                    est = cost + price * remain
+                    return ItemMarketData(
+                        item=item,
+                        required_qty=required_qty,
+                        lots=lots,
+                        total_available=None,
+                        min_cost=est,
+                        reason="no modal access; estimate by current best price",
+                    )
+
+                # читаем qty только если по цене ещё есть смысл
+                ui.open_lot_modal(slot)
+                buy_btn, cancel_btn = ui.locate_buy_cancel_buttons()
+                if not buy_btn or not cancel_btn:
+                    ui.close_modal_safely()
+                    continue
+
+                qty = ui.read_seller_qty_from_modal(buy_btn)
+                ui.click_cancel(cancel_btn)
+
+                if not qty or qty <= 0:
+                    continue
+
+                progressed_on_page = True
+                total_available += qty
+
+                take = min(remain, qty)
+                cost += take * price
+                remain -= take
+
+                lots.append(LotInfo(page=page, slot=slot, price=price, seller_qty=qty, match_score=score))
+
+                if remain <= 0:
+                    return ItemMarketData(
+                        item=item,
+                        required_qty=required_qty,
+                        lots=lots,
+                        total_available=total_available,
+                        min_cost=cost,
+                        reason=None,
+                    )
+
+            # если на странице вообще не смогли продвинуться — перелистываем (или выходим)
+            if remain > 0:
+                if page < max_pages and can_open_modals:
+                    ui.next_page()
+                    page += 1
+                    continue
+                break
+
+        # если дошли сюда — не хватило количества
+        return ItemMarketData(
+            item=item,
+            required_qty=required_qty,
+            lots=lots,
+            total_available=total_available if total_available > 0 else 0,
+            min_cost=None,
+            reason=f"insufficient supply: need={required_qty} have={total_available}",
+        )
+
     def _apply_image_mode_if_configured(self, item: QuestItem) -> QuestItem:
         """
         If config.templates.item_icons contains this item, we auto-enable use_image.
@@ -255,34 +382,31 @@ class MarketBot:
 
         for page in range(1, pages_to_scan + 1):
             if item.use_image:
-                found = ui.find_item_slot_by_icon(item.name)
-                if not found:
-                    if item.use_image and page < pages_to_scan and (
-                            self.ctx.mode == Mode.RUN or cfg.runtime.simulate_ui_actions):
+                matches = ui.find_item_slots_by_icon(item.name)  # [(slot, score), ...]
+                if not matches:
+                    if page < pages_to_scan and (self.ctx.mode == Mode.RUN or cfg.runtime.simulate_ui_actions):
                         ui.next_page()
                         continue
                     break
-                slot, score = found
-                # OCR price for that slot
-                rect = ui.price_rect_for_slot(slot)
-                crop = ui.screen.grab_region_bgr(rect)
-                r = ui.ocr.read_price(
-                    crop,
-                    timeout_s=cfg.timing.wait_ocr_timeout,
-                    variants=cfg.ocr.variants,
-                    scales=cfg.ocr.scale_factors,
-                )
-                if r.value is None:
-                    log.warning("Price OCR failed for image-item slot. item=%r page=%d slot=%d", item.name, page, slot)
-                else:
+
+                for slot, score in matches:
+                    rect = ui.price_rect_for_slot(slot)
+                    crop = ui.screen.grab_region_bgr(rect)
+                    r = ui.ocr.read_price(
+                        crop,
+                        timeout_s=cfg.timing.wait_ocr_timeout,
+                        variants=cfg.ocr.variants,
+                        scales=cfg.ocr.scale_factors,
+                    )
+                    if r.value is None:
+                        log.warning("Price OCR failed: item=%r page=%d slot=%d", item.name, page, slot)
+                        continue
                     lots.append(LotInfo(page=page, slot=slot, price=r.value, seller_qty=None, match_score=score))
-            else:
-                scanned = ui.scan_prices_on_page(page)
-                for (slot, price, _conf, _raw) in scanned:
-                    lots.append(LotInfo(page=page, slot=slot, price=price))
+
+                # ВАЖНО: в стадии оценки НЕ открываем модалки и не читаем qty
 
             # read seller qty per lot (optional, best effort)
-            if can_open_modals and lots:
+            if can_open_modals and lots and (not item.use_image):
                 # only for lots on this page
                 page_lots = [l for l in lots if l.page == page]
                 for l in page_lots:
@@ -366,14 +490,6 @@ class MarketBot:
         )
 
     def buy_item(self, item: QuestItem, required_qty: int) -> PurchaseResult:
-        """
-        Buying loop:
-          - always re-run search / re-read page before action
-          - default buys from slot 1; for image items find slot by icon each iteration
-          - partial buys if seller has less than remaining
-          - up to max_pages pages
-        In simulate_ui_actions: it navigates & opens modals but never presses BUY.
-        """
         log = self.ctx.logger
         ui = self.ctx.ui
         cfg = self.ctx.cfg
@@ -382,26 +498,120 @@ class MarketBot:
         bought = 0
         remain = required_qty
 
-        for page in range(1, cfg.runtime.max_pages + 1):
-            if remain <= 0:
-                break
+        do_buy = (self.ctx.mode == Mode.RUN)
 
+        # For image-mode we navigate pages, so do one search up-front.
+        if self.ctx.mode == Mode.RUN or cfg.runtime.simulate_ui_actions:
             ui.run_search(item.name)
 
-            # decide which slot to open
-            if item.use_image:
-                found = ui.find_item_slot_by_icon(item.name)
-                if not found:
+        # ---------------- IMAGE MODE ----------------
+        if item.use_image:
+            page = 1
+            while remain > 0 and page <= cfg.runtime.max_pages:
+                matches = ui.find_item_slots_by_icon(item.name)  # [(slot, score), ...] sorted by slot asc
+                if not matches:
                     log.info("Image item not found on page %d, going next.", page)
-                    if page < cfg.runtime.max_pages:
+                    if page < cfg.runtime.max_pages and (self.ctx.mode == Mode.RUN or cfg.runtime.simulate_ui_actions):
                         ui.next_page()
+                        page += 1
                         continue
                     break
-                slot_idx, _score = found
-            else:
-                slot_idx = 1
 
-            # Read current price for this slot (for logging/spent)
+                progressed = False
+
+                # try from cheapest/top to more expensive on this page
+                for slot_idx, _score in matches:
+                    if remain <= 0:
+                        break
+
+                    # OCR price for this slot (logging/spent)
+                    rect = ui.price_rect_for_slot(slot_idx)
+                    crop = ui.screen.grab_region_bgr(rect)
+                    pr = ui.ocr.read_price(
+                        crop,
+                        timeout_s=cfg.timing.wait_ocr_timeout,
+                        variants=cfg.ocr.variants,
+                        scales=cfg.ocr.scale_factors,
+                    )
+                    if pr.value is None:
+                        log.warning("Cannot OCR price before buy. page=%d slot=%d => skip slot", page, slot_idx)
+                        continue
+                    price = pr.value
+
+                    ui.open_lot_modal(slot_idx)
+                    buy_btn, cancel_btn = ui.locate_buy_cancel_buttons()
+                    if buy_btn is None or cancel_btn is None:
+                        log.warning("Modal buttons not found => skip slot.")
+                        ui.close_modal_safely()
+                        continue
+
+                    seller_qty = ui.read_seller_qty_from_modal(buy_btn)
+                    if not seller_qty or seller_qty <= 0:
+                        ui.click_cancel(cancel_btn)
+                        continue
+
+                    to_buy = min(remain, seller_qty)
+                    log.info(
+                        "Buy attempt: item=%r page=%d slot=%d price=%d seller_qty=%d to_buy=%d remain=%d",
+                        item.name, page, slot_idx, price, seller_qty, to_buy, remain
+                    )
+
+                    # SIM-UI mode: never click BUY
+                    if self.ctx.mode == Mode.SIMULATE and cfg.runtime.simulate_ui_actions:
+                        ui.click_cancel(cancel_btn)
+                        bought += to_buy
+                        spent += to_buy * price
+                        remain -= to_buy
+                        progressed = True
+                        break
+
+                    ok = ui.set_buy_quantity(buy_btn, to_buy)
+                    if not ok:
+                        log.warning("Failed to set buy quantity => cancel and try next slot.")
+                        ui.click_cancel(cancel_btn)
+                        continue
+
+                    if do_buy:
+                        ui.click_buy(buy_btn)
+                    else:
+                        ui.click_cancel(cancel_btn)
+
+                    bought += to_buy
+                    spent += to_buy * price
+                    remain -= to_buy
+                    progressed = True
+
+                    # list may shift after buy => re-scan from the top (cheapest first)
+                    ui.inp.sleep(cfg.timing.wait_open_modal * 0.4)
+                    break
+
+                if remain <= 0:
+                    break
+
+                if progressed:
+                    # re-scan same page to keep taking cheapest first
+                    continue
+
+                # couldn't buy anything on this page => try next page
+                if page < cfg.runtime.max_pages and (self.ctx.mode == Mode.RUN or cfg.runtime.simulate_ui_actions):
+                    ui.next_page()
+                    page += 1
+                    continue
+
+                break
+
+            success = (remain <= 0)
+            reason = None if success else f"not enough supply or OCR/template failures; remain={remain}"
+            return PurchaseResult(item=item, required_qty=required_qty, bought_qty=bought, spent=spent, success=success, reason=reason)
+
+        # ---------------- TEXT/OCR MODE (fallback) ----------------
+        page = 1
+        while remain > 0 and page <= cfg.runtime.max_pages:
+            if self.ctx.mode == Mode.RUN or cfg.runtime.simulate_ui_actions:
+                ui.run_search(item.name)
+
+            slot_idx = 1
+
             rect = ui.price_rect_for_slot(slot_idx)
             crop = ui.screen.grab_region_bgr(rect)
             pr = ui.ocr.read_price(
@@ -409,8 +619,9 @@ class MarketBot:
             )
             if pr.value is None:
                 log.warning("Cannot OCR price before buy. page=%d slot=%d => skip/next", page, slot_idx)
-                if page < cfg.runtime.max_pages:
+                if page < cfg.runtime.max_pages and (self.ctx.mode == Mode.RUN or cfg.runtime.simulate_ui_actions):
                     ui.next_page()
+                    page += 1
                     continue
                 break
             price = pr.value
@@ -419,41 +630,42 @@ class MarketBot:
             buy_btn, cancel_btn = ui.locate_buy_cancel_buttons()
             if buy_btn is None or cancel_btn is None:
                 log.warning("Modal buttons not found => cancel/skip.")
-                # best-effort click cancel fallback
-                if cancel_btn:
-                    ui.click_cancel(cancel_btn)
+                ui.close_modal_safely()
                 return PurchaseResult(item=item, required_qty=required_qty, bought_qty=bought, spent=spent, success=False, reason="modal buttons not found")
 
             seller_qty = ui.read_seller_qty_from_modal(buy_btn)
             if seller_qty is None or seller_qty <= 0:
                 log.info("Seller qty unknown/0 => cancel and next lot/page.")
                 ui.click_cancel(cancel_btn)
-                if page < cfg.runtime.max_pages:
+                if page < cfg.runtime.max_pages and (self.ctx.mode == Mode.RUN or cfg.runtime.simulate_ui_actions):
                     ui.next_page()
+                    page += 1
                     continue
                 break
 
             to_buy = min(remain, seller_qty)
-            log.info("Buy attempt: item=%r page=%d slot=%d price=%d seller_qty=%d to_buy=%d remain=%d",
-                     item.name, page, slot_idx, price, seller_qty, to_buy, remain)
+            log.info(
+                "Buy attempt: item=%r page=%d slot=%d price=%d seller_qty=%d to_buy=%d remain=%d",
+                item.name, page, slot_idx, price, seller_qty, to_buy, remain
+            )
 
-            # SIM-UI mode: never click BUY
             if self.ctx.mode == Mode.SIMULATE and cfg.runtime.simulate_ui_actions:
                 ui.click_cancel(cancel_btn)
-                # pretend we could buy (just for trace)
                 bought += to_buy
                 spent += to_buy * price
                 remain -= to_buy
-                # but do not actually affect UI; continue loop
                 continue
 
-            ui.set_buy_quantity(buy_btn, to_buy)
+            ok = ui.set_buy_quantity(buy_btn, to_buy)
+            if not ok:
+                ui.click_cancel(cancel_btn)
+                return PurchaseResult(item=item, required_qty=required_qty, bought_qty=bought, spent=spent, success=False, reason="cannot set buy qty")
+
             ui.click_buy(buy_btn)
             bought += to_buy
             spent += to_buy * price
             remain -= to_buy
 
-            # after buy, list shifts => next iteration re-runs search and re-finds slot
             ui.inp.sleep(cfg.timing.wait_open_modal * 0.6)
 
         success = (remain <= 0)

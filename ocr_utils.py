@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import logging
 import re
 import time
 from dataclasses import dataclass
@@ -53,7 +54,7 @@ class OCRReader:
       - fallback to tesseract (optional)
       - pick best result by confidence and/or majority vote
     """
-    def __init__(self, use_easyocr: bool, langs: Sequence[str], use_tesseract: bool, min_conf: float) -> None:
+    def __init__(self, use_easyocr: bool, langs: Sequence[str], use_tesseract: bool, min_conf: float, prefer_gpu: bool = True) -> None:
         self.use_easyocr = use_easyocr
         self.use_tesseract = use_tesseract
         self.min_conf = min_conf
@@ -62,7 +63,10 @@ class OCRReader:
         if self.use_easyocr:
             try:
                 import easyocr  # type: ignore
-                self._easy_reader = easyocr.Reader(list(langs), gpu=False)
+                gpu_flag = prefer_gpu and self._gpu_available()
+                self._easy_reader = easyocr.Reader(list(langs), gpu=gpu_flag)
+                if gpu_flag and getattr(self._easy_reader, "device", "cpu") == "cpu":
+                    logging.getLogger(__name__).warning("easyocr GPU requested but CPU was selected; check CUDA setup")
             except Exception:
                 self._easy_reader = None
                 self.use_easyocr = False
@@ -75,6 +79,38 @@ class OCRReader:
             except Exception:
                 self._tesseract_ok = False
                 self.use_tesseract = False
+
+    @staticmethod
+    def _gpu_available() -> bool:
+        try:
+            import torch  # type: ignore
+
+            return bool(torch.cuda.is_available())
+        except Exception:
+            return False
+
+    @staticmethod
+    def _gold_mask_variant(img_bgr: np.ndarray, scale: int) -> np.ndarray:
+        import cv2  # type: ignore
+
+        bgr = img_bgr
+        if scale > 1:
+            bgr = cv2.resize(bgr, (bgr.shape[1] * scale, bgr.shape[0] * scale), interpolation=cv2.INTER_CUBIC)
+
+        hsv = cv2.cvtColor(bgr, cv2.COLOR_BGR2HSV)
+
+        # диапазон под "золотые" цифры (можешь чуть подвигать H/S/V при необходимости)
+        lower = np.array([10, 70, 70], dtype=np.uint8)
+        upper = np.array([45, 255, 255], dtype=np.uint8)
+
+        mask = cv2.inRange(hsv, lower, upper)
+
+        # важно: НЕ делай aggressive OPEN 2x2/3x3 — он ломает тонкие штрихи "3"
+        k = np.ones((2, 2), np.uint8)
+        mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, k, iterations=1)
+
+        # easyocr лучше ест белое на чёрном
+        return mask
 
     @staticmethod
     def _to_gray(img_bgr: np.ndarray) -> np.ndarray:
@@ -100,16 +136,22 @@ class OCRReader:
             gray = cv2.resize(gray, (gray.shape[1] * scale, gray.shape[0] * scale), interpolation=cv2.INTER_CUBIC)
 
         if variant_id == 0:
-            thr = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 31, 8)
-            k = np.ones((2, 2), np.uint8)
-            thr = cv2.morphologyEx(thr, cv2.MORPH_OPEN, k, iterations=1)
-            return cv2.fastNlMeansDenoising(thr, None, 15, 7, 21)
+            return OCRReader._gold_mask_variant(img_bgr, scale)
 
         if variant_id == 1:
             thr = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_MEAN_C, cv2.THRESH_BINARY, 35, 10)
             k = np.ones((2, 2), np.uint8)
             thr = cv2.morphologyEx(thr, cv2.MORPH_OPEN, k, iterations=1)
             return cv2.fastNlMeansDenoising(thr, None, 18, 7, 21)
+
+        if variant_id == 2:
+            clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(6, 6))
+            eq = clahe.apply(gray)
+            eq = cv2.GaussianBlur(eq, (3, 3), 0)
+            _, thr = cv2.threshold(eq, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+            k = np.ones((2, 2), np.uint8)
+            thr = cv2.morphologyEx(thr, cv2.MORPH_OPEN, k, iterations=1)
+            return thr
 
         if variant_id == 3:
             bgr = img_bgr
@@ -118,18 +160,22 @@ class OCRReader:
 
             hsv = cv2.cvtColor(bgr, cv2.COLOR_BGR2HSV)
 
-            # диапазон под “желто-оранжевые” цифры (как в v8; можно потом подстроить)
-            lower = np.array([10, 60, 80])
-            upper = np.array([55, 255, 255])
+            # узкий диапазон под “желто-оранжевые” цифры
+            lower = np.array([8, 80, 80])
+            upper = np.array([40, 255, 255])
             mask = cv2.inRange(hsv, lower, upper)
 
+            # подчистить шум и подчеркнуть разрывы дуг у «3», чтобы не превращались в «8»
             k = np.ones((2, 2), np.uint8)
             mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN, k, iterations=1)
+            mask = cv2.erode(mask, k, iterations=1)
+            mask = cv2.GaussianBlur(mask, (3, 3), 0)
 
             # делаем “черный текст на белом”, OCR так стабильнее
             mask = cv2.bitwise_not(mask)
             return mask
-        # variant 2+
+
+        # default fallback
         _, thr = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
         k = np.ones((2, 2), np.uint8)
         thr = cv2.morphologyEx(thr, cv2.MORPH_OPEN, k, iterations=1)
@@ -144,15 +190,24 @@ class OCRReader:
         if len(img.shape) == 2:
             rgb = np.stack([img, img, img], axis=-1)
         else:
-            # convert BGR->RGB if needed
-            rgb = img[..., ::-1]
+            rgb = img[..., ::-1]  # BGR->RGB
 
         try:
             results = self._easy_reader.readtext(
                 rgb,
                 detail=1,
                 paragraph=False,
-                allowlist="0123456789 "
+                allowlist="0123456789",
+                decoder="beamsearch",
+                beamWidth=10,
+                min_size=8,
+                mag_ratio=1.0,
+                canvas_size=2560,
+                contrast_ths=0.2,
+                adjust_contrast=0.8,
+                text_threshold=0.6,
+                low_text=0.3,
+                link_threshold=0.3,
             )
         except Exception:
             return OCRResult(None, 0.0, "", "easyocr")
@@ -166,6 +221,7 @@ class OCRReader:
                 best_val = val
                 best_conf = float(conf)
                 best_raw = text
+
         return OCRResult(best_val, best_conf, best_raw, "easyocr")
 
     def _tesseract_read(self, img: np.ndarray) -> OCRResult:
