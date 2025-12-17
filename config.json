@@ -16,9 +16,7 @@
     "buy_btn_fallback": [-11, 293],
     "buy_cancel_fallback": [170, 211],
     "next_page": [30, 605],
-    "slot_height": 59,
-
-    "region_slots": [-50, 120, 650, 520]
+    "slot_height": 59
   },
 
   "ocr": {

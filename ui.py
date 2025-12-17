@@ -333,6 +333,7 @@ class MarketUI:
         self.logger.info("Seller qty OCR fallback: %s conf=%.2f raw=%r", r.value, r.confidence, r.raw_text)
         return r.value
 
+    @staticmethod
     def _parse_int_from_text(s: str) -> int:
         m = re.findall(r"\d+", (s or "").replace("\u00A0", " "))
         if not m:
@@ -351,8 +352,6 @@ class MarketUI:
 
             # очистить поле максимально надёжно
             self.inp.ctrl_combo("A")
-            self.inp.sleep(0.03)
-            self.inp.press("backspace")
             self.inp.sleep(0.03)
 
             # вставка
@@ -387,82 +386,154 @@ class MarketUI:
         self.inp.click(cancel_btn)
 
     def find_item_slot_by_icon(self, item_name: str) -> Optional[tuple[int, float]]:
+        slots = self.find_item_slots_by_icon(item_name)
+        if not slots:
+            return None
+        # берём самый верхний слот (обычно дешевле всех, рынок отсортирован)
+        return slots[0][0], slots[0][1]
+
+    def _normalize_icon_template(self, tpl0: np.ndarray) -> np.ndarray:
         """
-        Find the slot where the item icon appears (template matching).
-        We scan the list region (8 slots) and compute slot index by Y.
+        Делает шаблон "уникальным": берём левый квадрат (иконку) и отрезаем рамку.
+        ВАЖНО: не режем половину иконки, иначе снова будет матчиться рамка.
         """
-        import math
-        import os
         import cv2  # type: ignore
+        import numpy as np
+
+        tpl = tpl0.copy()
+        h, w = tpl.shape[:2]
+
+        # если шаблон широкий (иконка + текст) => оставляем левый квадрат
+        if w > int(h * 1.10):
+            tpl = tpl[:, :h].copy()
+
+        # отрезаем рамку (обычно она одинаковая у всех иконок и даёт ложные 1.0)
+        h2, w2 = tpl.shape[:2]
+        pad = max(2, min(5, min(h2, w2) // 8))  # для 32px будет 4
+        if (h2 - 2 * pad) >= 16 and (w2 - 2 * pad) >= 16:
+            tpl = tpl[pad:-pad, pad:-pad].copy()
+
+        return tpl
+
+    def find_item_slots_by_icon(self, item_name: str) -> list[tuple[int, float]]:
+        """
+        Возвращает список слотов на текущей странице, где найдена иконка.
+        Важно: ищем ВСЕ совпадения, делаем NMS, потом группируем по слоту.
+        Пишет debug-скрины региона и full-screen как у тебя уже сделано.
+        """
+        import os
+        import re
+        import math
+        import cv2  # type: ignore
+        import numpy as np
 
         icon_rel = self.cfg.templates.item_icons.get(item_name)
         if not icon_rel:
             self.logger.warning("No icon template mapped for item %r", item_name)
-            return None
+            return []
 
-        # region for scanning slots
+        tpl0 = self._load_tpl(icon_rel)
+        tpl = self._normalize_icon_template(tpl0)
+
+        # регион поиска (config -> иначе derived)
         if self.cfg.offs.region_slots is not None:
             region = self.rel_rect(self.cfg.offs.region_slots)
+            tag = "config"
         else:
-            # derived best-effort
             first = self.rel_point(self.cfg.offs.first_slot)
             price_rect = self.rel_rect(self.cfg.offs.region_price)
             top_y = price_rect.y - (self.cfg.offs.slot_height - self.cfg.offs.region_price.h) // 2
             h = self.cfg.offs.slot_height * self.cfg.runtime.max_slots
-            # focus on the icon + name column instead of the whole list width
-            x = first.x - 100
-            w = max(self.cfg.offs.region_price.x + self.cfg.offs.region_price.w - (self.cfg.offs.first_slot.x - 100), 260)
+            x = first.x - 190
+            w = max(self.cfg.offs.region_price.x + self.cfg.offs.region_price.w - (self.cfg.offs.first_slot.x - 100),
+                    260)
             region = Rect(x, top_y, w, h)
+            tag = "derived"
 
-        try:
-            tpl = self._load_tpl(icon_rel)
-        except Exception as e:
-            self.logger.error("Item icon template load failed (%r): %s", item_name, e)
-            return None
+        hay_bgr = self.screen.grab_region_bgr(region)
 
-        hay = self.screen.grab_region_bgr(region)
-        m = self.matcher.match_template(
-            hay,
-            tpl,
-            threshold=self.cfg.templates.threshold_item_icon,
-            multi_scale=self.cfg.templates.multi_scale,
-        )
+        # матчим по edges — меньше ложных от рамок/цвета/подсветки строки
+        hay_gray = cv2.cvtColor(hay_bgr, cv2.COLOR_BGR2GRAY)
+        tpl_gray = cv2.cvtColor(tpl, cv2.COLOR_BGR2GRAY)
+        hay = cv2.Canny(hay_gray, 50, 150)
+        t = cv2.Canny(tpl_gray, 50, 150)
 
-        # Debug visualization of icon search
+        th, tw = t.shape[:2]
+        hh, hw = hay.shape[:2]
+        if th >= hh or tw >= hw:
+            self.logger.warning("Template too big for region: tpl=%s region=%s", t.shape, region)
+            return []
+
+        res = cv2.matchTemplate(hay, t, cv2.TM_CCOEFF_NORMED)
+
+        thr = float(self.cfg.templates.threshold_item_icon)
+        ys, xs = np.where(res >= thr)
+        if len(xs) == 0:
+            # debug dump for miss
+            os.makedirs("debug_item_icons", exist_ok=True)
+            safe = re.sub(r"[^\w\-]+", "_", item_name)
+            dbg = hay_bgr.copy()
+            cv2.putText(dbg, f"region={tag} abs=({region.x},{region.y},{region.w},{region.h})", (10, 25),
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.65, (255, 255, 255), 2, cv2.LINE_AA)
+            cv2.putText(dbg, "not found", (10, 55), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 0, 255), 2, cv2.LINE_AA)
+            cv2.imwrite(f"debug_item_icons/{safe}_{tag}_region_miss.png", dbg)
+            self.logger.info("No icon matches >= thr on this page: item=%r thr=%.2f", item_name, thr)
+            return []
+
+        scores = res[ys, xs]
+        cand = sorted(zip(xs.tolist(), ys.tolist(), scores.tolist()), key=lambda z: z[2], reverse=True)
+
+        # NMS чтобы не было 50 совпадений внутри одной и той же иконки
+        picked: list[tuple[int, int, float]] = []
+        for x, y, sc in cand:
+            too_close = False
+            for px, py, _ in picked:
+                if abs(x - px) < int(tw * 0.7) and abs(y - py) < int(th * 0.7):
+                    too_close = True
+                    break
+            if too_close:
+                continue
+            picked.append((x, y, float(sc)))
+            if len(picked) >= 50:
+                break
+
+        # группируем по слоту
+        first_slot_abs_y = self.rel_point(self.cfg.offs.first_slot).y
+        slot_best: dict[int, float] = {}
+        slot_pt: dict[int, tuple[int, int]] = {}
+
+        for x, y, sc in picked:
+            cy_abs = region.y + (y + th // 2)
+            delta = (cy_abs - first_slot_abs_y) / float(self.cfg.offs.slot_height)
+            slot = 1 + int(delta + 0.5)
+            slot = max(1, min(slot, self.cfg.runtime.max_slots))
+            if slot not in slot_best or sc > slot_best[slot]:
+                slot_best[slot] = sc
+                slot_pt[slot] = (x, y)
+
+        out = sorted([(s, slot_best[s]) for s in slot_best.keys()], key=lambda k: k[0])
+
+        # ---- DEBUG: рисуем все найденные слоты ----
         try:
             os.makedirs("debug_item_icons", exist_ok=True)
-            dbg = hay.copy()
-            safe_name = re.sub(r"[^\w\-]+", "_", item_name)
+            safe = re.sub(r"[^\w\-]+", "_", item_name)
 
-            if m:
-                th, tw = tpl.shape[:2]
-                top_left = (m.top_left.x, m.top_left.y)
-                bottom_right = (m.top_left.x + tw, m.top_left.y + th)
-                cv2.rectangle(dbg, top_left, bottom_right, (0, 255, 0), 2)
-                cv2.drawMarker(dbg, (m.center.x, m.center.y), (0, 0, 255), markerType=cv2.MARKER_CROSS, markerSize=10, thickness=2)
-                suffix = f"slot{1 + int(math.floor((region.y + m.center.y - self.rel_point(self.cfg.offs.first_slot).y) / self.cfg.offs.slot_height))}_hit"
-            else:
-                cv2.putText(dbg, "not found", (10, 25), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 0, 255), 2, cv2.LINE_AA)
-                suffix = "miss"
+            dbg = hay_bgr.copy()
+            cv2.putText(dbg, f"region={tag} abs=({region.x},{region.y},{region.w},{region.h}) thr={thr:.2f}", (10, 25),
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.65, (255, 255, 255), 2, cv2.LINE_AA)
 
-            cv2.imwrite(f"debug_item_icons/{safe_name}_{suffix}.png", dbg)
-        except Exception as e:  # pragma: no cover - debug only
-            self.logger.warning("Failed to dump icon debug screenshot: %s", e)
+            for slot, sc in out:
+                x, y = slot_pt[slot]
+                cv2.rectangle(dbg, (x, y), (x + tw, y + th), (0, 255, 0), 2)
+                cv2.putText(dbg, f"s{slot}:{sc:.2f}", (x, max(15, y - 5)),
+                            cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2, cv2.LINE_AA)
 
-        if not m:
-            self.logger.info("Item icon not found on current page: %r", item_name)
-            return None
+            cv2.imwrite(f"debug_item_icons/{safe}_{tag}_region_multi.png", dbg)
+        except Exception as e:
+            self.logger.warning("Failed to dump multi-match debug: %s", e)
 
-        # m.center is relative to region
-        y_abs = region.y + m.center.y
-        first_slot_abs_y = self.rel_point(self.cfg.offs.first_slot).y
-        slot_idx = 1 + int(math.floor((y_abs - first_slot_abs_y) / self.cfg.offs.slot_height))
-        slot_idx = max(1, min(slot_idx, self.cfg.runtime.max_slots))
-
-        self.logger.info("Icon match: item=%r slot=%d score=%.3f", item_name, slot_idx, m.score)
-        self._item_icon_cache[item_name] = slot_idx
-
-        return slot_idx, m.score
+        self.logger.info("Icon slots found: item=%r slots=%s", item_name, out)
+        return out
 
     def close_modal_safely(self) -> None:
         """
@@ -493,19 +564,17 @@ class MarketUI:
 
         # Ctrl+A (оставляем как ты просил)
         self.inp.ctrl_combo("A")
-
-        # В старом v8 у тебя был backspace после Ctrl+A — оставим, это часто “фиксит” поле
-        self.inp.press("backspace")
-
+        self.inp.sleep(0.1)
         # Ctrl+V
         self.inp.ctrl_combo("V")
-        self.inp.sleep(0.12)
+
 
         if not verify:
             return
 
         # Верификация: Ctrl+A Ctrl+C -> проверяем, что реально в поле
         self.inp.ctrl_combo("A")
+        self.inp.sleep(0.1)
         self.inp.ctrl_combo("C")
         got = (self.inp.get_clipboard() or "").strip()
         self.inp.press("end")
@@ -516,9 +585,3 @@ class MarketUI:
             "Paste verify failed for %s: got=%r expected=%r. Fallback to typing.",
             field_name, got, text
         )
-
-        # Полная очистка и печать
-        self.inp.ctrl_combo("A")
-        self.inp.press("backspace", presses=80, interval=0.005)
-        self.inp.type_text(text)
-        self.inp.sleep(0.12)

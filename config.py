@@ -125,6 +125,7 @@ class AppConfig:
         )
 
         offs_raw = d.get("offs", {})
+        rs = offs_raw.get("region_slots", None),
         offs = OffsetsConfig(
             anchor_search=Point(*offs_raw.get("anchor_search", [-312, 65])),
             cat_trophy=Point(*offs_raw.get("cat_trophy", [-218, 379])),
@@ -135,8 +136,7 @@ class AppConfig:
             buy_btn_fallback=Point(*offs_raw.get("buy_btn_fallback", [-11, 293])),
             buy_cancel_fallback=Point(*offs_raw.get("buy_cancel_fallback", [170, 211])),
             next_page=Point(*offs_raw.get("next_page", [30, 605])),
-            slot_height=int(offs_raw.get("slot_height", 59)),
-            region_slots=Rect(*offs_raw["region_slots"]) if "region_slots" in offs_raw else None,
+            region_slots = Rect(*rs) if isinstance(rs, (list, tuple)) and len(rs) == 4 else None
         )
 
         ocr_raw = d.get("ocr", {})
