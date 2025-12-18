@@ -90,10 +90,22 @@ class MainWindow(tk.Tk):
         self._pause_event = None
         self._events_queue = None
         self.runtime_win = None
+        self._current_ui = None  # ДОБАВЛЕНО: для хранения UI instance
 
         # Bind resize event for responsive layout
         self.bind("<Configure>", self._on_window_resize)
         self._last_width = self.winfo_width()
+
+    def _cleanup_ui(self):
+        """Cleanup UI resources (OCR executor)"""
+        if self._current_ui:
+            try:
+                self._current_ui.cleanup()
+                self.logger.info("UI cleanup completed")
+            except Exception as e:
+                self.logger.warning("UI cleanup failed: %s", e)
+            finally:
+                self._current_ui = None
 
     def _create_modern_button(self, parent, text, command, bg_color, width=None):
         """Create a modern flat button"""
@@ -635,6 +647,11 @@ class MainWindow(tk.Tk):
             except Exception as e:
                 self.logger.exception("Bot thread error: %s", e)
             finally:
+                # ИСПРАВЛЕНО: Cleanup UI resources (OCR executor)
+                try:
+                    ui.cleanup()
+                except Exception as e:
+                    self.logger.warning("UI cleanup failed: %s", e)
                 self.after(0, lambda: self._on_thread_finished())
 
         self._stop_event = stop_ev
@@ -643,12 +660,16 @@ class MainWindow(tk.Tk):
         self._bot_thread = threading.Thread(target=_run_bot, daemon=True)
         self._bot_thread.start()
 
-        # Create runtime window with stop callback
+        # ИСПРАВЛЕНО: Store ui reference for cleanup
+        self._current_ui = ui
+
+        # Create runtime window with stop callback and UI cleanup callback
         self.runtime_win = RuntimeWindow(
             self,
             events_queue=events_q,
             logger=self.logger,
-            stop_callback=self._on_stop
+            stop_callback=self._on_stop,
+            ui_cleanup_callback=lambda: self._cleanup_ui()  # ДОБАВЛЕНО
         )
 
         # Minimize main window when bot starts
@@ -658,6 +679,9 @@ class MainWindow(tk.Tk):
         self.pause_btn.config(state="normal")
 
     def _on_thread_finished(self):
+        # Cleanup UI resources first
+        self._cleanup_ui()
+
         # Restore main window when bot stops
         self.deiconify()
         self.lift()

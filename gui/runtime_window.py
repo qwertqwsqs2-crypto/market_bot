@@ -38,10 +38,12 @@ class RuntimeWindow(tk.Toplevel):
       - events_queue: queue.Queue producing dict-like events (type="purchase", item, spent, reward)
       - logger: root logger to attach text handler to
       - stop_callback: function to call when STOP button is pressed
+      - ui_cleanup_callback: function to call for UI cleanup (OCR executor, etc.)
     """
 
     def __init__(self, master: tk.Misc, events_queue: "queue.Queue[dict]",
-                 logger: logging.Logger, stop_callback: callable = None):
+                 logger: logging.Logger, stop_callback: callable = None,
+                 ui_cleanup_callback: callable = None):
         super().__init__(master)
         self.title("Runtime Monitor")
         self.geometry("700x1100")
@@ -52,6 +54,7 @@ class RuntimeWindow(tk.Toplevel):
 
         # Store callbacks
         self.stop_callback = stop_callback
+        self.ui_cleanup_callback = ui_cleanup_callback
 
         # Modern dark theme colors (matching main window)
         self._bg = "#1a1a1a"
@@ -354,6 +357,13 @@ class RuntimeWindow(tk.Toplevel):
         # When user closes window, treat it as STOP
         if self.stop_callback:
             self.stop_callback()
+        # ДОБАВЛЕНО: Cleanup UI resources
+        if self.ui_cleanup_callback:
+            try:
+                self.ui_cleanup_callback()
+            except Exception as e:
+                import logging
+                logging.getLogger("market_bot").warning("UI cleanup on close failed: %s", e)
         self.destroy()
 
     def _on_stop(self) -> None:

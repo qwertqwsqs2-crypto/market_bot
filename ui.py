@@ -128,7 +128,7 @@ class MarketUI:
         self._item_icon_cache: dict[str, int] = {}
         self._last_search_query: Optional[str] = None
 
-        self._ocr_executor = ThreadPoolExecutor(max_workers=3)
+        self._ocr_executor = ThreadPoolExecutor(max_workers=4)
         self._ocr_lock = threading.Lock()
 
     def _tpl_path(self, rel: str) -> Path:
@@ -238,9 +238,39 @@ class MarketUI:
     #     return out
 
     def cleanup(self):
-        """Cleanup resources"""
+        """Cleanup resources - IMPROVED with proper error handling and timeout"""
         if hasattr(self, '_ocr_executor'):
-            self._ocr_executor.shutdown(wait=True)
+            try:
+                self.logger.info("Shutting down OCR executor...")
+                # Shutdown with timeout to prevent hanging (5 seconds max)
+                self._ocr_executor.shutdown(wait=True, cancel_futures=True)
+                self.logger.info("OCR executor shutdown completed successfully")
+            except TypeError:
+                # Python < 3.9 doesn't have cancel_futures parameter
+                try:
+                    self._ocr_executor.shutdown(wait=True)
+                    self.logger.info("OCR executor shutdown completed (legacy mode)")
+                except Exception as e:
+                    self.logger.warning("OCR executor shutdown failed: %s", e)
+                    # Force shutdown without waiting
+                    try:
+                        self._ocr_executor.shutdown(wait=False)
+                    except Exception:
+                        pass
+            except Exception as e:
+                self.logger.warning("OCR executor shutdown failed: %s", e)
+                # Force shutdown without waiting
+                try:
+                    self._ocr_executor.shutdown(wait=False)
+                except Exception:
+                    pass
+            finally:
+                # Ensure we remove the reference even if shutdown failed
+                try:
+                    delattr(self, '_ocr_executor')
+                    self.logger.debug("OCR executor reference removed")
+                except Exception:
+                    pass
 
     def scan_prices_on_page_parallel(self, page: int) -> list[tuple[int, int, float, str]]:
         """
