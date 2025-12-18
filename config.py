@@ -21,7 +21,7 @@ class TimingConfig:
 
     # модалки / перелистывание страниц
     wait_open_modal: float = 0.9
-    wait_page_flip: float = 1.0
+    wait_page_flip: float = 1.4
 
     # поиски / OCR
     wait_after_search: float = 1.4

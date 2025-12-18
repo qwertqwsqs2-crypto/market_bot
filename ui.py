@@ -762,6 +762,7 @@ class MarketUI:
         # Ctrl+A (оставляем как ты просил)
         self.inp.ctrl_combo("A")
         self.inp.sleep(self.cfg.timing.wait_small)
+        self.inp.press("backspace")
         # Ctrl+V
         self.inp.ctrl_combo("V")
 
