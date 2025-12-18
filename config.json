@@ -86,7 +86,7 @@
   },
   "runtime": {
     "input_backend": "pyautogui",
-    "simulate_ui_actions": false
+    "simulate_ui_actions": true
   },
   "safety": {
     "acknowledge_rights": false

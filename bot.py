@@ -191,13 +191,15 @@ class MarketBot:
         cfg = self.ctx.cfg
 
         can_open_modals = (self.ctx.mode == Mode.RUN) or cfg.runtime.simulate_ui_actions
-        do_buy = (self.ctx.mode == Mode.RUN)  # simulate_ui_actions => не жмем BUY
+        do_buy = (self.ctx.mode == Mode.RUN)
 
         items_data: list[ItemMarketData] = []
-        plans_by_item: dict[str, object] = {}  # PlanResult, но без импорта типа (можно и типизировать)
+        plans_by_item: dict[str, object] = {}
 
         total_min_cost = 0
-        max_allowed_total_cost = self._calculate_max_allowed_cost(reward_total)
+
+        # ВЫЧИСЛЯЕМ max_budget для раннего отсева
+        max_allowed_cost = self._calculate_max_allowed_cost(reward_total)
 
         # -------- Stage A: оценка выгодности --------
         for item in q.items:
@@ -206,7 +208,8 @@ class MarketBot:
 
             # --- image items: оставляем старую collect_item_data (там next_page допустим) ---
             if item2.use_image:
-                budget_left = max_allowed_total_cost - total_min_cost
+                # для image items передаём остаток бюджета с учётом уже потраченного
+                budget_left = max_allowed_cost - total_min_cost
                 data = self.collect_image_item_data(item2, required_qty, budget_left=budget_left)
 
                 if data.min_cost is None:
@@ -214,7 +217,6 @@ class MarketBot:
                     return
 
                 items_data.append(data)
-
                 total_min_cost += data.min_cost
                 continue
 
@@ -242,8 +244,9 @@ class MarketBot:
                 total_min_cost += est
                 continue
 
-            # нормальный режим (RUN или simulate_ui_actions): строим план с qty
-            plan = build_plan_one_page(ui, required_qty, max_allowed_total_cost, page=1)
+            # ИСПРАВЛЕНИЕ: передаем reward_total + max_budget для раннего отсева
+            # max_budget позволяет отсечь невыгодные квесты ДО открытия модалок
+            plan = build_plan_one_page(ui, required_qty, reward_total, page=1, max_budget=max_allowed_cost)
             if not plan or plan.remaining > 0:
                 data = ItemMarketData(item=item2, required_qty=required_qty, lots=[], total_available=None,
                                       min_cost=None,
@@ -260,8 +263,24 @@ class MarketBot:
 
         log.info("Quest cost estimate: %d | reward_total=%d | delta=%d", total_min_cost, reward_total,
                  reward_total - total_min_cost)
+
+        # Базовая проверка: если стоимость больше награды, пропускаем
         if reward_total < total_min_cost:
             log.info("Decision: SKIP (not profitable).")
+            return
+
+        # ИСПРАВЛЕНИЕ: проверка profit threshold делается ПОСЛЕ построения плана
+        if not self.check_profit_threshold(
+                reward_total=reward_total,
+                plan_total_cost=total_min_cost,
+                cfg=self.ctx.cfg,
+                logger=log,
+        ):
+            log.warning(
+                "Quest skipped: profit threshold not met (reward=%d cost=%d)",
+                reward_total,
+                total_min_cost,
+            )
             return
 
         log.info("Decision: PROFITABLE => proceed.")
@@ -269,42 +288,6 @@ class MarketBot:
         if self.ctx.mode == Mode.SIMULATE and not cfg.runtime.simulate_ui_actions:
             log.info("SIMULATE mode: no inputs. Would buy items: %s", [d.item.name for d in items_data])
             return
-
-        plans_cost_from_plans = sum((p.total_cost for p in plans_by_item.values()), 0)
-
-        plans_cost_from_items = 0
-        for d in items_data:
-            # if there's already a plan for this item, skip (we counted it)
-            if d.item.name in plans_by_item:
-                continue
-            # use min_cost from ItemMarketData if available
-            if getattr(d, "min_cost", None) is not None:
-                plans_cost_from_items += int(d.min_cost)
-
-        # final combined cost
-        combined_planned_cost = plans_cost_from_plans + plans_cost_from_items
-
-        log.info(
-            "Quest summary: reward=%d planned_cost=%d expected_profit=%d (plans=%d items_est=%d)",
-            reward_total,
-            combined_planned_cost,
-            reward_total - combined_planned_cost,
-            plans_cost_from_plans,
-            plans_cost_from_items,
-        )
-
-        if not self.check_profit_threshold(
-                reward_total=reward_total,
-                plan_total_cost=combined_planned_cost,
-                cfg=self.ctx.cfg,
-                logger=log,
-        ):
-            log.warning(
-                "Quest skipped: profit threshold not met (reward=%d cost=%d)",
-                reward_total,
-                combined_planned_cost,
-            )
-            return False
 
         # -------- Stage B: покупки --------
         for d in items_data:
@@ -320,15 +303,12 @@ class MarketBot:
                 if plan_for_item is not None:
                     planned_cost = plan_for_item.total_cost
                 else:
-                    # fallback to ItemMarketData.min_cost if available in items_data
                     found = next((d for d in items_data if d.item.name == res.item.name), None)
                     planned_cost = getattr(found, "min_cost", None)
 
-                # compute reward share
                 if total_min_cost and total_min_cost > 0 and planned_cost:
                     reward_share = int(round(reward_total * (planned_cost / total_min_cost)))
                 else:
-                    # fallback equal split by number of items
                     reward_share = int(round(reward_total / max(1, len(items_data))))
 
                 self.purchase_logger.record(res.item.name, res.spent, reward_share)
@@ -347,7 +327,6 @@ class MarketBot:
             # обычный путь: выполнить план, покупая всегда из slot=1
             plan = plans_by_item.get(d.item.name)
             if plan is None:
-                # на практике это случится только в pure simulate; тут покупать нечего
                 log.info("No plan stored for item=%r => skip buy.", d.item.name)
                 continue
 
@@ -382,15 +361,12 @@ class MarketBot:
             if plan_for_item is not None:
                 planned_cost = plan_for_item.total_cost
             else:
-                # fallback to ItemMarketData.min_cost if available in items_data
                 found = next((d for d in items_data if d.item.name == res.item.name), None)
                 planned_cost = getattr(found, "min_cost", None)
 
-            # compute reward share
             if total_min_cost and total_min_cost > 0 and planned_cost:
                 reward_share = int(round(reward_total * (planned_cost / total_min_cost)))
             else:
-                # fallback equal split by number of items
                 reward_share = int(round(reward_total / max(1, len(items_data))))
 
             self.purchase_logger.record(res.item.name, res.spent, reward_share)

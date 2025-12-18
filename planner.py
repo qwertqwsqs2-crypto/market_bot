@@ -24,16 +24,19 @@ class PlanResult:
 def build_plan_one_page(
         ui: MarketUI,
         need_total: int,
-        max_budget: int,  # <-- теперь это может быть reward_total с учётом profit threshold
+        reward_total: int,
         *,
         page: int = 1,
+        max_budget: int = None,  # <-- опциональный параметр для profit threshold
 ) -> Optional[PlanResult]:
     """
     Фаза 1: строим план закупки на ОДНОЙ странице.
     Слоты 1..8: для каждого слота сначала проверяем min_possible,
     и только потом (если выгодно) открываем модалку и читаем qty.
 
-    max_budget — максимальная сумма, которую можем потратить (уже с учётом profit threshold)
+    reward_total - полная награда за квест (для базовой проверки).
+    max_budget - опциональный лимит бюджета с учетом profit threshold.
+                 Если указан, используется для РАННЕЙ проверки перед открытием модалок.
     """
     prices_raw = ui.scan_prices_on_page_parallel(page=page)
     price_by_slot: dict[int, int] = {slot: price for (slot, price, _conf, _raw) in prices_raw}
@@ -48,12 +51,15 @@ def build_plan_one_page(
         ui.logger.info("Plan: slot1 price is not readable -> skip")
         return None
 
+    # Определяем лимит для ранней проверки
+    budget_limit = max_budget if max_budget is not None else reward_total
+
     # РАННЯЯ ПРОВЕРКА: даже если купим ВСЁ по цене первого слота, влезем ли в бюджет?
     min_cost_estimate = p1 * need_total
-    if min_cost_estimate > max_budget:
+    if min_cost_estimate > budget_limit:
         ui.logger.info(
-            "Plan: not affordable even at best price. p1=%d need=%d min_cost=%d max_budget=%d",
-            p1, need_total, min_cost_estimate, max_budget
+            "Plan: not affordable even at best price. p1=%d need=%d min_cost=%d budget_limit=%d",
+            p1, need_total, min_cost_estimate, budget_limit
         )
         return None
 
@@ -68,10 +74,10 @@ def build_plan_one_page(
         # ключевая проверка: если даже остаток * текущая цена не влезает в бюджет,
         # дальше только дороже => план невозможен
         min_possible = cost_so_far + remaining * p
-        if min_possible > max_budget:
+        if min_possible > budget_limit:
             ui.logger.info(
-                "Plan: not affordable at slot=%d price=%d -> min_possible=%d > max_budget=%d",
-                slot, p, min_possible, max_budget
+                "Plan: not affordable at slot=%d price=%d -> min_possible=%d > budget_limit=%d",
+                slot, p, min_possible, budget_limit
             )
             return None
 
@@ -158,6 +164,11 @@ def execute_plan_one_page(
             ui.inp.sleep(ui.cfg.timing.wait_after_buy)
         else:
             ui.logger.info("[SIM] Would set qty=%d and click BUY now.", step.take)
+            # В режиме симуляции закрываем модалку через cancel
+            if cancel_btn:
+                ui.click_cancel(cancel_btn)
+            else:
+                ui.close_modal_safely()
 
         spent += step.take * step.price
         bought += step.take
