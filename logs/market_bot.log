@@ -4583,3 +4583,29 @@ TypeError: MarketBot.check_profit_threshold() takes 0 positional arguments but 1
 2025-12-18 03:01:49 | INFO    | market_bot | Profit check (PERCENT): expected=5593 required>=8997 (15.00% of reward=59978)
 2025-12-18 03:01:49 | WARNING | market_bot | Quest skipped: profit threshold not met (reward=59978 cost=54385)
 2025-12-18 03:01:49 | INFO    | market_bot | Bot finished.
+2025-12-18 03:40:24 | INFO    | market_bot | Logging initialized: logs\market_bot.log
+2025-12-18 03:40:28 | INFO    | market_bot | Startup delay 3.0s — переключитесь на окно игры.
+2025-12-18 03:40:31 | INFO    | market_bot | Bot started. level=65 sets=1 mode=run
+2025-12-18 03:40:32 | ERROR   | market_bot | Anchor not found (threshold=0.80).
+2025-12-18 03:40:32 | ERROR   | market_bot | Cannot start: Cannot continue: market anchor not found.
+2025-12-18 03:46:29 | INFO    | market_bot | Logging initialized: logs\market_bot.log
+2025-12-18 03:46:45 | INFO    | market_bot | Logging initialized: logs\market_bot.log
+2025-12-18 04:47:46 | INFO    | market_bot | Logging initialized: logs\market_bot.log
+2025-12-18 04:56:43 | INFO    | market_bot | Logging initialized: logs\market_bot.log
+2025-12-18 04:57:49 | INFO    | market_bot | Logging initialized: logs\market_bot.log
+2025-12-18 05:23:59 | INFO    | market_bot | Logging initialized: logs\market_bot.log
+2025-12-18 05:27:35 | INFO    | market_bot | Logging initialized: logs\market_bot.log
+2025-12-18 05:28:52 | INFO    | market_bot | Logging initialized: logs\market_bot.log
+2025-12-18 05:32:21 | INFO    | market_bot | Logging initialized: logs\market_bot.log
+2025-12-18 05:36:18 | INFO    | market_bot | Logging initialized: logs\market_bot.log
+2025-12-18 05:43:23 | INFO    | market_bot | Logging initialized: logs\market_bot.log
+2025-12-18 05:44:06 | INFO    | market_bot | Logging initialized: logs\market_bot.log
+2025-12-18 05:45:04 | INFO    | market_bot | Logging initialized: logs\market_bot.log
+2025-12-18 05:45:27 | INFO    | market_bot | Logging initialized: logs\market_bot.log
+2025-12-18 05:45:56 | INFO    | market_bot | Logging initialized: logs\market_bot.log
+2025-12-18 05:46:15 | INFO    | market_bot | Logging initialized: logs\market_bot.log
+2025-12-18 05:48:10 | INFO    | market_bot | Logging initialized: logs\market_bot.log
+2025-12-18 05:49:02 | INFO    | market_bot | Logging initialized: logs\market_bot.log
+2025-12-18 05:50:53 | INFO    | market_bot | Logging initialized: logs\market_bot.log
+2025-12-18 05:52:01 | INFO    | market_bot | Logging initialized: logs\market_bot.log
+2025-12-18 05:53:34 | INFO    | market_bot | Logging initialized: logs\market_bot.log

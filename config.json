@@ -2,7 +2,7 @@
   "startup_delay": 3.0,
   "wait_between_clicks": 0.12,
   "wait_short": 0.03,
-  "wait_small": 0.10,
+  "wait_small": 0.1,
   "wait_medium": 0.25,
   "wait_open_modal": 0.3,
   "wait_after_search": 1.7,
@@ -11,67 +11,91 @@
   "wait_after_buy": 0.45,
   "wait_after_cancel": 0.15,
   "wait_between_plan_steps": 0.3,
-
   "max_pages": 10,
   "max_slots": 8,
-
   "offs": {
-    "anchor_search": [-312, 65],
-    "cat_trophy": [-218, 379],
-    "cat_res": [-228, 484],
-    "first_slot": [62, 145],
-    "region_price": [156, 118, 140, 44],
-    "buy_input_offset": [180, -87],
-    "buy_btn_fallback": [-11, 293],
-    "buy_cancel_fallback": [170, 211],
-    "next_page": [30, 605],
+    "anchor_search": [
+      -312,
+      65
+    ],
+    "cat_trophy": [
+      -218,
+      379
+    ],
+    "cat_res": [
+      -228,
+      484
+    ],
+    "first_slot": [
+      62,
+      145
+    ],
+    "region_price": [
+      156,
+      118,
+      140,
+      44
+    ],
+    "buy_input_offset": [
+      180,
+      -87
+    ],
+    "buy_btn_fallback": [
+      -11,
+      293
+    ],
+    "buy_cancel_fallback": [
+      170,
+      211
+    ],
+    "next_page": [
+      30,
+      605
+    ],
     "slot_height": 59
   },
-
   "ocr": {
     "use_easyocr": true,
-    "easyocr_langs": ["ru", "en"],
+    "easyocr_langs": [
+      "ru",
+      "en"
+    ],
     "easyocr_gpu": true,
     "use_tesseract_fallback": true,
     "min_confidence": 0.75,
     "variants": 4,
-    "scale_factors": [3, 4]
+    "scale_factors": [
+      3,
+      4
+    ]
   },
-
   "templates": {
     "templates_dir": "templates",
     "anchor_market": "anchor_market.png",
     "btn_buy": "btn_buy.png",
     "btn_cancel": "btn_cancel.png",
     "btn_next": "btn_next.png",
-
     "item_icons": {
       "Зеленорост": "items/zelenrost.png",
       "Стланик": "items/stlanik.png",
       "Толстоцвет": "items/tolstocvet.png"
     },
-
     "threshold_anchor": 0.8,
     "threshold_buttons": 0.82,
     "threshold_item_icon": 0.86,
     "multi_scale": true
   },
-
   "runtime": {
     "input_backend": "pyautogui",
     "simulate_ui_actions": true
   },
-
   "safety": {
     "acknowledge_rights": false
   },
   "profit": {
     "enabled": true,
-
     "mode": "percent",
-
     "min_profit_percent": 0.15,
-
     "min_profit_absolute": 500
   }
 }

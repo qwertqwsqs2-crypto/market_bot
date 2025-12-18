@@ -17,6 +17,9 @@ from models import (
 from purchase_logger import PurchaseLogger
 from ui import MarketUI
 from planner import build_plan_one_page, execute_plan_one_page
+import time
+import threading
+import queue
 
 def parse_quests_db(raw_list: list[dict]) -> list[QuestDefinition]:
     out: list[QuestDefinition] = []
@@ -55,6 +58,9 @@ class BotContext:
     mode: Mode
     level: int
     sets: int
+    stop_event: threading.Event
+    pause_event: threading.Event
+    events: "queue.Queue[dict]"
 
 
 class MarketBot:
@@ -78,6 +84,18 @@ class MarketBot:
             return
 
         for q in quests:
+            # stop requested?
+            if getattr(self.ctx, "stop_event", None) and self.ctx.stop_event.is_set():
+                log.info("Stop requested by user. Exiting run loop.")
+                break
+
+            # pause handling: spin until unpaused or stopped
+            while getattr(self.ctx, "pause_event", None) and self.ctx.pause_event.is_set():
+                log.info("Paused by user. Sleeping briefly.")
+                time.sleep(0.5)
+                if self.ctx.stop_event.is_set():
+                    log.info("Stop requested while paused. Exiting run loop.")
+                    return
             try:
                 self.process_quest(q)
             except Exception as e:
@@ -280,6 +298,16 @@ class MarketBot:
                     reward_share = int(round(reward_total / max(1, len(items_data))))
 
                 self.purchase_logger.record(res.item.name, res.spent, reward_share)
+                try:
+                    if getattr(self.ctx, "events", None) is not None:
+                        self.ctx.events.put({
+                            "type": "purchase",
+                            "item": res.item.name,
+                            "spent": int(res.spent),
+                            "reward": int(reward_share),
+                        })
+                except Exception:
+                    pass
                 continue
 
             # обычный путь: выполнить план, покупая всегда из slot=1
@@ -332,6 +360,16 @@ class MarketBot:
                 reward_share = int(round(reward_total / max(1, len(items_data))))
 
             self.purchase_logger.record(res.item.name, res.spent, reward_share)
+            try:
+                if getattr(self.ctx, "events", None) is not None:
+                    self.ctx.events.put({
+                        "type": "purchase",
+                        "item": res.item.name,
+                        "spent": int(res.spent),
+                        "reward": int(reward_share),
+                    })
+            except Exception:
+                pass
 
     def collect_image_item_data(self, item: QuestItem, required_qty: int, budget_left: int) -> ItemMarketData:
         log = self.ctx.logger
