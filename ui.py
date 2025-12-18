@@ -1,6 +1,8 @@
 from __future__ import annotations
 
+import threading
 import time
+from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Optional
@@ -126,6 +128,9 @@ class MarketUI:
         self._item_icon_cache: dict[str, int] = {}
         self._last_search_query: Optional[str] = None
 
+        self._ocr_executor = ThreadPoolExecutor(max_workers=3)
+        self._ocr_lock = threading.Lock()
+
     def _tpl_path(self, rel: str) -> Path:
         return (self.cfg.templates.templates_dir / rel).resolve()
 
@@ -206,31 +211,146 @@ class MarketUI:
         dy = (slot_index_1based - 1) * self.cfg.offs.slot_height
         return self.rel_rect(self.cfg.offs.region_price, dy=dy)
 
-    def scan_prices_on_page(self, page: int) -> list[tuple[int, int, float, str]]:
-        """
-        Returns list of (slot, price, conf, raw_text) for up to max_slots.
-        OCR failures are skipped but logged.
-        """
-        out: list[tuple[int, int, float, str]] = []
-        for slot in range(1, self.cfg.runtime.max_slots + 1):
-            rect = self.price_rect_for_slot(slot)
-            crop = self.screen.grab_region_bgr(rect)
-            import os, cv2
+    # def scan_prices_on_page(self, page: int) -> list[tuple[int, int, float, str]]:
+    #     """
+    #     Returns list of (slot, price, conf, raw_text) for up to max_slots.
+    #     OCR failures are skipped but logged.
+    #     """
+    #     out: list[tuple[int, int, float, str]] = []
+    #     for slot in range(1, self.cfg.runtime.max_slots + 1):
+    #         rect = self.price_rect_for_slot(slot)
+    #         crop = self.screen.grab_region_bgr(rect)
+    #         import os, cv2
+    #
+    #         os.makedirs("debug_prices", exist_ok=True)
+    #         cv2.imwrite(f"debug_prices/page{page}_slot{slot}.png", crop)
+    #         r = self.ocr.read_price(
+    #             crop,
+    #             timeout_s=self.cfg.timing.wait_ocr_timeout,
+    #             variants=self.cfg.ocr.variants,
+    #             scales=self.cfg.ocr.scale_factors,
+    #         )
+    #         if r.value is None:
+    #             self.logger.warning("OCR price failed: page=%d slot=%d conf=%.2f raw=%r", page, slot, r.confidence, r.raw_text)
+    #             continue
+    #         self.logger.info("Price: page=%d slot=%d price=%d conf=%.2f raw=%r (%s)", page, slot, r.value, r.confidence, r.raw_text, r.engine)
+    #         out.append((slot, r.value, r.confidence, r.raw_text))
+    #     return out
 
-            os.makedirs("debug_prices", exist_ok=True)
-            cv2.imwrite(f"debug_prices/page{page}_slot{slot}.png", crop)
-            r = self.ocr.read_price(
-                crop,
-                timeout_s=self.cfg.timing.wait_ocr_timeout,
-                variants=self.cfg.ocr.variants,
-                scales=self.cfg.ocr.scale_factors,
-            )
-            if r.value is None:
-                self.logger.warning("OCR price failed: page=%d slot=%d conf=%.2f raw=%r", page, slot, r.confidence, r.raw_text)
+    def cleanup(self):
+        """Cleanup resources"""
+        if hasattr(self, '_ocr_executor'):
+            self._ocr_executor.shutdown(wait=True)
+
+    def scan_prices_on_page_parallel(self, page: int) -> list[tuple[int, int, float, str]]:
+        """
+        Parallel OCR for all slots on page.
+        Returns list of (slot, price, conf, raw_text) for up to max_slots.
+        """
+        import os, cv2
+
+        def read_slot_price(slot: int) -> Optional[tuple[int, int, float, str]]:
+            # ... existing code unchanged ...
+            try:
+                rect = self.price_rect_for_slot(slot)
+                crop = self.screen.grab_region_bgr(rect)
+
+                os.makedirs("debug_prices", exist_ok=True)
+                cv2.imwrite(f"debug_prices/page{page}_slot{slot}.png", crop)
+
+                with self._ocr_lock:
+                    r = self.ocr.read_price(
+                        crop,
+                        timeout_s=self.cfg.timing.wait_ocr_timeout,
+                        variants=self.cfg.ocr.variants,
+                        scales=self.cfg.ocr.scale_factors,
+                    )
+
+                if r is None:
+                    self.logger.warning("OCR returned None: page=%d slot=%d", page, slot)
+                    return None
+
+                if r.value is None:
+                    self.logger.warning("OCR price failed: page=%d slot=%d conf=%.2f raw=%r",
+                                        page, slot, r.confidence, r.raw_text)
+                    return None
+
+                self.logger.info("Price: page=%d slot=%d price=%d conf=%.2f raw=%r (%s)",
+                                 page, slot, r.value, r.confidence, r.raw_text, r.engine)
+                return (slot, r.value, r.confidence, r.raw_text)
+
+            except Exception as e:
+                self.logger.error("OCR exception: page=%d slot=%d error=%s", page, slot, e)
+                return None
+
+        # Запускаем параллельно для всех слотов
+        futures = []
+        for slot in range(1, self.cfg.runtime.max_slots + 1):
+            future = self._ocr_executor.submit(read_slot_price, slot)
+            futures.append(future)
+
+        # Собираем результаты
+        results = []
+        for future in futures:
+            try:
+                result = future.result(timeout=self.cfg.timing.wait_ocr_timeout * 2)
+                if result:
+                    results.append(result)
+            except Exception as e:
+                self.logger.error("Future failed: %s", e)
+
+        results = sorted(results, key=lambda x: x[0])  # Сортируем по slot
+
+        # НОВОЕ: Контекстная проверка аномальных цен
+        results = self._fix_anomalous_prices(results, page)
+
+        return results
+
+    def _fix_anomalous_prices(
+            self,
+            results: list[tuple[int, int, float, str]],
+            page: int
+    ) -> list[tuple[int, int, float, str]]:
+        """
+        Исправляет явно аномальные цены на основе контекста.
+        Логика: если цена в 10+ раз меньше соседних - скорее всего пропущен ноль.
+        """
+        if len(results) < 3:
+            return results
+
+        fixed_results = []
+        prices = [p for (_, p, _, _) in results]
+
+        for i, (slot, price, conf, raw) in enumerate(results):
+            # Собираем соседние цены (±2 слота)
+            neighbors = []
+            for j in range(max(0, i - 2), min(len(prices), i + 3)):
+                if j != i:
+                    neighbors.append(prices[j])
+
+            if not neighbors:
+                fixed_results.append((slot, price, conf, raw))
                 continue
-            self.logger.info("Price: page=%d slot=%d price=%d conf=%.2f raw=%r (%s)", page, slot, r.value, r.confidence, r.raw_text, r.engine)
-            out.append((slot, r.value, r.confidence, r.raw_text))
-        return out
+
+            avg_neighbor = sum(neighbors) / len(neighbors)
+
+            # Если цена в 10+ раз меньше средней соседней и confidence не идеальна
+            if price < avg_neighbor / 10 and conf < 0.95:
+                # Пробуем добавить ноль
+                fixed_price = price * 10
+
+                # Проверяем, что исправленная цена ближе к соседям
+                if abs(fixed_price - avg_neighbor) < abs(price - avg_neighbor):
+                    self.logger.warning(
+                        "Context fix: page=%d slot=%d %d->%d (neighbors avg=%.0f, conf=%.2f)",
+                        page, slot, price, fixed_price, avg_neighbor, conf
+                    )
+                    fixed_results.append((slot, fixed_price, conf * 0.9, raw + "0"))
+                    continue
+
+            fixed_results.append((slot, price, conf, raw))
+
+        return fixed_results
 
     def next_page(self) -> None:
         p = self.rel_point(self.cfg.offs.next_page)

@@ -37,9 +37,11 @@ class RuntimeWindow(tk.Toplevel):
     Expects:
       - events_queue: queue.Queue producing dict-like events (type="purchase", item, spent, reward)
       - logger: root logger to attach text handler to
+      - stop_callback: function to call when STOP button is pressed
     """
 
-    def __init__(self, master: tk.Misc, events_queue: "queue.Queue[dict]", logger: logging.Logger):
+    def __init__(self, master: tk.Misc, events_queue: "queue.Queue[dict]",
+                 logger: logging.Logger, stop_callback: callable = None):
         super().__init__(master)
         self.title("Runtime Monitor")
         self.geometry("700x1100")
@@ -47,6 +49,9 @@ class RuntimeWindow(tk.Toplevel):
         self.attributes("-topmost", True)
         self.protocol("WM_DELETE_WINDOW", self._on_close)
         self.resizable(True, True)
+
+        # Store callbacks
+        self.stop_callback = stop_callback
 
         # Modern dark theme colors (matching main window)
         self._bg = "#1a1a1a"
@@ -238,7 +243,7 @@ class RuntimeWindow(tk.Toplevel):
         bottom_section = tk.Frame(columns_frame, bg=self._bg)
         bottom_section.grid(row=1, column=0, sticky="nsew", pady=(10, 0))
 
-        log_frame, log_content = self._create_label_frame(bottom_section, "📝 Activity Log")
+        log_frame, log_content = self._create_label_frame(bottom_section, "📋 Activity Log")
         log_frame.pack(fill="both", expand=True)
 
         # Log text widget with scrollbar
@@ -271,11 +276,9 @@ class RuntimeWindow(tk.Toplevel):
         self.log_text.tag_config("ERROR", foreground=self._danger)
         self.log_text.tag_config("DEBUG", foreground=self._fg_secondary)
 
-        self.log_handler = TkTextHandler(self.log_text)
-        self.log_handler.setFormatter(
-            logging.Formatter("%(asctime)s [%(levelname)s] %(message)s", "%H:%M:%S")
-        )
-        logger.addHandler(self.log_handler)
+        # Use helper function to add handler
+        from logger import add_gui_handler
+        self.log_handler = add_gui_handler(self.log_text, "market_bot")
 
         # ===== STATISTICS SECTION - Below log =====
         stats_frame = tk.Frame(main_container, bg=self._bg_secondary, relief="flat")
@@ -332,6 +335,11 @@ class RuntimeWindow(tk.Toplevel):
         control_frame = tk.Frame(main_container, bg=self._bg)
         control_frame.pack(fill="x", pady=(0, 0))
 
+        self.stop_btn = self._create_modern_button(
+            control_frame, "⏹ STOP BOT", self._on_stop, self._danger, width=12
+        )
+        self.stop_btn.pack(side="left", padx=(0, 10))
+
         self.pause_btn = self._create_modern_button(
             control_frame, "⏸ Pause", self._toggle_pause, self._warning, width=10
         )
@@ -343,13 +351,21 @@ class RuntimeWindow(tk.Toplevel):
         clear_btn.pack(side="left")
 
     def _on_close(self) -> None:
-        # hide instead of destroying to avoid losing logger handler binding unexpectedly
-        self.withdraw()
+        # When user closes window, treat it as STOP
+        if self.stop_callback:
+            self.stop_callback()
+        self.destroy()
+
+    def _on_stop(self) -> None:
+        """Handle STOP button press"""
+        if self.stop_callback:
+            self.stop_callback()
+        # Window will be destroyed by main window after bot stops
 
     def destroy(self) -> None:
         # remove handler when destroyed
         try:
-            root_logger = logging.getLogger()
+            root_logger = logging.getLogger("market_bot")
             root_logger.removeHandler(self.log_handler)
         except Exception:
             pass

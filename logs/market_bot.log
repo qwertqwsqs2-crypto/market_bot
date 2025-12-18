@@ -4609,3 +4609,1007 @@ TypeError: MarketBot.check_profit_threshold() takes 0 positional arguments but 1
 2025-12-18 05:50:53 | INFO    | market_bot | Logging initialized: logs\market_bot.log
 2025-12-18 05:52:01 | INFO    | market_bot | Logging initialized: logs\market_bot.log
 2025-12-18 05:53:34 | INFO    | market_bot | Logging initialized: logs\market_bot.log
+2025-12-18 06:03:54 | INFO    | market_bot | Logging initialized: logs\market_bot.log
+2025-12-18 06:05:21 | INFO    | market_bot | Logging initialized: logs\market_bot.log
+2025-12-18 06:29:06 | INFO    | market_bot | Logging initialized: logs\market_bot.log
+2025-12-18 06:40:51 | INFO    | market_bot | Logging initialized: logs\market_bot.log
+2025-12-18 06:41:04 | INFO    | market_bot | Logger already initialized, reusing existing configuration
+2025-12-18 06:41:08 | INFO    | market_bot | Bot started. level=60 sets=1 mode=simulate
+2025-12-18 06:41:08 | INFO    | market_bot | Anchor found. top_left=Point(x=1704, y=451) center=Point(x=1756, y=467) score=1.000
+2025-12-18 06:41:08 | INFO    | market_bot | ==== Quest: Больше голов снегобеев! | reward_per_set=43072 | reward_total=43072 | cat=Трофеи ====
+2025-12-18 06:41:08 | INFO    | market_bot | Open category Трофеи at Point(x=1486, y=830) (dbl click)
+2025-12-18 06:41:09 | INFO    | market_bot | Collect/Plan item: 'Голова снегобея' required_qty=15 (one-page plan)
+2025-12-18 06:41:09 | INFO    | market_bot | Focus search field at Point(x=1392, y=516)
+2025-12-18 06:41:13 | INFO    | market_bot | Price: page=1 slot=1 price=8150 conf=0.92 raw='8150' (easyocr)
+2025-12-18 06:41:13 | INFO    | market_bot | Price: page=1 slot=2 price=3200 conf=1.00 raw='3200' (easyocr)
+2025-12-18 06:41:13 | INFO    | market_bot | Price: page=1 slot=3 price=3350 conf=1.00 raw='3350' (easyocr)
+2025-12-18 06:41:13 | INFO    | market_bot | Price: page=1 slot=4 price=3599 conf=1.00 raw='3599' (easyocr)
+2025-12-18 06:41:13 | INFO    | market_bot | Price: page=1 slot=5 price=8600 conf=1.00 raw='8600' (easyocr)
+2025-12-18 06:41:13 | INFO    | market_bot | Price: page=1 slot=6 price=3700 conf=1.00 raw='3700' (easyocr)
+2025-12-18 06:41:13 | INFO    | market_bot | Price: page=1 slot=7 price=3900 conf=1.00 raw='3900' (easyocr)
+2025-12-18 06:41:13 | INFO    | market_bot | Price: page=1 slot=8 price=3900 conf=0.77 raw='3900' (easyocr)
+2025-12-18 06:41:13 | INFO    | market_bot | Plan: not affordable at slot=1 price=8150 -> min_possible=122250 > reward=43072
+2025-12-18 06:41:13 | INFO    | market_bot | Item plan failed => skip quest. item='Голова снегобея' reason=cannot build plan on first page (qty/price mismatch or insufficient)
+2025-12-18 06:41:13 | INFO    | market_bot | ==== Quest: Больше соли! | reward_per_set=49299 | reward_total=49299 | cat=Трофеи ====
+2025-12-18 06:41:13 | INFO    | market_bot | Open category Трофеи at Point(x=1486, y=830) (dbl click)
+2025-12-18 06:41:14 | INFO    | market_bot | Collect/Plan item: 'Пещерная соль' required_qty=10 (one-page plan)
+2025-12-18 06:41:14 | INFO    | market_bot | Focus search field at Point(x=1392, y=516)
+2025-12-18 06:41:17 | INFO    | market_bot | Price: page=1 slot=1 price=11498 conf=1.00 raw='11498' (easyocr)
+2025-12-18 06:41:17 | INFO    | market_bot | Price: page=1 slot=2 price=11499 conf=1.00 raw='11499' (easyocr)
+2025-12-18 06:41:17 | INFO    | market_bot | Price: page=1 slot=3 price=11500 conf=0.95 raw='11500' (easyocr)
+2025-12-18 06:41:17 | INFO    | market_bot | Price: page=1 slot=4 price=11500 conf=0.92 raw='11500' (easyocr)
+2025-12-18 06:41:17 | INFO    | market_bot | Price: page=1 slot=5 price=11777 conf=1.00 raw='11777' (easyocr)
+2025-12-18 06:41:17 | INFO    | market_bot | Price: page=1 slot=6 price=12399 conf=0.80 raw='12399' (easyocr)
+2025-12-18 06:41:17 | INFO    | market_bot | Price: page=1 slot=7 price=12489 conf=0.71 raw='12489' (easyocr)
+2025-12-18 06:41:17 | INFO    | market_bot | Price: page=1 slot=8 price=12490 conf=1.00 raw='12490' (easyocr)
+2025-12-18 06:41:17 | INFO    | market_bot | Plan: not affordable at slot=1 price=11498 -> min_possible=114980 > reward=49299
+2025-12-18 06:41:17 | INFO    | market_bot | Item plan failed => skip quest. item='Пещерная соль' reason=cannot build plan on first page (qty/price mismatch or insufficient)
+2025-12-18 06:41:17 | INFO    | market_bot | ==== Quest: Больше хвостиков роек! | reward_per_set=40242 | reward_total=40242 | cat=Трофеи ====
+2025-12-18 06:41:17 | INFO    | market_bot | Open category Трофеи at Point(x=1486, y=830) (dbl click)
+2025-12-18 06:41:18 | INFO    | market_bot | Collect/Plan item: 'Хвостик ройки' required_qty=25 (one-page plan)
+2025-12-18 06:41:18 | INFO    | market_bot | Focus search field at Point(x=1392, y=516)
+2025-12-18 06:41:21 | INFO    | market_bot | Price: page=1 slot=1 price=2000 conf=0.99 raw='2000' (easyocr)
+2025-12-18 06:41:22 | INFO    | market_bot | Price: page=1 slot=2 price=2000 conf=0.99 raw='2000' (easyocr)
+2025-12-18 06:41:22 | INFO    | market_bot | Price: page=1 slot=3 price=2000 conf=0.66 raw='2000' (easyocr)
+2025-12-18 06:41:22 | INFO    | market_bot | Price: page=1 slot=4 price=2000 conf=0.99 raw='2000' (easyocr)
+2025-12-18 06:41:22 | INFO    | market_bot | Price: page=1 slot=5 price=2090 conf=0.65 raw='2090' (easyocr)
+2025-12-18 06:41:23 | INFO    | market_bot | Price: page=1 slot=6 price=2090 conf=1.00 raw='2090' (easyocr)
+2025-12-18 06:41:23 | INFO    | market_bot | Price: page=1 slot=7 price=2095 conf=0.97 raw='2095' (easyocr)
+2025-12-18 06:41:23 | INFO    | market_bot | Price: page=1 slot=8 price=2100 conf=1.00 raw='2100' (easyocr)
+2025-12-18 06:41:23 | INFO    | market_bot | Plan: not affordable at slot=1 price=2000 -> min_possible=50000 > reward=40242
+2025-12-18 06:41:23 | INFO    | market_bot | Item plan failed => skip quest. item='Хвостик ройки' reason=cannot build plan on first page (qty/price mismatch or insufficient)
+2025-12-18 06:41:23 | INFO    | market_bot | ==== Quest: В поисках ценной оптики | reward_per_set=46137 | reward_total=46137 | cat=Трофеи ====
+2025-12-18 06:41:23 | INFO    | market_bot | Open category Трофеи at Point(x=1486, y=830) (dbl click)
+2025-12-18 06:41:24 | INFO    | market_bot | Collect/Plan item: 'Пристрелочный монокуляр' required_qty=8 (one-page plan)
+2025-12-18 06:41:24 | INFO    | market_bot | Focus search field at Point(x=1392, y=516)
+2025-12-18 06:41:27 | WARNING | market_bot | OCR price failed: page=1 slot=1 conf=0.00 raw=''
+2025-12-18 06:41:27 | WARNING | market_bot | OCR price failed: page=1 slot=3 conf=0.00 raw=''
+2025-12-18 06:41:27 | WARNING | market_bot | OCR price failed: page=1 slot=2 conf=0.00 raw=''
+2025-12-18 06:41:27 | WARNING | market_bot | OCR price failed: page=1 slot=4 conf=0.00 raw=''
+2025-12-18 06:41:27 | WARNING | market_bot | OCR price failed: page=1 slot=5 conf=0.00 raw=''
+2025-12-18 06:41:27 | INFO    | market_bot | Price: page=1 slot=6 price=6000 conf=1.00 raw='6000' (easyocr)
+2025-12-18 06:41:27 | WARNING | market_bot | OCR price failed: page=1 slot=7 conf=0.00 raw=''
+2025-12-18 06:41:27 | WARNING | market_bot | OCR price failed: page=1 slot=8 conf=0.00 raw=''
+2025-12-18 06:41:27 | INFO    | market_bot | Plan: slot1 price is not readable -> skip
+2025-12-18 06:41:27 | INFO    | market_bot | Item plan failed => skip quest. item='Пристрелочный монокуляр' reason=cannot build plan on first page (qty/price mismatch or insufficient)
+2025-12-18 06:41:27 | INFO    | market_bot | ==== Quest: Голодающий егерь | reward_per_set=49299 | reward_total=49299 | cat=Трофеи ====
+2025-12-18 06:41:27 | INFO    | market_bot | Open category Трофеи at Point(x=1486, y=830) (dbl click)
+2025-12-18 06:41:28 | INFO    | market_bot | Collect/Plan item: 'Мясо снежной жужи' required_qty=10 (one-page plan)
+2025-12-18 06:41:28 | INFO    | market_bot | Focus search field at Point(x=1392, y=516)
+2025-12-18 06:45:04 | INFO    | market_bot | Logging initialized: logs\market_bot.log
+2025-12-18 06:45:08 | INFO    | market_bot | Logger already initialized, reusing existing configuration
+2025-12-18 06:45:12 | INFO    | market_bot | Bot started. level=60 sets=1 mode=simulate
+2025-12-18 06:45:12 | INFO    | market_bot | Anchor found. top_left=Point(x=1704, y=451) center=Point(x=1756, y=467) score=1.000
+2025-12-18 06:45:12 | INFO    | market_bot | ==== Quest: Больше голов снегобеев! | reward_per_set=43072 | reward_total=43072 | cat=Трофеи ====
+2025-12-18 06:45:12 | INFO    | market_bot | Open category Трофеи at Point(x=1486, y=830) (dbl click)
+2025-12-18 06:45:13 | INFO    | market_bot | Collect/Plan item: 'Голова снегобея' required_qty=15 (one-page plan)
+2025-12-18 06:45:13 | INFO    | market_bot | Focus search field at Point(x=1392, y=516)
+2025-12-18 06:45:17 | INFO    | market_bot | Price: page=1 slot=1 price=8150 conf=0.92 raw='8150' (easyocr)
+2025-12-18 06:45:17 | INFO    | market_bot | Price: page=1 slot=2 price=3200 conf=1.00 raw='3200' (easyocr)
+2025-12-18 06:45:17 | INFO    | market_bot | Price: page=1 slot=3 price=3350 conf=1.00 raw='3350' (easyocr)
+2025-12-18 06:45:17 | INFO    | market_bot | Price: page=1 slot=4 price=3599 conf=1.00 raw='3599' (easyocr)
+2025-12-18 06:45:17 | INFO    | market_bot | Price: page=1 slot=5 price=8600 conf=1.00 raw='8600' (easyocr)
+2025-12-18 06:45:17 | INFO    | market_bot | Price: page=1 slot=6 price=3700 conf=1.00 raw='3700' (easyocr)
+2025-12-18 06:45:17 | INFO    | market_bot | Price: page=1 slot=7 price=3900 conf=1.00 raw='3900' (easyocr)
+2025-12-18 06:45:17 | INFO    | market_bot | Price: page=1 slot=8 price=3900 conf=0.77 raw='3900' (easyocr)
+2025-12-18 06:45:17 | INFO    | market_bot | Plan: not affordable at slot=1 price=8150 -> min_possible=122250 > reward=43072
+2025-12-18 06:45:17 | INFO    | market_bot | Item plan failed => skip quest. item='Голова снегобея' reason=cannot build plan on first page (qty/price mismatch or insufficient)
+2025-12-18 06:45:17 | INFO    | market_bot | ==== Quest: Больше соли! | reward_per_set=49299 | reward_total=49299 | cat=Трофеи ====
+2025-12-18 06:45:17 | INFO    | market_bot | Open category Трофеи at Point(x=1486, y=830) (dbl click)
+2025-12-18 06:45:18 | INFO    | market_bot | Collect/Plan item: 'Пещерная соль' required_qty=10 (one-page plan)
+2025-12-18 06:45:18 | INFO    | market_bot | Focus search field at Point(x=1392, y=516)
+2025-12-18 06:45:21 | INFO    | market_bot | Price: page=1 slot=1 price=11498 conf=1.00 raw='11498' (easyocr)
+2025-12-18 06:45:21 | INFO    | market_bot | Price: page=1 slot=3 price=11500 conf=0.95 raw='11500' (easyocr)
+2025-12-18 06:45:21 | INFO    | market_bot | Price: page=1 slot=2 price=11499 conf=1.00 raw='11499' (easyocr)
+2025-12-18 06:45:21 | INFO    | market_bot | Price: page=1 slot=4 price=11500 conf=0.92 raw='11500' (easyocr)
+2025-12-18 06:45:21 | INFO    | market_bot | Price: page=1 slot=5 price=11777 conf=1.00 raw='11777' (easyocr)
+2025-12-18 06:45:21 | INFO    | market_bot | Price: page=1 slot=6 price=12399 conf=0.80 raw='12399' (easyocr)
+2025-12-18 06:45:21 | INFO    | market_bot | Price: page=1 slot=7 price=12489 conf=0.71 raw='12489' (easyocr)
+2025-12-18 06:45:21 | INFO    | market_bot | Price: page=1 slot=8 price=12490 conf=1.00 raw='12490' (easyocr)
+2025-12-18 06:45:21 | INFO    | market_bot | Plan: not affordable at slot=1 price=11498 -> min_possible=114980 > reward=49299
+2025-12-18 06:45:21 | INFO    | market_bot | Item plan failed => skip quest. item='Пещерная соль' reason=cannot build plan on first page (qty/price mismatch or insufficient)
+2025-12-18 06:45:21 | INFO    | market_bot | ==== Quest: Больше хвостиков роек! | reward_per_set=40242 | reward_total=40242 | cat=Трофеи ====
+2025-12-18 06:45:21 | INFO    | market_bot | Open category Трофеи at Point(x=1486, y=830) (dbl click)
+2025-12-18 06:45:22 | INFO    | market_bot | Collect/Plan item: 'Хвостик ройки' required_qty=25 (one-page plan)
+2025-12-18 06:45:22 | INFO    | market_bot | Focus search field at Point(x=1392, y=516)
+2025-12-18 06:45:26 | INFO    | market_bot | Price: page=1 slot=3 price=2000 conf=0.66 raw='2000' (easyocr)
+2025-12-18 06:45:26 | INFO    | market_bot | Price: page=1 slot=1 price=2000 conf=0.99 raw='2000' (easyocr)
+2025-12-18 06:45:26 | INFO    | market_bot | Price: page=1 slot=2 price=2000 conf=0.99 raw='2000' (easyocr)
+2025-12-18 06:45:26 | INFO    | market_bot | Price: page=1 slot=4 price=2000 conf=0.99 raw='2000' (easyocr)
+2025-12-18 06:45:26 | INFO    | market_bot | Price: page=1 slot=5 price=2090 conf=0.65 raw='2090' (easyocr)
+2025-12-18 06:45:26 | INFO    | market_bot | Price: page=1 slot=6 price=2090 conf=1.00 raw='2090' (easyocr)
+2025-12-18 06:45:26 | INFO    | market_bot | Price: page=1 slot=7 price=2095 conf=0.97 raw='2095' (easyocr)
+2025-12-18 06:45:26 | INFO    | market_bot | Price: page=1 slot=8 price=2100 conf=1.00 raw='2100' (easyocr)
+2025-12-18 06:45:26 | INFO    | market_bot | Plan: not affordable at slot=1 price=2000 -> min_possible=50000 > reward=40242
+2025-12-18 06:45:26 | INFO    | market_bot | Item plan failed => skip quest. item='Хвостик ройки' reason=cannot build plan on first page (qty/price mismatch or insufficient)
+2025-12-18 06:45:26 | INFO    | market_bot | ==== Quest: В поисках ценной оптики | reward_per_set=46137 | reward_total=46137 | cat=Трофеи ====
+2025-12-18 06:45:26 | INFO    | market_bot | Open category Трофеи at Point(x=1486, y=830) (dbl click)
+2025-12-18 06:45:27 | INFO    | market_bot | Collect/Plan item: 'Пристрелочный монокуляр' required_qty=8 (one-page plan)
+2025-12-18 06:45:27 | INFO    | market_bot | Focus search field at Point(x=1392, y=516)
+2025-12-18 06:45:30 | INFO    | market_bot | Price: page=1 slot=1 price=5554 conf=0.99 raw='5554' (easyocr)
+2025-12-18 06:45:30 | INFO    | market_bot | Price: page=1 slot=3 price=5799 conf=1.00 raw='5799' (easyocr)
+2025-12-18 06:45:30 | INFO    | market_bot | Price: page=1 slot=2 price=5555 conf=1.00 raw='5555' (easyocr)
+2025-12-18 06:45:30 | INFO    | market_bot | Price: page=1 slot=4 price=5800 conf=1.00 raw='5800' (easyocr)
+2025-12-18 06:45:30 | INFO    | market_bot | Price: page=1 slot=5 price=5999 conf=1.00 raw='5999' (easyocr)
+2025-12-18 06:45:30 | INFO    | market_bot | Price: page=1 slot=6 price=6000 conf=1.00 raw='6000' (easyocr)
+2025-12-18 06:45:30 | INFO    | market_bot | Price: page=1 slot=7 price=6000 conf=0.72 raw='6000' (easyocr)
+2025-12-18 06:45:30 | INFO    | market_bot | Price: page=1 slot=8 price=6333 conf=1.00 raw='6333' (easyocr)
+2025-12-18 06:45:30 | INFO    | market_bot | Open lot modal: slot=1 at Point(x=1766, y=596) (dbl click)
+2025-12-18 06:45:32 | INFO    | market_bot | Buy button found by template at Point(x=1208, y=790) (score=1.000)
+2025-12-18 06:45:33 | INFO    | market_bot | Cancel button found by template at Point(x=1347, y=791) (score=1.000)
+2025-12-18 06:45:33 | INFO    | market_bot | Read seller qty: click input at Point(x=1388, y=703)
+2025-12-18 06:45:34 | INFO    | market_bot | Seller qty from clipboard: 82 (raw='82')
+2025-12-18 06:45:34 | INFO    | market_bot | Click CANCEL at Point(x=1347, y=791)
+2025-12-18 06:45:34 | INFO    | market_bot | Quest cost estimate: 44432 | reward_total=46137 | delta=1705
+2025-12-18 06:45:34 | INFO    | market_bot | Decision: PROFITABLE => proceed.
+2025-12-18 06:45:34 | INFO    | market_bot | Quest summary: reward=46137 planned_cost=44432 expected_profit=1705 (plans=44432 items_est=0)
+2025-12-18 06:45:34 | INFO    | market_bot | Profit check (PERCENT): expected=1705 required>=6921 (15.00% of reward=46137)
+2025-12-18 06:45:34 | WARNING | market_bot | Quest skipped: profit threshold not met (reward=46137 cost=44432)
+2025-12-18 06:45:34 | INFO    | market_bot | ==== Quest: Голодающий егерь | reward_per_set=49299 | reward_total=49299 | cat=Трофеи ====
+2025-12-18 06:45:34 | INFO    | market_bot | Open category Трофеи at Point(x=1486, y=830) (dbl click)
+2025-12-18 06:45:35 | INFO    | market_bot | Collect/Plan item: 'Мясо снежной жужи' required_qty=10 (one-page plan)
+2025-12-18 06:45:35 | INFO    | market_bot | Focus search field at Point(x=1392, y=516)
+2025-12-18 06:52:27 | INFO    | market_bot | Logging initialized: logs\market_bot.log
+2025-12-18 06:52:33 | INFO    | market_bot | Logger already initialized, reusing existing configuration
+2025-12-18 06:52:37 | INFO    | market_bot | Bot started. level=60 sets=1 mode=simulate
+2025-12-18 06:52:38 | INFO    | market_bot | Anchor found. top_left=Point(x=1704, y=451) center=Point(x=1756, y=467) score=1.000
+2025-12-18 06:52:38 | INFO    | market_bot | ==== Quest: Больше голов снегобеев! | reward_per_set=43072 | reward_total=43072 | cat=Трофеи ====
+2025-12-18 06:52:38 | INFO    | market_bot | Open category Трофеи at Point(x=1486, y=830) (dbl click)
+2025-12-18 06:52:39 | INFO    | market_bot | Collect/Plan item: 'Голова снегобея' required_qty=15 (one-page plan)
+2025-12-18 06:52:39 | INFO    | market_bot | Focus search field at Point(x=1392, y=516)
+2025-12-18 06:52:42 | INFO    | market_bot | Price: page=1 slot=1 price=3140 conf=0.95 raw='3140' (easyocr)
+2025-12-18 06:52:42 | INFO    | market_bot | Price: page=1 slot=2 price=3150 conf=1.00 raw='3150' (easyocr)
+2025-12-18 06:52:42 | INFO    | market_bot | Price: page=1 slot=3 price=3200 conf=1.00 raw='3200' (easyocr)
+2025-12-18 06:52:42 | INFO    | market_bot | Price: page=1 slot=4 price=3350 conf=1.00 raw='3350' (easyocr)
+2025-12-18 06:52:42 | INFO    | market_bot | Price: page=1 slot=5 price=3599 conf=1.00 raw='3599' (easyocr)
+2025-12-18 06:52:42 | INFO    | market_bot | Price: page=1 slot=6 price=3600 conf=0.77 raw='3600' (easyocr)
+2025-12-18 06:52:42 | INFO    | market_bot | Price: page=1 slot=7 price=3700 conf=1.00 raw='3700' (easyocr)
+2025-12-18 06:52:42 | INFO    | market_bot | Price: page=1 slot=8 price=3900 conf=0.77 raw='3900' (easyocr)
+2025-12-18 06:52:42 | INFO    | market_bot | Plan: not affordable at slot=1 price=3140 -> min_possible=47100 > reward=43072
+2025-12-18 06:52:42 | INFO    | market_bot | Item plan failed => skip quest. item='Голова снегобея' reason=cannot build plan on first page (qty/price mismatch or insufficient)
+2025-12-18 06:52:42 | INFO    | market_bot | ==== Quest: Больше соли! | reward_per_set=49299 | reward_total=49299 | cat=Трофеи ====
+2025-12-18 06:52:42 | INFO    | market_bot | Open category Трофеи at Point(x=1486, y=830) (dbl click)
+2025-12-18 06:52:43 | INFO    | market_bot | Collect/Plan item: 'Пещерная соль' required_qty=10 (one-page plan)
+2025-12-18 06:52:43 | INFO    | market_bot | Focus search field at Point(x=1392, y=516)
+2025-12-18 06:52:46 | INFO    | market_bot | Price: page=1 slot=2 price=11499 conf=1.00 raw='11499' (easyocr)
+2025-12-18 06:52:46 | INFO    | market_bot | Price: page=1 slot=3 price=11500 conf=0.95 raw='11500' (easyocr)
+2025-12-18 06:52:46 | INFO    | market_bot | Price: page=1 slot=1 price=11498 conf=1.00 raw='11498' (easyocr)
+2025-12-18 06:52:46 | INFO    | market_bot | Price: page=1 slot=4 price=11500 conf=0.92 raw='11500' (easyocr)
+2025-12-18 06:52:46 | INFO    | market_bot | Price: page=1 slot=5 price=11777 conf=1.00 raw='11777' (easyocr)
+2025-12-18 06:52:47 | INFO    | market_bot | Price: page=1 slot=6 price=12399 conf=0.80 raw='12399' (easyocr)
+2025-12-18 06:52:47 | INFO    | market_bot | Price: page=1 slot=7 price=12489 conf=0.71 raw='12489' (easyocr)
+2025-12-18 06:52:47 | INFO    | market_bot | Price: page=1 slot=8 price=12490 conf=1.00 raw='12490' (easyocr)
+2025-12-18 06:52:47 | INFO    | market_bot | Plan: not affordable at slot=1 price=11498 -> min_possible=114980 > reward=49299
+2025-12-18 06:52:47 | INFO    | market_bot | Item plan failed => skip quest. item='Пещерная соль' reason=cannot build plan on first page (qty/price mismatch or insufficient)
+2025-12-18 06:52:47 | INFO    | market_bot | ==== Quest: Больше хвостиков роек! | reward_per_set=40242 | reward_total=40242 | cat=Трофеи ====
+2025-12-18 06:52:47 | INFO    | market_bot | Open category Трофеи at Point(x=1486, y=830) (dbl click)
+2025-12-18 06:52:47 | INFO    | market_bot | Collect/Plan item: 'Хвостик ройки' required_qty=25 (one-page plan)
+2025-12-18 06:52:47 | INFO    | market_bot | Focus search field at Point(x=1392, y=516)
+2025-12-18 06:52:51 | INFO    | market_bot | Price: page=1 slot=1 price=2000 conf=0.99 raw='2000' (easyocr)
+2025-12-18 06:52:51 | INFO    | market_bot | Price: page=1 slot=3 price=2000 conf=0.66 raw='2000' (easyocr)
+2025-12-18 06:52:51 | INFO    | market_bot | Price: page=1 slot=2 price=2000 conf=0.99 raw='2000' (easyocr)
+2025-12-18 06:52:51 | INFO    | market_bot | Price: page=1 slot=4 price=2000 conf=0.99 raw='2000' (easyocr)
+2025-12-18 06:52:51 | INFO    | market_bot | Price: page=1 slot=5 price=2090 conf=0.65 raw='2090' (easyocr)
+2025-12-18 06:52:51 | INFO    | market_bot | Price: page=1 slot=6 price=2090 conf=1.00 raw='2090' (easyocr)
+2025-12-18 06:52:51 | INFO    | market_bot | Price: page=1 slot=7 price=2095 conf=0.97 raw='2095' (easyocr)
+2025-12-18 06:52:51 | INFO    | market_bot | Price: page=1 slot=8 price=2100 conf=1.00 raw='2100' (easyocr)
+2025-12-18 06:52:51 | INFO    | market_bot | Plan: not affordable at slot=1 price=2000 -> min_possible=50000 > reward=40242
+2025-12-18 06:52:51 | INFO    | market_bot | Item plan failed => skip quest. item='Хвостик ройки' reason=cannot build plan on first page (qty/price mismatch or insufficient)
+2025-12-18 06:52:51 | INFO    | market_bot | ==== Quest: В поисках ценной оптики | reward_per_set=46137 | reward_total=46137 | cat=Трофеи ====
+2025-12-18 06:52:51 | INFO    | market_bot | Open category Трофеи at Point(x=1486, y=830) (dbl click)
+2025-12-18 06:52:52 | INFO    | market_bot | Collect/Plan item: 'Пристрелочный монокуляр' required_qty=8 (one-page plan)
+2025-12-18 06:52:52 | INFO    | market_bot | Focus search field at Point(x=1392, y=516)
+2025-12-18 06:52:55 | INFO    | market_bot | Price: page=1 slot=1 price=5554 conf=0.99 raw='5554' (easyocr)
+2025-12-18 06:52:55 | INFO    | market_bot | Price: page=1 slot=2 price=5555 conf=1.00 raw='5555' (easyocr)
+2025-12-18 06:52:55 | INFO    | market_bot | Price: page=1 slot=3 price=5799 conf=1.00 raw='5799' (easyocr)
+2025-12-18 06:52:55 | INFO    | market_bot | Price: page=1 slot=4 price=5800 conf=1.00 raw='5800' (easyocr)
+2025-12-18 06:52:55 | INFO    | market_bot | Price: page=1 slot=5 price=5999 conf=1.00 raw='5999' (easyocr)
+2025-12-18 06:52:56 | INFO    | market_bot | Price: page=1 slot=6 price=6000 conf=1.00 raw='6000' (easyocr)
+2025-12-18 06:52:56 | INFO    | market_bot | Price: page=1 slot=7 price=6000 conf=0.72 raw='6000' (easyocr)
+2025-12-18 06:52:56 | INFO    | market_bot | Price: page=1 slot=8 price=6333 conf=1.00 raw='6333' (easyocr)
+2025-12-18 06:52:56 | INFO    | market_bot | Open lot modal: slot=1 at Point(x=1766, y=596) (dbl click)
+2025-12-18 06:52:58 | INFO    | market_bot | Buy button found by template at Point(x=1208, y=790) (score=1.000)
+2025-12-18 06:52:58 | INFO    | market_bot | Cancel button found by template at Point(x=1347, y=791) (score=1.000)
+2025-12-18 06:52:58 | INFO    | market_bot | Read seller qty: click input at Point(x=1388, y=703)
+2025-12-18 06:52:59 | INFO    | market_bot | Seller qty from clipboard: 82 (raw='82')
+2025-12-18 06:52:59 | INFO    | market_bot | Click CANCEL at Point(x=1347, y=791)
+2025-12-18 06:53:00 | INFO    | market_bot | Quest cost estimate: 44432 | reward_total=46137 | delta=1705
+2025-12-18 06:53:00 | INFO    | market_bot | Decision: PROFITABLE => proceed.
+2025-12-18 06:53:00 | INFO    | market_bot | Quest summary: reward=46137 planned_cost=44432 expected_profit=1705 (plans=44432 items_est=0)
+2025-12-18 06:53:00 | INFO    | market_bot | Profit check (PERCENT): expected=1705 required>=6921 (15.00% of reward=46137)
+2025-12-18 06:53:00 | WARNING | market_bot | Quest skipped: profit threshold not met (reward=46137 cost=44432)
+2025-12-18 06:53:00 | INFO    | market_bot | ==== Quest: Голодающий егерь | reward_per_set=49299 | reward_total=49299 | cat=Трофеи ====
+2025-12-18 06:53:00 | INFO    | market_bot | Open category Трофеи at Point(x=1486, y=830) (dbl click)
+2025-12-18 06:53:01 | INFO    | market_bot | Collect/Plan item: 'Мясо снежной жужи' required_qty=10 (one-page plan)
+2025-12-18 06:53:01 | INFO    | market_bot | Focus search field at Point(x=1392, y=516)
+2025-12-18 06:53:04 | INFO    | market_bot | Price: page=1 slot=1 price=5794 conf=1.00 raw='5794' (easyocr)
+2025-12-18 06:53:04 | INFO    | market_bot | Price: page=1 slot=3 price=5799 conf=1.00 raw='5799' (easyocr)
+2025-12-18 06:53:04 | INFO    | market_bot | Price: page=1 slot=2 price=5795 conf=1.00 raw='5795' (easyocr)
+2025-12-18 06:53:04 | INFO    | market_bot | Price: page=1 slot=4 price=5800 conf=1.00 raw='5800' (easyocr)
+2025-12-18 06:53:04 | INFO    | market_bot | Price: page=1 slot=5 price=5914 conf=1.00 raw='5914' (easyocr)
+2025-12-18 06:53:04 | INFO    | market_bot | Price: page=1 slot=6 price=5915 conf=1.00 raw='5915' (easyocr)
+2025-12-18 06:53:04 | INFO    | market_bot | Price: page=1 slot=7 price=5920 conf=1.00 raw='5920' (easyocr)
+2025-12-18 06:53:04 | INFO    | market_bot | Price: page=1 slot=8 price=5930 conf=1.00 raw='5930' (easyocr)
+2025-12-18 06:53:04 | INFO    | market_bot | Plan: not affordable at slot=1 price=5794 -> min_possible=57940 > reward=49299
+2025-12-18 06:53:04 | INFO    | market_bot | Item plan failed => skip quest. item='Мясо снежной жужи' reason=cannot build plan on first page (qty/price mismatch or insufficient)
+2025-12-18 06:53:04 | INFO    | market_bot | ==== Quest: Добыча звёздной руды | reward_per_set=37500 | reward_total=37500 | cat=Ресурсы ====
+2025-12-18 06:53:04 | INFO    | market_bot | Open category Ресурсы at Point(x=1476, y=935) (dbl click)
+2025-12-18 06:53:05 | INFO    | market_bot | Collect/Plan item: 'Звездная руда' required_qty=9 (one-page plan)
+2025-12-18 06:53:05 | INFO    | market_bot | Focus search field at Point(x=1392, y=516)
+2025-12-18 06:53:08 | INFO    | market_bot | Price: page=1 slot=1 price=5685 conf=1.00 raw='5685' (easyocr)
+2025-12-18 06:53:08 | INFO    | market_bot | Price: page=1 slot=2 price=5690 conf=1.00 raw='5690' (easyocr)
+2025-12-18 06:53:08 | INFO    | market_bot | Price: page=1 slot=3 price=5198 conf=0.93 raw='5198' (easyocr)
+2025-12-18 06:53:08 | INFO    | market_bot | Price: page=1 slot=4 price=5800 conf=1.00 raw='5800' (easyocr)
+2025-12-18 06:53:08 | INFO    | market_bot | Price: page=1 slot=5 price=5900 conf=1.00 raw='5900' (easyocr)
+2025-12-18 06:53:08 | INFO    | market_bot | Price: page=1 slot=6 price=6000 conf=1.00 raw='6000' (easyocr)
+2025-12-18 06:53:08 | INFO    | market_bot | Price: page=1 slot=7 price=6129 conf=0.76 raw='6129' (easyocr)
+2025-12-18 06:53:08 | INFO    | market_bot | Price: page=1 slot=8 price=6138 conf=1.00 raw='6138' (easyocr)
+2025-12-18 06:53:08 | INFO    | market_bot | Plan: not affordable at slot=1 price=5685 -> min_possible=51165 > reward=37500
+2025-12-18 06:53:08 | INFO    | market_bot | Item plan failed => skip quest. item='Звездная руда' reason=cannot build plan on first page (qty/price mismatch or insufficient)
+2025-12-18 06:53:08 | INFO    | market_bot | ==== Quest: Добыча зеленороста | reward_per_set=37500 | reward_total=37500 | cat=Трофеи ====
+2025-12-18 06:53:08 | INFO    | market_bot | Open category Трофеи at Point(x=1486, y=830) (dbl click)
+2025-12-18 06:53:09 | INFO    | market_bot | Collect/Plan(image) item: 'Зеленорост' required_qty=9 budget_left=37500
+2025-12-18 06:53:09 | INFO    | market_bot | Focus search field at Point(x=1392, y=516)
+2025-12-18 06:53:12 | INFO    | market_bot | Icon slots found: item='Зеленорост' slots=[(7, 0.9459227323532104), (8, 0.9459227323532104)]
+2025-12-18 06:53:12 | INFO    | market_bot | Item data incomplete => skip quest. item='Зеленорост' reason=unprofitable: cost=0 price=4777 remain=9 budget_left=37500
+2025-12-18 06:53:12 | INFO    | market_bot | ==== Quest: Добыча ледового серпантина | reward_per_set=37500 | reward_total=37500 | cat=Трофеи ====
+2025-12-18 06:53:12 | INFO    | market_bot | Open category Трофеи at Point(x=1486, y=830) (dbl click)
+2025-12-18 06:53:13 | INFO    | market_bot | Collect/Plan item: 'Ледовый серпантин' required_qty=6 (one-page plan)
+2025-12-18 06:53:13 | INFO    | market_bot | Focus search field at Point(x=1392, y=516)
+2025-12-18 06:53:16 | INFO    | market_bot | Price: page=1 slot=1 price=2849 conf=0.93 raw='2849' (easyocr)
+2025-12-18 06:53:16 | INFO    | market_bot | Price: page=1 slot=2 price=2850 conf=1.00 raw='2850' (easyocr)
+2025-12-18 06:53:17 | INFO    | market_bot | Price: page=1 slot=3 price=2897 conf=1.00 raw='2897' (easyocr)
+2025-12-18 06:53:17 | INFO    | market_bot | Price: page=1 slot=4 price=2899 conf=1.00 raw='2899' (easyocr)
+2025-12-18 06:53:17 | INFO    | market_bot | Price: page=1 slot=5 price=2900 conf=1.00 raw='2900' (easyocr)
+2025-12-18 06:53:17 | INFO    | market_bot | Price: page=1 slot=6 price=300 conf=0.84 raw='300' (easyocr)
+2025-12-18 06:53:17 | INFO    | market_bot | Price: page=1 slot=7 price=3001 conf=1.00 raw='3001' (easyocr)
+2025-12-18 06:53:17 | INFO    | market_bot | Price: page=1 slot=8 price=3333 conf=1.00 raw='3333' (easyocr)
+2025-12-18 06:53:17 | INFO    | market_bot | Open lot modal: slot=1 at Point(x=1766, y=596) (dbl click)
+2025-12-18 06:53:19 | INFO    | market_bot | Buy button found by template at Point(x=1208, y=790) (score=1.000)
+2025-12-18 06:53:20 | INFO    | market_bot | Cancel button found by template at Point(x=1347, y=791) (score=1.000)
+2025-12-18 06:53:20 | INFO    | market_bot | Read seller qty: click input at Point(x=1388, y=703)
+2025-12-18 06:53:20 | INFO    | market_bot | Seller qty from clipboard: 1 (raw='1')
+2025-12-18 06:53:20 | INFO    | market_bot | Click CANCEL at Point(x=1347, y=791)
+2025-12-18 06:53:21 | INFO    | market_bot | Open lot modal: slot=2 at Point(x=1766, y=655) (dbl click)
+2025-12-18 06:53:23 | INFO    | market_bot | Buy button found by template at Point(x=1208, y=790) (score=1.000)
+2025-12-18 06:53:23 | INFO    | market_bot | Cancel button found by template at Point(x=1347, y=791) (score=1.000)
+2025-12-18 06:53:23 | INFO    | market_bot | Read seller qty: click input at Point(x=1388, y=703)
+2025-12-18 06:53:24 | INFO    | market_bot | Seller qty from clipboard: 12 (raw='12')
+2025-12-18 06:53:24 | INFO    | market_bot | Click CANCEL at Point(x=1347, y=791)
+2025-12-18 06:53:25 | INFO    | market_bot | Quest cost estimate: 17099 | reward_total=37500 | delta=20401
+2025-12-18 06:53:25 | INFO    | market_bot | Decision: PROFITABLE => proceed.
+2025-12-18 06:53:25 | INFO    | market_bot | Quest summary: reward=37500 planned_cost=17099 expected_profit=20401 (plans=17099 items_est=0)
+2025-12-18 06:53:25 | INFO    | market_bot | Profit check (PERCENT): expected=20401 required>=5625 (15.00% of reward=37500)
+2025-12-18 06:53:25 | INFO    | market_bot | [SIM-UI] Performing navigation but will NOT click BUY. item='Ледовый серпантин'
+2025-12-18 06:53:25 | INFO    | market_bot | BUY step 1/2: planned slot=1 take=1 price=2849
+2025-12-18 06:53:25 | INFO    | market_bot | Open lot modal: slot=1 at Point(x=1766, y=596) (dbl click)
+2025-12-18 06:53:27 | INFO    | market_bot | Buy button found by template at Point(x=1208, y=790) (score=1.000)
+2025-12-18 06:53:27 | INFO    | market_bot | Cancel button found by template at Point(x=1347, y=791) (score=1.000)
+2025-12-18 06:53:27 | INFO    | market_bot | Read seller qty: click input at Point(x=1388, y=703)
+2025-12-18 06:53:28 | INFO    | market_bot | Seller qty from clipboard: 1 (raw='1')
+2025-12-18 06:53:28 | INFO    | market_bot | [SIM] Would set qty=1 and click BUY now.
+2025-12-18 06:53:28 | INFO    | market_bot | Click CANCEL at Point(x=1347, y=791)
+2025-12-18 06:53:29 | INFO    | market_bot | BUY step 2/2: planned slot=2 take=5 price=2850
+2025-12-18 06:53:29 | INFO    | market_bot | Open lot modal: slot=2 at Point(x=1766, y=655) (dbl click)
+2025-12-18 06:53:31 | INFO    | market_bot | Buy button found by template at Point(x=1208, y=790) (score=1.000)
+2025-12-18 06:53:32 | INFO    | market_bot | Cancel button found by template at Point(x=1347, y=791) (score=1.000)
+2025-12-18 06:53:32 | INFO    | market_bot | Read seller qty: click input at Point(x=1388, y=703)
+2025-12-18 06:53:33 | INFO    | market_bot | Seller qty from clipboard: 12 (raw='12')
+2025-12-18 06:53:33 | INFO    | market_bot | [SIM] Would set qty=5 and click BUY now.
+2025-12-18 06:53:33 | INFO    | market_bot | Click CANCEL at Point(x=1347, y=791)
+2025-12-18 06:53:33 | INFO    | market_bot | Purchase result: item='Ледовый серпантин' required=6 bought=6 spent=17099 success=True reason=None
+2025-12-18 06:53:33 | INFO    | market_bot | ==== Quest: Добыча магниевой руды | reward_per_set=37500 | reward_total=37500 | cat=Ресурсы ====
+2025-12-18 06:53:33 | INFO    | market_bot | Open category Ресурсы at Point(x=1476, y=935) (dbl click)
+2025-12-18 06:53:34 | INFO    | market_bot | Collect/Plan item: 'Магниевая руда' required_qty=5 (one-page plan)
+2025-12-18 06:53:34 | INFO    | market_bot | Focus search field at Point(x=1392, y=516)
+2025-12-18 06:53:38 | INFO    | market_bot | Price: page=1 slot=3 price=700 conf=0.91 raw='700' (easyocr)
+2025-12-18 06:53:38 | INFO    | market_bot | Price: page=1 slot=2 price=699 conf=1.00 raw='699' (easyocr)
+2025-12-18 06:53:38 | INFO    | market_bot | Price: page=1 slot=1 price=694 conf=1.00 raw='694' (easyocr)
+2025-12-18 06:53:38 | INFO    | market_bot | Price: page=1 slot=4 price=757 conf=1.00 raw='757' (easyocr)
+2025-12-18 06:53:38 | INFO    | market_bot | Price: page=1 slot=5 price=800 conf=1.00 raw='800' (easyocr)
+2025-12-18 06:53:38 | INFO    | market_bot | Price: page=1 slot=6 price=801 conf=1.00 raw='801' (easyocr)
+2025-12-18 06:53:38 | INFO    | market_bot | Price: page=1 slot=7 price=988 conf=1.00 raw='988' (easyocr)
+2025-12-18 06:53:38 | INFO    | market_bot | Price: page=1 slot=8 price=1493 conf=1.00 raw='1493' (easyocr)
+2025-12-18 06:53:38 | INFO    | market_bot | Open lot modal: slot=1 at Point(x=1766, y=596) (dbl click)
+2025-12-18 06:53:40 | INFO    | market_bot | Buy button found by template at Point(x=1208, y=790) (score=1.000)
+2025-12-18 06:53:41 | INFO    | market_bot | Cancel button found by template at Point(x=1347, y=791) (score=1.000)
+2025-12-18 06:53:41 | INFO    | market_bot | Read seller qty: click input at Point(x=1388, y=703)
+2025-12-18 06:53:41 | INFO    | market_bot | Seller qty from clipboard: 3 (raw='3')
+2025-12-18 06:53:41 | INFO    | market_bot | Click CANCEL at Point(x=1347, y=791)
+2025-12-18 06:53:42 | INFO    | market_bot | Open lot modal: slot=2 at Point(x=1766, y=655) (dbl click)
+2025-12-18 06:53:44 | INFO    | market_bot | Buy button found by template at Point(x=1208, y=790) (score=1.000)
+2025-12-18 06:53:45 | INFO    | market_bot | Cancel button found by template at Point(x=1347, y=791) (score=1.000)
+2025-12-18 06:53:45 | INFO    | market_bot | Read seller qty: click input at Point(x=1388, y=703)
+2025-12-18 06:53:46 | INFO    | market_bot | Seller qty from clipboard: 239 (raw='239')
+2025-12-18 06:53:46 | INFO    | market_bot | Click CANCEL at Point(x=1347, y=791)
+2025-12-18 06:53:46 | INFO    | market_bot | Quest cost estimate: 3480 | reward_total=37500 | delta=34020
+2025-12-18 06:53:46 | INFO    | market_bot | Decision: PROFITABLE => proceed.
+2025-12-18 06:53:46 | INFO    | market_bot | Quest summary: reward=37500 planned_cost=3480 expected_profit=34020 (plans=3480 items_est=0)
+2025-12-18 06:53:46 | INFO    | market_bot | Profit check (PERCENT): expected=34020 required>=5625 (15.00% of reward=37500)
+2025-12-18 06:53:46 | INFO    | market_bot | [SIM-UI] Performing navigation but will NOT click BUY. item='Магниевая руда'
+2025-12-18 06:53:46 | INFO    | market_bot | BUY step 1/2: planned slot=1 take=3 price=694
+2025-12-18 06:53:46 | INFO    | market_bot | Open lot modal: slot=1 at Point(x=1766, y=596) (dbl click)
+2025-12-18 06:53:48 | INFO    | market_bot | Buy button found by template at Point(x=1208, y=790) (score=1.000)
+2025-12-18 06:53:49 | INFO    | market_bot | Cancel button found by template at Point(x=1347, y=791) (score=1.000)
+2025-12-18 06:53:49 | INFO    | market_bot | Read seller qty: click input at Point(x=1388, y=703)
+2025-12-18 06:53:50 | INFO    | market_bot | Seller qty from clipboard: 3 (raw='3')
+2025-12-18 06:53:50 | INFO    | market_bot | [SIM] Would set qty=3 and click BUY now.
+2025-12-18 06:53:50 | INFO    | market_bot | Click CANCEL at Point(x=1347, y=791)
+2025-12-18 06:53:51 | INFO    | market_bot | BUY step 2/2: planned slot=2 take=2 price=699
+2025-12-18 06:53:51 | INFO    | market_bot | Open lot modal: slot=2 at Point(x=1766, y=655) (dbl click)
+2025-12-18 06:53:53 | INFO    | market_bot | Buy button found by template at Point(x=1208, y=790) (score=1.000)
+2025-12-18 06:53:53 | INFO    | market_bot | Cancel button found by template at Point(x=1347, y=791) (score=1.000)
+2025-12-18 06:53:53 | INFO    | market_bot | Read seller qty: click input at Point(x=1388, y=703)
+2025-12-18 06:53:54 | INFO    | market_bot | Seller qty from clipboard: 239 (raw='239')
+2025-12-18 06:53:54 | INFO    | market_bot | [SIM] Would set qty=2 and click BUY now.
+2025-12-18 06:53:54 | INFO    | market_bot | Click CANCEL at Point(x=1347, y=791)
+2025-12-18 06:53:55 | INFO    | market_bot | Purchase result: item='Магниевая руда' required=5 bought=5 spent=3480 success=True reason=None
+2025-12-18 06:53:55 | INFO    | market_bot | ==== Quest: Добыча обыканской морошки | reward_per_set=37500 | reward_total=37500 | cat=Трофеи ====
+2025-12-18 06:53:55 | INFO    | market_bot | Open category Трофеи at Point(x=1486, y=830) (dbl click)
+2025-12-18 06:53:56 | INFO    | market_bot | Collect/Plan item: 'Обыканская морошка' required_qty=5 (one-page plan)
+2025-12-18 06:53:56 | INFO    | market_bot | Focus search field at Point(x=1392, y=516)
+2025-12-18 06:53:59 | INFO    | market_bot | Price: page=1 slot=3 price=4000 conf=1.00 raw='4000' (easyocr)
+2025-12-18 06:53:59 | INFO    | market_bot | Price: page=1 slot=2 price=3950 conf=1.00 raw='3950' (easyocr)
+2025-12-18 06:53:59 | INFO    | market_bot | Price: page=1 slot=1 price=3949 conf=1.00 raw='3949' (easyocr)
+2025-12-18 06:53:59 | INFO    | market_bot | Price: page=1 slot=4 price=4085 conf=1.00 raw='4085' (easyocr)
+2025-12-18 06:53:59 | INFO    | market_bot | Price: page=1 slot=5 price=4089 conf=1.00 raw='4089' (easyocr)
+2025-12-18 06:53:59 | INFO    | market_bot | Price: page=1 slot=6 price=4090 conf=1.00 raw='4090' (easyocr)
+2025-12-18 06:53:59 | INFO    | market_bot | Price: page=1 slot=7 price=4200 conf=1.00 raw='4200' (easyocr)
+2025-12-18 06:53:59 | INFO    | market_bot | Price: page=1 slot=8 price=4500 conf=1.00 raw='4500' (easyocr)
+2025-12-18 06:53:59 | INFO    | market_bot | Open lot modal: slot=1 at Point(x=1766, y=596) (dbl click)
+2025-12-18 06:54:01 | INFO    | market_bot | Buy button found by template at Point(x=1208, y=790) (score=1.000)
+2025-12-18 06:54:02 | INFO    | market_bot | Cancel button found by template at Point(x=1347, y=791) (score=1.000)
+2025-12-18 06:54:02 | INFO    | market_bot | Read seller qty: click input at Point(x=1388, y=703)
+2025-12-18 06:54:03 | INFO    | market_bot | Seller qty from clipboard: 4 (raw='4')
+2025-12-18 06:54:03 | INFO    | market_bot | Click CANCEL at Point(x=1347, y=791)
+2025-12-18 06:54:03 | INFO    | market_bot | Open lot modal: slot=2 at Point(x=1766, y=655) (dbl click)
+2025-12-18 06:54:05 | INFO    | market_bot | Buy button found by template at Point(x=1208, y=790) (score=1.000)
+2025-12-18 06:54:06 | INFO    | market_bot | Cancel button found by template at Point(x=1347, y=791) (score=1.000)
+2025-12-18 06:54:06 | INFO    | market_bot | Read seller qty: click input at Point(x=1388, y=703)
+2025-12-18 06:54:07 | INFO    | market_bot | Seller qty from clipboard: 14 (raw='14')
+2025-12-18 06:54:07 | INFO    | market_bot | Click CANCEL at Point(x=1347, y=791)
+2025-12-18 06:54:07 | INFO    | market_bot | Quest cost estimate: 19746 | reward_total=37500 | delta=17754
+2025-12-18 06:54:07 | INFO    | market_bot | Decision: PROFITABLE => proceed.
+2025-12-18 06:54:07 | INFO    | market_bot | Quest summary: reward=37500 planned_cost=19746 expected_profit=17754 (plans=19746 items_est=0)
+2025-12-18 06:54:07 | INFO    | market_bot | Profit check (PERCENT): expected=17754 required>=5625 (15.00% of reward=37500)
+2025-12-18 06:54:07 | INFO    | market_bot | [SIM-UI] Performing navigation but will NOT click BUY. item='Обыканская морошка'
+2025-12-18 06:54:07 | INFO    | market_bot | BUY step 1/2: planned slot=1 take=4 price=3949
+2025-12-18 06:54:07 | INFO    | market_bot | Open lot modal: slot=1 at Point(x=1766, y=596) (dbl click)
+2025-12-18 06:54:09 | INFO    | market_bot | Buy button found by template at Point(x=1208, y=790) (score=1.000)
+2025-12-18 06:54:10 | INFO    | market_bot | Cancel button found by template at Point(x=1347, y=791) (score=1.000)
+2025-12-18 06:54:10 | INFO    | market_bot | Read seller qty: click input at Point(x=1388, y=703)
+2025-12-18 06:54:11 | INFO    | market_bot | Seller qty from clipboard: 4 (raw='4')
+2025-12-18 06:54:11 | INFO    | market_bot | [SIM] Would set qty=4 and click BUY now.
+2025-12-18 06:54:11 | INFO    | market_bot | Click CANCEL at Point(x=1347, y=791)
+2025-12-18 06:54:12 | INFO    | market_bot | BUY step 2/2: planned slot=2 take=1 price=3950
+2025-12-18 06:54:12 | INFO    | market_bot | Open lot modal: slot=2 at Point(x=1766, y=655) (dbl click)
+2025-12-18 06:54:14 | INFO    | market_bot | Buy button found by template at Point(x=1208, y=790) (score=1.000)
+2025-12-18 06:54:15 | INFO    | market_bot | Cancel button found by template at Point(x=1347, y=791) (score=1.000)
+2025-12-18 06:54:15 | INFO    | market_bot | Read seller qty: click input at Point(x=1388, y=703)
+2025-12-18 06:54:15 | INFO    | market_bot | Seller qty from clipboard: 14 (raw='14')
+2025-12-18 06:54:15 | INFO    | market_bot | [SIM] Would set qty=1 and click BUY now.
+2025-12-18 06:54:15 | INFO    | market_bot | Click CANCEL at Point(x=1347, y=791)
+2025-12-18 06:54:16 | INFO    | market_bot | Purchase result: item='Обыканская морошка' required=5 bought=5 spent=19746 success=True reason=None
+2025-12-18 06:54:16 | INFO    | market_bot | ==== Quest: Добыча ройкиного глаза | reward_per_set=37500 | reward_total=37500 | cat=Трофеи ====
+2025-12-18 06:54:16 | INFO    | market_bot | Open category Трофеи at Point(x=1486, y=830) (dbl click)
+2025-12-18 06:54:17 | INFO    | market_bot | Collect/Plan item: 'Ройкин глаз' required_qty=6 (one-page plan)
+2025-12-18 06:54:17 | INFO    | market_bot | Focus search field at Point(x=1392, y=516)
+2025-12-18 06:54:20 | INFO    | market_bot | Price: page=1 slot=1 price=7299 conf=1.00 raw='7299' (easyocr)
+2025-12-18 06:54:20 | INFO    | market_bot | Price: page=1 slot=3 price=7300 conf=0.81 raw='7300' (easyocr)
+2025-12-18 06:54:20 | INFO    | market_bot | Price: page=1 slot=2 price=7300 conf=0.81 raw='7300' (easyocr)
+2025-12-18 06:54:21 | INFO    | market_bot | Price: page=1 slot=4 price=7301 conf=1.00 raw='7301' (easyocr)
+2025-12-18 06:54:21 | INFO    | market_bot | Price: page=1 slot=5 price=7400 conf=0.99 raw='7400' (easyocr)
+2025-12-18 06:54:21 | INFO    | market_bot | Price: page=1 slot=6 price=7440 conf=1.00 raw='7440' (easyocr)
+2025-12-18 06:54:21 | INFO    | market_bot | Price: page=1 slot=7 price=7441 conf=1.00 raw='7441' (easyocr)
+2025-12-18 06:54:21 | INFO    | market_bot | Price: page=1 slot=8 price=7444 conf=1.00 raw='7444' (easyocr)
+2025-12-18 06:54:21 | INFO    | market_bot | Plan: not affordable at slot=1 price=7299 -> min_possible=43794 > reward=37500
+2025-12-18 06:54:21 | INFO    | market_bot | Item plan failed => skip quest. item='Ройкин глаз' reason=cannot build plan on first page (qty/price mismatch or insufficient)
+2025-12-18 06:54:21 | INFO    | market_bot | ==== Quest: Добыча стланика | reward_per_set=37500 | reward_total=37500 | cat=Трофеи ====
+2025-12-18 06:54:21 | INFO    | market_bot | Open category Трофеи at Point(x=1486, y=830) (dbl click)
+2025-12-18 06:54:22 | INFO    | market_bot | Collect/Plan(image) item: 'Стланик' required_qty=7 budget_left=37500
+2025-12-18 06:54:22 | INFO    | market_bot | Focus search field at Point(x=1392, y=516)
+2025-12-18 06:54:25 | INFO    | market_bot | Icon slots found: item='Стланик' slots=[(7, 0.8948435187339783), (8, 0.8948435187339783)]
+2025-12-18 06:54:25 | INFO    | market_bot | Open lot modal: slot=7 at Point(x=1766, y=950) (dbl click)
+2025-12-18 06:54:27 | INFO    | market_bot | Buy button found by template at Point(x=1208, y=790) (score=1.000)
+2025-12-18 06:54:27 | INFO    | market_bot | Cancel button found by template at Point(x=1347, y=791) (score=1.000)
+2025-12-18 06:54:27 | INFO    | market_bot | Read seller qty: click input at Point(x=1388, y=703)
+2025-12-18 06:54:28 | INFO    | market_bot | Seller qty from clipboard: 3 (raw='3')
+2025-12-18 06:54:28 | INFO    | market_bot | Click CANCEL at Point(x=1347, y=791)
+2025-12-18 06:54:29 | INFO    | market_bot | Open lot modal: slot=8 at Point(x=1766, y=1009) (dbl click)
+2025-12-18 06:54:31 | INFO    | market_bot | Buy button found by template at Point(x=1208, y=790) (score=1.000)
+2025-12-18 06:54:32 | INFO    | market_bot | Cancel button found by template at Point(x=1347, y=791) (score=1.000)
+2025-12-18 06:54:32 | INFO    | market_bot | Read seller qty: click input at Point(x=1388, y=703)
+2025-12-18 06:54:32 | INFO    | market_bot | Seller qty from clipboard: 38 (raw='38')
+2025-12-18 06:54:32 | INFO    | market_bot | Click CANCEL at Point(x=1347, y=791)
+2025-12-18 06:54:33 | INFO    | market_bot | Quest cost estimate: 34142 | reward_total=37500 | delta=3358
+2025-12-18 06:54:33 | INFO    | market_bot | Decision: PROFITABLE => proceed.
+2025-12-18 06:54:33 | INFO    | market_bot | Quest summary: reward=37500 planned_cost=34142 expected_profit=3358 (plans=0 items_est=34142)
+2025-12-18 06:54:33 | INFO    | market_bot | Profit check (PERCENT): expected=3358 required>=5625 (15.00% of reward=37500)
+2025-12-18 06:54:33 | WARNING | market_bot | Quest skipped: profit threshold not met (reward=37500 cost=34142)
+2025-12-18 06:54:33 | INFO    | market_bot | ==== Quest: Добыча толстоцвета | reward_per_set=37500 | reward_total=37500 | cat=Трофеи ====
+2025-12-18 06:54:33 | INFO    | market_bot | Open category Трофеи at Point(x=1486, y=830) (dbl click)
+2025-12-18 06:54:34 | INFO    | market_bot | Collect/Plan(image) item: 'Толстоцвет' required_qty=8 budget_left=37500
+2025-12-18 06:54:34 | INFO    | market_bot | Focus search field at Point(x=1392, y=516)
+2025-12-18 06:54:37 | INFO    | market_bot | No icon matches >= thr on this page: item='Толстоцвет' thr=0.86
+2025-12-18 06:54:37 | INFO    | market_bot | Next page click at Point(x=1734, y=1056)
+2025-12-18 06:54:38 | INFO    | market_bot | Icon slots found: item='Толстоцвет' slots=[(1, 0.890453040599823), (2, 0.8944581747055054), (3, 0.8944581747055054), (4, 0.8904531598091125), (5, 0.8944580554962158), (6, 0.890453040599823), (7, 0.8944580554962158)]
+2025-12-18 06:54:38 | INFO    | market_bot | Item data incomplete => skip quest. item='Толстоцвет' reason=unprofitable: cost=0 price=5839 remain=8 budget_left=37500
+2025-12-18 06:54:38 | INFO    | market_bot | ==== Quest: Добыча хабульского корунда | reward_per_set=37500 | reward_total=37500 | cat=Трофеи ====
+2025-12-18 06:54:38 | INFO    | market_bot | Open category Трофеи at Point(x=1486, y=830) (dbl click)
+2025-12-18 06:54:39 | INFO    | market_bot | Collect/Plan item: 'Хабульский корунд' required_qty=7 (one-page plan)
+2025-12-18 06:54:39 | INFO    | market_bot | Focus search field at Point(x=1392, y=516)
+2025-12-18 06:54:42 | INFO    | market_bot | Price: page=1 slot=1 price=8999 conf=1.00 raw='8999' (easyocr)
+2025-12-18 06:54:42 | INFO    | market_bot | Price: page=1 slot=3 price=10450 conf=0.99 raw='10450' (easyocr)
+2025-12-18 06:54:42 | INFO    | market_bot | Price: page=1 slot=2 price=10400 conf=1.00 raw='10400' (easyocr)
+2025-12-18 06:54:43 | INFO    | market_bot | Price: page=1 slot=4 price=10488 conf=0.99 raw='10488' (easyocr)
+2025-12-18 06:54:43 | INFO    | market_bot | Price: page=1 slot=5 price=15000 conf=0.98 raw='15000' (easyocr)
+2025-12-18 06:54:43 | INFO    | market_bot | Price: page=1 slot=6 price=19997 conf=1.00 raw='19997' (easyocr)
+2025-12-18 06:54:43 | INFO    | market_bot | Price: page=1 slot=7 price=150000 conf=0.99 raw='150000' (easyocr)
+2025-12-18 06:54:43 | WARNING | market_bot | OCR price failed: page=1 slot=8 conf=0.00 raw=''
+2025-12-18 06:54:43 | INFO    | market_bot | Plan: not affordable at slot=1 price=8999 -> min_possible=62993 > reward=37500
+2025-12-18 06:54:43 | INFO    | market_bot | Item plan failed => skip quest. item='Хабульский корунд' reason=cannot build plan on first page (qty/price mismatch or insufficient)
+2025-12-18 06:54:43 | INFO    | market_bot | ==== Quest: Ещё панцирей северных жуж! | reward_per_set=40242 | reward_total=40242 | cat=Трофеи ====
+2025-12-18 06:54:43 | INFO    | market_bot | Open category Трофеи at Point(x=1486, y=830) (dbl click)
+2025-12-18 06:54:44 | INFO    | market_bot | Collect/Plan item: 'Панцирь северной жужи' required_qty=8 (one-page plan)
+2025-12-18 06:54:44 | INFO    | market_bot | Focus search field at Point(x=1392, y=516)
+2025-12-18 06:54:47 | INFO    | market_bot | Price: page=1 slot=1 price=3299 conf=1.00 raw='3299' (easyocr)
+2025-12-18 06:54:47 | INFO    | market_bot | Price: page=1 slot=3 price=1000000 conf=0.82 raw='1000000' (easyocr)
+2025-12-18 06:54:47 | INFO    | market_bot | Price: page=1 slot=2 price=10000 conf=0.95 raw='10000' (easyocr)
+2025-12-18 06:54:47 | WARNING | market_bot | OCR price failed: page=1 slot=4 conf=0.00 raw=''
+2025-12-18 06:54:47 | WARNING | market_bot | OCR price failed: page=1 slot=5 conf=0.00 raw=''
+2025-12-18 06:54:47 | WARNING | market_bot | OCR price failed: page=1 slot=6 conf=0.00 raw=''
+2025-12-18 06:54:47 | WARNING | market_bot | OCR price failed: page=1 slot=7 conf=0.00 raw=''
+2025-12-18 06:54:47 | WARNING | market_bot | OCR price failed: page=1 slot=8 conf=0.00 raw=''
+2025-12-18 06:54:47 | INFO    | market_bot | Open lot modal: slot=1 at Point(x=1766, y=596) (dbl click)
+2025-12-18 06:54:49 | INFO    | market_bot | Buy button found by template at Point(x=1208, y=790) (score=1.000)
+2025-12-18 06:54:50 | INFO    | market_bot | Cancel button found by template at Point(x=1347, y=791) (score=1.000)
+2025-12-18 06:54:50 | INFO    | market_bot | Read seller qty: click input at Point(x=1388, y=703)
+2025-12-18 06:54:51 | INFO    | market_bot | Seller qty from clipboard: 148 (raw='148')
+2025-12-18 06:54:51 | INFO    | market_bot | Click CANCEL at Point(x=1347, y=791)
+2025-12-18 06:54:51 | INFO    | market_bot | Quest cost estimate: 26392 | reward_total=40242 | delta=13850
+2025-12-18 06:54:51 | INFO    | market_bot | Decision: PROFITABLE => proceed.
+2025-12-18 06:54:51 | INFO    | market_bot | Quest summary: reward=40242 planned_cost=26392 expected_profit=13850 (plans=26392 items_est=0)
+2025-12-18 06:54:51 | INFO    | market_bot | Profit check (PERCENT): expected=13850 required>=6036 (15.00% of reward=40242)
+2025-12-18 06:54:51 | INFO    | market_bot | [SIM-UI] Performing navigation but will NOT click BUY. item='Панцирь северной жужи'
+2025-12-18 06:54:51 | INFO    | market_bot | BUY step 1/1: planned slot=1 take=8 price=3299
+2025-12-18 06:54:51 | INFO    | market_bot | Open lot modal: slot=1 at Point(x=1766, y=596) (dbl click)
+2025-12-18 06:54:53 | INFO    | market_bot | Buy button found by template at Point(x=1208, y=790) (score=1.000)
+2025-12-18 06:54:54 | INFO    | market_bot | Cancel button found by template at Point(x=1347, y=791) (score=1.000)
+2025-12-18 06:54:54 | INFO    | market_bot | Read seller qty: click input at Point(x=1388, y=703)
+2025-12-18 06:54:55 | INFO    | market_bot | Seller qty from clipboard: 148 (raw='148')
+2025-12-18 06:54:55 | INFO    | market_bot | [SIM] Would set qty=8 and click BUY now.
+2025-12-18 06:54:55 | INFO    | market_bot | Click CANCEL at Point(x=1347, y=791)
+2025-12-18 06:54:56 | INFO    | market_bot | Purchase result: item='Панцирь северной жужи' required=8 bought=8 spent=26392 success=True reason=None
+2025-12-18 06:54:56 | INFO    | market_bot | ==== Quest: Запасы на будущее | reward_per_set=49299 | reward_total=49299 | cat=Трофеи ====
+2025-12-18 06:54:56 | INFO    | market_bot | Open category Трофеи at Point(x=1486, y=830) (dbl click)
+2025-12-18 06:54:57 | INFO    | market_bot | Collect/Plan item: 'Альфа-бур' required_qty=15 (one-page plan)
+2025-12-18 06:54:57 | INFO    | market_bot | Focus search field at Point(x=1392, y=516)
+2025-12-18 06:55:00 | INFO    | market_bot | Price: page=1 slot=1 price=4099 conf=1.00 raw='4099' (easyocr)
+2025-12-18 06:55:00 | INFO    | market_bot | Price: page=1 slot=2 price=4100 conf=1.00 raw='4100' (easyocr)
+2025-12-18 06:55:00 | INFO    | market_bot | Price: page=1 slot=3 price=4110 conf=1.00 raw='4110' (easyocr)
+2025-12-18 06:55:00 | INFO    | market_bot | Price: page=1 slot=4 price=4111 conf=1.00 raw='4111' (easyocr)
+2025-12-18 06:55:00 | INFO    | market_bot | Price: page=1 slot=5 price=4176 conf=1.00 raw='4176' (easyocr)
+2025-12-18 06:55:00 | INFO    | market_bot | Price: page=1 slot=6 price=4176 conf=1.00 raw='4176' (easyocr)
+2025-12-18 06:55:00 | INFO    | market_bot | Price: page=1 slot=7 price=4180 conf=1.00 raw='4180' (easyocr)
+2025-12-18 06:55:00 | INFO    | market_bot | Price: page=1 slot=8 price=4189 conf=1.00 raw='4189' (easyocr)
+2025-12-18 06:55:00 | INFO    | market_bot | Plan: not affordable at slot=1 price=4099 -> min_possible=61485 > reward=49299
+2025-12-18 06:55:00 | INFO    | market_bot | Item plan failed => skip quest. item='Альфа-бур' reason=cannot build plan on first page (qty/price mismatch or insufficient)
+2025-12-18 06:55:00 | INFO    | market_bot | ==== Quest: Зубы крылозуба | reward_per_set=46137 | reward_total=46137 | cat=Трофеи ====
+2025-12-18 06:55:00 | INFO    | market_bot | Open category Трофеи at Point(x=1486, y=830) (dbl click)
+2025-12-18 06:55:01 | INFO    | market_bot | Collect/Plan item: 'Челюсть крылозуба' required_qty=40 (one-page plan)
+2025-12-18 06:55:01 | INFO    | market_bot | Focus search field at Point(x=1392, y=516)
+2025-12-18 06:55:04 | INFO    | market_bot | Price: page=1 slot=1 price=1599 conf=1.00 raw='1599' (easyocr)
+2025-12-18 06:55:04 | INFO    | market_bot | Price: page=1 slot=3 price=1650 conf=1.00 raw='1650' (easyocr)
+2025-12-18 06:55:04 | INFO    | market_bot | Price: page=1 slot=2 price=1600 conf=1.00 raw='1600' (easyocr)
+2025-12-18 06:55:05 | INFO    | market_bot | Price: page=1 slot=4 price=1680 conf=1.00 raw='1680' (easyocr)
+2025-12-18 06:55:05 | INFO    | market_bot | Price: page=1 slot=5 price=1689 conf=1.00 raw='1689' (easyocr)
+2025-12-18 06:55:05 | INFO    | market_bot | Price: page=1 slot=6 price=1690 conf=1.00 raw='1690' (easyocr)
+2025-12-18 06:55:05 | INFO    | market_bot | Price: page=1 slot=7 price=1697 conf=1.00 raw='1697' (easyocr)
+2025-12-18 06:55:05 | INFO    | market_bot | Price: page=1 slot=8 price=1698 conf=1.00 raw='1698' (easyocr)
+2025-12-18 06:55:05 | INFO    | market_bot | Plan: not affordable at slot=1 price=1599 -> min_possible=63960 > reward=46137
+2025-12-18 06:55:05 | INFO    | market_bot | Item plan failed => skip quest. item='Челюсть крылозуба' reason=cannot build plan on first page (qty/price mismatch or insufficient)
+2025-12-18 06:55:05 | INFO    | market_bot | ==== Quest: Красота и противоядие | reward_per_set=49299 | reward_total=49299 | cat=Трофеи ====
+2025-12-18 06:55:05 | INFO    | market_bot | Open category Трофеи at Point(x=1486, y=830) (dbl click)
+2025-12-18 06:55:06 | INFO    | market_bot | Collect/Plan item: 'Красивое перо' required_qty=25 (one-page plan)
+2025-12-18 06:55:06 | INFO    | market_bot | Focus search field at Point(x=1392, y=516)
+2025-12-18 06:55:09 | INFO    | market_bot | Price: page=1 slot=1 price=3048 conf=0.99 raw='3048' (easyocr)
+2025-12-18 06:55:09 | INFO    | market_bot | Price: page=1 slot=3 price=3050 conf=1.00 raw='3050' (easyocr)
+2025-12-18 06:55:09 | INFO    | market_bot | Price: page=1 slot=2 price=3050 conf=1.00 raw='3050' (easyocr)
+2025-12-18 06:55:09 | INFO    | market_bot | Price: page=1 slot=4 price=3100 conf=1.00 raw='3100' (easyocr)
+2025-12-18 06:55:09 | INFO    | market_bot | Price: page=1 slot=5 price=3198 conf=1.00 raw='3198' (easyocr)
+2025-12-18 06:55:09 | INFO    | market_bot | Price: page=1 slot=6 price=3199 conf=1.00 raw='3199' (easyocr)
+2025-12-18 06:55:09 | INFO    | market_bot | Price: page=1 slot=7 price=3500 conf=0.89 raw='3500' (easyocr)
+2025-12-18 06:55:09 | INFO    | market_bot | Price: page=1 slot=8 price=10000 conf=0.74 raw='10000' (easyocr)
+2025-12-18 06:55:09 | INFO    | market_bot | Plan: not affordable at slot=1 price=3048 -> min_possible=76200 > reward=49299
+2025-12-18 06:55:09 | INFO    | market_bot | Item plan failed => skip quest. item='Красивое перо' reason=cannot build plan on first page (qty/price mismatch or insufficient)
+2025-12-18 06:55:09 | INFO    | market_bot | ==== Quest: Материал для потешных фигурок | reward_per_set=46137 | reward_total=46137 | cat=Трофеи ====
+2025-12-18 06:55:09 | INFO    | market_bot | Open category Трофеи at Point(x=1486, y=830) (dbl click)
+2025-12-18 06:55:10 | INFO    | market_bot | Collect/Plan item: 'Регулятор снегобея' required_qty=14 (one-page plan)
+2025-12-18 06:55:10 | INFO    | market_bot | Focus search field at Point(x=1392, y=516)
+2025-12-18 06:55:13 | INFO    | market_bot | Price: page=1 slot=1 price=4097 conf=1.00 raw='4097' (easyocr)
+2025-12-18 06:55:13 | INFO    | market_bot | Price: page=1 slot=3 price=4099 conf=1.00 raw='4099' (easyocr)
+2025-12-18 06:55:13 | INFO    | market_bot | Price: page=1 slot=2 price=4098 conf=1.00 raw='4098' (easyocr)
+2025-12-18 06:55:13 | INFO    | market_bot | Price: page=1 slot=4 price=4099 conf=1.00 raw='4099' (easyocr)
+2025-12-18 06:55:13 | INFO    | market_bot | Price: page=1 slot=5 price=4150 conf=1.00 raw='4150' (easyocr)
+2025-12-18 06:55:13 | INFO    | market_bot | Price: page=1 slot=6 price=4299 conf=1.00 raw='4299' (easyocr)
+2025-12-18 06:55:13 | INFO    | market_bot | Price: page=1 slot=7 price=4800 conf=1.00 raw='4800' (easyocr)
+2025-12-18 06:55:13 | INFO    | market_bot | Price: page=1 slot=8 price=5300 conf=1.00 raw='5300' (easyocr)
+2025-12-18 06:55:13 | INFO    | market_bot | Plan: not affordable at slot=1 price=4097 -> min_possible=57358 > reward=46137
+2025-12-18 06:55:13 | INFO    | market_bot | Item plan failed => skip quest. item='Регулятор снегобея' reason=cannot build plan on first page (qty/price mismatch or insufficient)
+2025-12-18 06:55:13 | INFO    | market_bot | ==== Quest: Надоедливые провокаторы | reward_per_set=49299 | reward_total=49299 | cat=Трофеи ====
+2025-12-18 06:55:13 | INFO    | market_bot | Open category Трофеи at Point(x=1486, y=830) (dbl click)
+2025-12-18 06:55:14 | INFO    | market_bot | Collect/Plan item: 'Заклинившая бомба' required_qty=15 (one-page plan)
+2025-12-18 06:55:14 | INFO    | market_bot | Focus search field at Point(x=1392, y=516)
+2025-12-18 06:55:17 | INFO    | market_bot | Price: page=1 slot=1 price=7400 conf=1.00 raw='7400' (easyocr)
+2025-12-18 06:55:17 | INFO    | market_bot | Price: page=1 slot=2 price=7499 conf=1.00 raw='7499' (easyocr)
+2025-12-18 06:55:18 | INFO    | market_bot | Price: page=1 slot=3 price=7500 conf=0.93 raw='7500' (easyocr)
+2025-12-18 06:55:18 | INFO    | market_bot | Price: page=1 slot=4 price=7800 conf=1.00 raw='7800' (easyocr)
+2025-12-18 06:55:18 | INFO    | market_bot | Price: page=1 slot=5 price=7879 conf=1.00 raw='7879' (easyocr)
+2025-12-18 06:55:18 | INFO    | market_bot | Price: page=1 slot=6 price=7899 conf=1.00 raw='7899' (easyocr)
+2025-12-18 06:55:18 | INFO    | market_bot | Price: page=1 slot=7 price=7899 conf=1.00 raw='7899' (easyocr)
+2025-12-18 06:55:18 | INFO    | market_bot | Price: page=1 slot=8 price=7900 conf=0.96 raw='7900' (easyocr)
+2025-12-18 06:55:18 | INFO    | market_bot | Plan: not affordable at slot=1 price=7400 -> min_possible=111000 > reward=49299
+2025-12-18 06:55:18 | INFO    | market_bot | Item plan failed => skip quest. item='Заклинившая бомба' reason=cannot build plan on first page (qty/price mismatch or insufficient)
+2025-12-18 06:55:18 | INFO    | market_bot | ==== Quest: Невыносимая пыль | reward_per_set=49299 | reward_total=49299 | cat=Трофеи ====
+2025-12-18 06:55:18 | INFO    | market_bot | Open category Трофеи at Point(x=1486, y=830) (dbl click)
+2025-12-18 06:55:19 | INFO    | market_bot | Collect/Plan item: 'Кучка старой пыли' required_qty=20 (one-page plan)
+2025-12-18 06:55:19 | INFO    | market_bot | Focus search field at Point(x=1392, y=516)
+2025-12-18 06:55:22 | INFO    | market_bot | Price: page=1 slot=2 price=7298 conf=1.00 raw='7298' (easyocr)
+2025-12-18 06:55:22 | INFO    | market_bot | Price: page=1 slot=1 price=7297 conf=0.99 raw='7297' (easyocr)
+2025-12-18 06:55:22 | INFO    | market_bot | Price: page=1 slot=3 price=7299 conf=1.00 raw='7299' (easyocr)
+2025-12-18 06:55:22 | INFO    | market_bot | Price: page=1 slot=4 price=7300 conf=1.00 raw='7300' (easyocr)
+2025-12-18 06:55:22 | INFO    | market_bot | Price: page=1 slot=5 price=7399 conf=1.00 raw='7399' (easyocr)
+2025-12-18 06:55:22 | INFO    | market_bot | Price: page=1 slot=6 price=7500 conf=0.88 raw='7500' (easyocr)
+2025-12-18 06:55:22 | INFO    | market_bot | Price: page=1 slot=7 price=8099 conf=1.00 raw='8099' (easyocr)
+2025-12-18 06:55:22 | WARNING | market_bot | OCR price failed: page=1 slot=8 conf=0.00 raw=''
+2025-12-18 06:55:22 | INFO    | market_bot | Plan: not affordable at slot=1 price=7297 -> min_possible=145940 > reward=49299
+2025-12-18 06:55:22 | INFO    | market_bot | Item plan failed => skip quest. item='Кучка старой пыли' reason=cannot build plan on first page (qty/price mismatch or insufficient)
+2025-12-18 06:55:22 | INFO    | market_bot | ==== Quest: Охота на вальдерстая | reward_per_set=43072 | reward_total=43072 | cat=Трофеи ====
+2025-12-18 06:55:22 | INFO    | market_bot | Open category Трофеи at Point(x=1486, y=830) (dbl click)
+2025-12-18 06:55:23 | INFO    | market_bot | Collect/Plan item: 'Шкура вальдерстая' required_qty=10 (one-page plan)
+2025-12-18 06:55:23 | INFO    | market_bot | Focus search field at Point(x=1392, y=516)
+2025-12-18 06:55:26 | INFO    | market_bot | Price: page=1 slot=1 price=7700 conf=1.00 raw='7700' (easyocr)
+2025-12-18 06:55:26 | INFO    | market_bot | Price: page=1 slot=2 price=7799 conf=1.00 raw='7799' (easyocr)
+2025-12-18 06:55:26 | INFO    | market_bot | Price: page=1 slot=3 price=7800 conf=1.00 raw='7800' (easyocr)
+2025-12-18 06:55:26 | INFO    | market_bot | Price: page=1 slot=4 price=7950 conf=1.00 raw='7950' (easyocr)
+2025-12-18 06:55:26 | INFO    | market_bot | Price: page=1 slot=5 price=8000 conf=1.00 raw='8000' (easyocr)
+2025-12-18 06:55:27 | INFO    | market_bot | Price: page=1 slot=6 price=9000 conf=1.00 raw='9000' (easyocr)
+2025-12-18 06:55:27 | INFO    | market_bot | Price: page=1 slot=7 price=10000 conf=0.95 raw='10000' (easyocr)
+2025-12-18 06:55:27 | WARNING | market_bot | OCR price failed: page=1 slot=8 conf=0.00 raw=''
+2025-12-18 06:55:27 | INFO    | market_bot | Plan: not affordable at slot=1 price=7700 -> min_possible=77000 > reward=43072
+2025-12-18 06:55:27 | INFO    | market_bot | Item plan failed => skip quest. item='Шкура вальдерстая' reason=cannot build plan on first page (qty/price mismatch or insufficient)
+2025-12-18 06:55:27 | INFO    | market_bot | ==== Quest: Ошейник, как символ преданности | reward_per_set=49299 | reward_total=49299 | cat=Трофеи ====
+2025-12-18 06:55:27 | INFO    | market_bot | Open category Трофеи at Point(x=1486, y=830) (dbl click)
+2025-12-18 06:55:27 | INFO    | market_bot | Collect/Plan item: 'Ошейник вальдерстая' required_qty=10 (one-page plan)
+2025-12-18 06:55:27 | INFO    | market_bot | Focus search field at Point(x=1392, y=516)
+2025-12-18 06:55:31 | INFO    | market_bot | Price: page=1 slot=1 price=6186 conf=1.00 raw='6186' (easyocr)
+2025-12-18 06:55:31 | INFO    | market_bot | Price: page=1 slot=3 price=6198 conf=1.00 raw='6198' (easyocr)
+2025-12-18 06:55:31 | INFO    | market_bot | Price: page=1 slot=2 price=6190 conf=1.00 raw='6190' (easyocr)
+2025-12-18 06:55:31 | INFO    | market_bot | Price: page=1 slot=4 price=6309 conf=1.00 raw='6309' (easyocr)
+2025-12-18 06:55:31 | INFO    | market_bot | Price: page=1 slot=5 price=6311 conf=1.00 raw='6311' (easyocr)
+2025-12-18 06:55:31 | INFO    | market_bot | Price: page=1 slot=6 price=6318 conf=1.00 raw='6318' (easyocr)
+2025-12-18 06:55:31 | INFO    | market_bot | Price: page=1 slot=7 price=6319 conf=1.00 raw='6319' (easyocr)
+2025-12-18 06:55:31 | INFO    | market_bot | Price: page=1 slot=8 price=6332 conf=1.00 raw='6332' (easyocr)
+2025-12-18 06:55:31 | INFO    | market_bot | Plan: not affordable at slot=1 price=6186 -> min_possible=61860 > reward=49299
+2025-12-18 06:55:31 | INFO    | market_bot | Item plan failed => skip quest. item='Ошейник вальдерстая' reason=cannot build plan on first page (qty/price mismatch or insufficient)
+2025-12-18 06:55:31 | INFO    | market_bot | ==== Quest: Панцири для спекулянта | reward_per_set=52709 | reward_total=52709 | cat=Трофеи ====
+2025-12-18 06:55:31 | INFO    | market_bot | Open category Трофеи at Point(x=1486, y=830) (dbl click)
+2025-12-18 06:55:32 | INFO    | market_bot | Collect/Plan item: 'Панцирь снегобея' required_qty=20 (one-page plan)
+2025-12-18 06:55:32 | INFO    | market_bot | Focus search field at Point(x=1392, y=516)
+2025-12-18 06:55:35 | INFO    | market_bot | Price: page=1 slot=1 price=9424 conf=1.00 raw='9424' (easyocr)
+2025-12-18 06:55:35 | INFO    | market_bot | Price: page=1 slot=2 price=9425 conf=0.97 raw='9425' (easyocr)
+2025-12-18 06:55:35 | INFO    | market_bot | Price: page=1 slot=3 price=9650 conf=1.00 raw='9650' (easyocr)
+2025-12-18 06:55:35 | INFO    | market_bot | Price: page=1 slot=4 price=9670 conf=1.00 raw='9670' (easyocr)
+2025-12-18 06:55:35 | INFO    | market_bot | Price: page=1 slot=5 price=9740 conf=1.00 raw='9740' (easyocr)
+2025-12-18 06:55:35 | INFO    | market_bot | Price: page=1 slot=6 price=9748 conf=1.00 raw='9748' (easyocr)
+2025-12-18 06:55:35 | INFO    | market_bot | Price: page=1 slot=7 price=9749 conf=1.00 raw='9749' (easyocr)
+2025-12-18 06:55:35 | INFO    | market_bot | Price: page=1 slot=8 price=9800 conf=1.00 raw='9800' (easyocr)
+2025-12-18 06:55:35 | INFO    | market_bot | Plan: not affordable at slot=1 price=9424 -> min_possible=188480 > reward=52709
+2025-12-18 06:55:35 | INFO    | market_bot | Item plan failed => skip quest. item='Панцирь снегобея' reason=cannot build plan on first page (qty/price mismatch or insufficient)
+2025-12-18 06:55:35 | INFO    | market_bot | ==== Quest: Паразиты на страже иммунитета | reward_per_set=46137 | reward_total=46137 | cat=Трофеи ====
+2025-12-18 06:55:35 | INFO    | market_bot | Open category Трофеи at Point(x=1486, y=830) (dbl click)
+2025-12-18 06:55:36 | INFO    | market_bot | Collect/Plan item: 'Индевень' required_qty=25 (one-page plan)
+2025-12-18 06:55:36 | INFO    | market_bot | Focus search field at Point(x=1392, y=516)
+2025-12-18 06:55:39 | INFO    | market_bot | Price: page=1 slot=1 price=2395 conf=1.00 raw='2395' (easyocr)
+2025-12-18 06:55:39 | INFO    | market_bot | Price: page=1 slot=3 price=2399 conf=1.00 raw='2399' (easyocr)
+2025-12-18 06:55:40 | INFO    | market_bot | Price: page=1 slot=2 price=2396 conf=0.95 raw='2396' (easyocr)
+2025-12-18 06:55:40 | INFO    | market_bot | Price: page=1 slot=4 price=2400 conf=0.97 raw='2400' (easyocr)
+2025-12-18 06:55:40 | INFO    | market_bot | Price: page=1 slot=5 price=2400 conf=0.97 raw='2400' (easyocr)
+2025-12-18 06:55:40 | INFO    | market_bot | Price: page=1 slot=6 price=2466 conf=0.99 raw='2466' (easyocr)
+2025-12-18 06:55:40 | INFO    | market_bot | Price: page=1 slot=7 price=2467 conf=0.97 raw='2467' (easyocr)
+2025-12-18 06:55:40 | INFO    | market_bot | Price: page=1 slot=8 price=2468 conf=0.91 raw='2468' (easyocr)
+2025-12-18 06:55:40 | INFO    | market_bot | Plan: not affordable at slot=1 price=2395 -> min_possible=59875 > reward=46137
+2025-12-18 06:55:40 | INFO    | market_bot | Item plan failed => skip quest. item='Индевень' reason=cannot build plan on first page (qty/price mismatch or insufficient)
+2025-12-18 06:55:40 | INFO    | market_bot | ==== Quest: Перья для спекулянта | reward_per_set=52709 | reward_total=52709 | cat=Трофеи ====
+2025-12-18 06:55:40 | INFO    | market_bot | Open category Трофеи at Point(x=1486, y=830) (dbl click)
+2025-12-18 06:55:41 | INFO    | market_bot | Collect/Plan item: 'Ядовитое перо' required_qty=25 (one-page plan)
+2025-12-18 06:55:41 | INFO    | market_bot | Focus search field at Point(x=1392, y=516)
+2025-12-18 06:55:44 | INFO    | market_bot | Price: page=1 slot=1 price=7997 conf=1.00 raw='7997' (easyocr)
+2025-12-18 06:55:44 | INFO    | market_bot | Price: page=1 slot=2 price=7997 conf=1.00 raw='7997' (easyocr)
+2025-12-18 06:55:44 | INFO    | market_bot | Price: page=1 slot=3 price=7998 conf=1.00 raw='7998' (easyocr)
+2025-12-18 06:55:44 | INFO    | market_bot | Price: page=1 slot=4 price=8000 conf=1.00 raw='8000' (easyocr)
+2025-12-18 06:55:44 | INFO    | market_bot | Price: page=1 slot=5 price=8090 conf=1.00 raw='8090' (easyocr)
+2025-12-18 06:55:44 | INFO    | market_bot | Price: page=1 slot=6 price=8177 conf=1.00 raw='8177' (easyocr)
+2025-12-18 06:55:44 | INFO    | market_bot | Price: page=1 slot=7 price=8190 conf=1.00 raw='8190' (easyocr)
+2025-12-18 06:55:44 | INFO    | market_bot | Price: page=1 slot=8 price=8200 conf=1.00 raw='8200' (easyocr)
+2025-12-18 06:55:44 | INFO    | market_bot | Plan: not affordable at slot=1 price=7997 -> min_possible=199925 > reward=52709
+2025-12-18 06:55:44 | INFO    | market_bot | Item plan failed => skip quest. item='Ядовитое перо' reason=cannot build plan on first page (qty/price mismatch or insufficient)
+2025-12-18 06:55:44 | INFO    | market_bot | ==== Quest: Поиск особого бубна | reward_per_set=49299 | reward_total=49299 | cat=Трофеи ====
+2025-12-18 06:55:44 | INFO    | market_bot | Open category Трофеи at Point(x=1486, y=830) (dbl click)
+2025-12-18 06:55:45 | INFO    | market_bot | Collect/Plan item: 'Бубен' required_qty=8 (one-page plan)
+2025-12-18 06:55:45 | INFO    | market_bot | Focus search field at Point(x=1392, y=516)
+2025-12-18 06:55:48 | INFO    | market_bot | Price: page=1 slot=1 price=8887 conf=1.00 raw='8887' (easyocr)
+2025-12-18 06:55:48 | INFO    | market_bot | Price: page=1 slot=2 price=8888 conf=1.00 raw='8888' (easyocr)
+2025-12-18 06:55:48 | INFO    | market_bot | Price: page=1 slot=3 price=9000 conf=1.00 raw='9000' (easyocr)
+2025-12-18 06:55:48 | INFO    | market_bot | Price: page=1 slot=4 price=10000 conf=1.00 raw='10000' (easyocr)
+2025-12-18 06:55:48 | INFO    | market_bot | Price: page=1 slot=5 price=10399 conf=1.00 raw='10399' (easyocr)
+2025-12-18 06:55:49 | INFO    | market_bot | Price: page=1 slot=6 price=10400 conf=1.00 raw='10400' (easyocr)
+2025-12-18 06:55:49 | INFO    | market_bot | Price: page=1 slot=7 price=10491 conf=1.00 raw='10491' (easyocr)
+2025-12-18 06:55:49 | INFO    | market_bot | Price: page=1 slot=8 price=10500 conf=1.00 raw='10500' (easyocr)
+2025-12-18 06:55:49 | INFO    | market_bot | Plan: not affordable at slot=1 price=8887 -> min_possible=71096 > reward=49299
+2025-12-18 06:55:49 | INFO    | market_bot | Item plan failed => skip quest. item='Бубен' reason=cannot build plan on first page (qty/price mismatch or insufficient)
+2025-12-18 06:55:49 | INFO    | market_bot | ==== Quest: Полезный в хозяйстве | reward_per_set=46137 | reward_total=46137 | cat=Трофеи ====
+2025-12-18 06:55:49 | INFO    | market_bot | Open category Трофеи at Point(x=1486, y=830) (dbl click)
+2025-12-18 06:55:49 | INFO    | market_bot | Collect/Plan item: 'Серый песок' required_qty=18 (one-page plan)
+2025-12-18 06:55:49 | INFO    | market_bot | Focus search field at Point(x=1392, y=516)
+2025-12-18 06:55:53 | INFO    | market_bot | Price: page=1 slot=3 price=10000 conf=0.95 raw='10000' (easyocr)
+2025-12-18 06:55:53 | INFO    | market_bot | Price: page=1 slot=2 price=3500 conf=0.94 raw='3500' (easyocr)
+2025-12-18 06:55:53 | INFO    | market_bot | Price: page=1 slot=1 price=3400 conf=0.99 raw='3400' (easyocr)
+2025-12-18 06:55:53 | WARNING | market_bot | OCR price failed: page=1 slot=4 conf=0.00 raw=''
+2025-12-18 06:55:53 | WARNING | market_bot | OCR price failed: page=1 slot=5 conf=0.00 raw=''
+2025-12-18 06:55:53 | WARNING | market_bot | OCR price failed: page=1 slot=6 conf=0.00 raw=''
+2025-12-18 06:55:53 | WARNING | market_bot | OCR price failed: page=1 slot=7 conf=0.00 raw=''
+2025-12-18 06:55:53 | WARNING | market_bot | OCR price failed: page=1 slot=8 conf=0.00 raw=''
+2025-12-18 06:55:53 | INFO    | market_bot | Plan: not affordable at slot=1 price=3400 -> min_possible=61200 > reward=46137
+2025-12-18 06:55:53 | INFO    | market_bot | Item plan failed => skip quest. item='Серый песок' reason=cannot build plan on first page (qty/price mismatch or insufficient)
+2025-12-18 06:55:53 | INFO    | market_bot | ==== Quest: Сомнительный ингредиент | reward_per_set=43072 | reward_total=43072 | cat=Трофеи ====
+2025-12-18 06:55:53 | INFO    | market_bot | Open category Трофеи at Point(x=1486, y=830) (dbl click)
+2025-12-18 06:55:54 | INFO    | market_bot | Collect/Plan item: 'Слюна вальдерстая' required_qty=10 (one-page plan)
+2025-12-18 06:55:54 | INFO    | market_bot | Focus search field at Point(x=1392, y=516)
+2025-12-18 06:55:57 | INFO    | market_bot | Price: page=1 slot=2 price=10000 conf=0.95 raw='10000' (easyocr)
+2025-12-18 06:55:57 | INFO    | market_bot | Price: page=1 slot=1 price=9999 conf=1.00 raw='9999' (easyocr)
+2025-12-18 06:55:57 | WARNING | market_bot | OCR price failed: page=1 slot=3 conf=0.00 raw=''
+2025-12-18 06:55:57 | WARNING | market_bot | OCR price failed: page=1 slot=4 conf=0.00 raw=''
+2025-12-18 06:55:58 | WARNING | market_bot | OCR price failed: page=1 slot=5 conf=0.00 raw=''
+2025-12-18 06:55:58 | WARNING | market_bot | OCR price failed: page=1 slot=6 conf=0.00 raw=''
+2025-12-18 06:55:58 | WARNING | market_bot | OCR price failed: page=1 slot=7 conf=0.00 raw=''
+2025-12-18 06:55:58 | WARNING | market_bot | OCR price failed: page=1 slot=8 conf=0.00 raw=''
+2025-12-18 06:55:58 | INFO    | market_bot | Plan: not affordable at slot=1 price=9999 -> min_possible=99990 > reward=43072
+2025-12-18 06:55:58 | INFO    | market_bot | Item plan failed => skip quest. item='Слюна вальдерстая' reason=cannot build plan on first page (qty/price mismatch or insufficient)
+2025-12-18 06:55:58 | INFO    | market_bot | ==== Quest: Списки врагов | reward_per_set=46137 | reward_total=46137 | cat=Трофеи ====
+2025-12-18 06:55:58 | INFO    | market_bot | Open category Трофеи at Point(x=1486, y=830) (dbl click)
+2025-12-18 06:55:59 | INFO    | market_bot | Collect/Plan item: 'Договор с Остином' required_qty=10 (one-page plan)
+2025-12-18 06:55:59 | INFO    | market_bot | Focus search field at Point(x=1392, y=516)
+2025-12-18 06:56:02 | WARNING | market_bot | OCR price failed: page=1 slot=1 conf=0.00 raw=''
+2025-12-18 06:56:02 | WARNING | market_bot | OCR price failed: page=1 slot=3 conf=0.00 raw=''
+2025-12-18 06:56:02 | WARNING | market_bot | OCR price failed: page=1 slot=2 conf=0.00 raw=''
+2025-12-18 06:56:02 | WARNING | market_bot | OCR price failed: page=1 slot=4 conf=0.00 raw=''
+2025-12-18 06:56:02 | WARNING | market_bot | OCR price failed: page=1 slot=5 conf=0.00 raw=''
+2025-12-18 06:57:02 | INFO    | market_bot | Logging initialized: logs\market_bot.log
+2025-12-18 06:57:08 | INFO    | market_bot | Logger already initialized, reusing existing configuration
+2025-12-18 06:57:11 | INFO    | market_bot | Bot started. level=60 sets=1 mode=simulate
+2025-12-18 06:57:12 | INFO    | market_bot | Anchor found. top_left=Point(x=1704, y=451) center=Point(x=1756, y=467) score=1.000
+2025-12-18 06:57:12 | INFO    | market_bot | ==== Quest: Больше голов снегобеев! | reward_per_set=43072 | reward_total=43072 | cat=Трофеи ====
+2025-12-18 06:57:12 | INFO    | market_bot | Open category Трофеи at Point(x=1486, y=830) (dbl click)
+2025-12-18 06:57:13 | INFO    | market_bot | Collect/Plan item: 'Голова снегобея' required_qty=15 (one-page plan)
+2025-12-18 06:57:13 | INFO    | market_bot | Focus search field at Point(x=1392, y=516)
+2025-12-18 06:57:16 | INFO    | market_bot | Price: page=1 slot=1 price=3140 conf=1.00 raw='3140' (easyocr)
+2025-12-18 06:57:16 | INFO    | market_bot | Price: page=1 slot=2 price=3150 conf=1.00 raw='3150' (easyocr)
+2025-12-18 06:57:16 | INFO    | market_bot | Price: page=1 slot=3 price=3200 conf=1.00 raw='3200' (easyocr)
+2025-12-18 06:57:17 | INFO    | market_bot | Price: page=1 slot=4 price=8350 conf=1.00 raw='8350' (easyocr)
+2025-12-18 06:57:17 | INFO    | market_bot | Price: page=1 slot=5 price=3599 conf=0.95 raw='3599' (easyocr)
+2025-12-18 06:57:17 | INFO    | market_bot | Price: page=1 slot=6 price=1 conf=1.00 raw='1' (easyocr)
+2025-12-18 06:57:17 | INFO    | market_bot | Price: page=1 slot=7 price=3700 conf=0.93 raw='3700' (easyocr)
+2025-12-18 06:57:17 | INFO    | market_bot | Price: page=1 slot=8 price=390 conf=1.00 raw='390' (easyocr)
+2025-12-18 06:57:17 | INFO    | market_bot | Plan: not affordable at slot=1 price=3140 -> min_possible=47100 > reward=43072
+2025-12-18 06:57:17 | INFO    | market_bot | Item plan failed => skip quest. item='Голова снегобея' reason=cannot build plan on first page (qty/price mismatch or insufficient)
+2025-12-18 06:57:17 | INFO    | market_bot | ==== Quest: Больше соли! | reward_per_set=49299 | reward_total=49299 | cat=Трофеи ====
+2025-12-18 06:57:17 | INFO    | market_bot | Open category Трофеи at Point(x=1486, y=830) (dbl click)
+2025-12-18 06:57:18 | INFO    | market_bot | Collect/Plan item: 'Пещерная соль' required_qty=10 (one-page plan)
+2025-12-18 06:57:18 | INFO    | market_bot | Focus search field at Point(x=1392, y=516)
+2025-12-18 06:57:21 | INFO    | market_bot | Price: page=1 slot=2 price=11499 conf=0.94 raw='11499' (easyocr)
+2025-12-18 06:57:21 | INFO    | market_bot | Price: page=1 slot=1 price=11498 conf=1.00 raw='11498' (easyocr)
+2025-12-18 06:57:21 | INFO    | market_bot | Price: page=1 slot=3 price=11500 conf=0.84 raw='11500' (easyocr)
+2025-12-18 06:57:21 | INFO    | market_bot | Price: page=1 slot=4 price=11500 conf=0.84 raw='11500' (easyocr)
+2025-12-18 06:57:21 | INFO    | market_bot | Price: page=1 slot=5 price=11777 conf=1.00 raw='11777' (easyocr)
+2025-12-18 06:57:21 | INFO    | market_bot | Price: page=1 slot=6 price=12399 conf=0.73 raw='12399' (easyocr)
+2025-12-18 06:57:21 | INFO    | market_bot | Price: page=1 slot=7 price=12489 conf=0.92 raw='12489' (easyocr)
+2025-12-18 06:57:21 | INFO    | market_bot | Price: page=1 slot=8 price=12490 conf=0.94 raw='12490' (easyocr)
+2025-12-18 06:57:21 | INFO    | market_bot | Plan: not affordable at slot=1 price=11498 -> min_possible=114980 > reward=49299
+2025-12-18 06:57:21 | INFO    | market_bot | Item plan failed => skip quest. item='Пещерная соль' reason=cannot build plan on first page (qty/price mismatch or insufficient)
+2025-12-18 06:57:21 | INFO    | market_bot | ==== Quest: Больше хвостиков роек! | reward_per_set=40242 | reward_total=40242 | cat=Трофеи ====
+2025-12-18 06:57:21 | INFO    | market_bot | Open category Трофеи at Point(x=1486, y=830) (dbl click)
+2025-12-18 06:57:22 | INFO    | market_bot | Collect/Plan item: 'Хвостик ройки' required_qty=25 (one-page plan)
+2025-12-18 06:57:22 | INFO    | market_bot | Focus search field at Point(x=1392, y=516)
+2025-12-18 06:57:25 | INFO    | market_bot | Price: page=1 slot=1 price=2000 conf=1.00 raw='2000' (easyocr)
+2025-12-18 06:57:25 | INFO    | market_bot | Price: page=1 slot=3 price=2000 conf=1.00 raw='2000' (easyocr)
+2025-12-18 06:57:25 | INFO    | market_bot | Price: page=1 slot=2 price=2000 conf=1.00 raw='2000' (easyocr)
+2025-12-18 06:57:25 | INFO    | market_bot | Price: page=1 slot=4 price=2000 conf=1.00 raw='2000' (easyocr)
+2025-12-18 06:57:25 | INFO    | market_bot | Price: page=1 slot=5 price=2090 conf=0.96 raw='2090' (easyocr)
+2025-12-18 06:57:25 | INFO    | market_bot | Price: page=1 slot=6 price=2090 conf=0.88 raw='2090' (easyocr)
+2025-12-18 06:57:25 | INFO    | market_bot | Price: page=1 slot=7 price=2095 conf=1.00 raw='2095' (easyocr)
+2025-12-18 06:57:25 | INFO    | market_bot | Price: page=1 slot=8 price=2100 conf=0.95 raw='2100' (easyocr)
+2025-12-18 06:57:25 | INFO    | market_bot | Plan: not affordable at slot=1 price=2000 -> min_possible=50000 > reward=40242
+2025-12-18 06:57:25 | INFO    | market_bot | Item plan failed => skip quest. item='Хвостик ройки' reason=cannot build plan on first page (qty/price mismatch or insufficient)
+2025-12-18 06:57:25 | INFO    | market_bot | ==== Quest: В поисках ценной оптики | reward_per_set=46137 | reward_total=46137 | cat=Трофеи ====
+2025-12-18 06:57:25 | INFO    | market_bot | Open category Трофеи at Point(x=1486, y=830) (dbl click)
+2025-12-18 06:57:26 | INFO    | market_bot | Collect/Plan item: 'Пристрелочный монокуляр' required_qty=8 (one-page plan)
+2025-12-18 06:57:26 | INFO    | market_bot | Focus search field at Point(x=1392, y=516)
+2025-12-18 06:57:30 | WARNING | market_bot | OCR price failed: page=1 slot=1 conf=0.00 raw=''
+2025-12-18 06:57:30 | WARNING | market_bot | OCR price failed: page=1 slot=3 conf=0.00 raw=''
+2025-12-18 06:57:30 | WARNING | market_bot | OCR price failed: page=1 slot=2 conf=0.00 raw=''
+2025-12-18 06:57:30 | WARNING | market_bot | OCR price failed: page=1 slot=4 conf=0.00 raw=''
+2025-12-18 06:57:30 | WARNING | market_bot | OCR price failed: page=1 slot=5 conf=0.00 raw=''
+2025-12-18 06:57:30 | WARNING | market_bot | OCR price failed: page=1 slot=6 conf=0.00 raw=''
+2025-12-18 06:57:30 | WARNING | market_bot | OCR price failed: page=1 slot=7 conf=0.00 raw=''
+2025-12-18 06:57:35 | INFO    | market_bot | Logging initialized: logs\market_bot.log
+2025-12-18 06:57:47 | INFO    | market_bot | Logger already initialized, reusing existing configuration
+2025-12-18 06:57:51 | INFO    | market_bot | Bot started. level=60 sets=1 mode=simulate
+2025-12-18 06:57:52 | INFO    | market_bot | Anchor found. top_left=Point(x=1704, y=451) center=Point(x=1756, y=467) score=1.000
+2025-12-18 06:57:52 | INFO    | market_bot | ==== Quest: Больше голов снегобеев! | reward_per_set=43072 | reward_total=43072 | cat=Трофеи ====
+2025-12-18 06:57:52 | INFO    | market_bot | Open category Трофеи at Point(x=1486, y=830) (dbl click)
+2025-12-18 06:57:53 | INFO    | market_bot | Collect/Plan item: 'Голова снегобея' required_qty=15 (one-page plan)
+2025-12-18 06:57:53 | INFO    | market_bot | Focus search field at Point(x=1392, y=516)
+2025-12-18 06:57:56 | INFO    | market_bot | Price: page=1 slot=1 price=3140 conf=0.95 raw='3140' (easyocr)
+2025-12-18 06:57:56 | INFO    | market_bot | Price: page=1 slot=2 price=3150 conf=1.00 raw='3150' (easyocr)
+2025-12-18 06:57:56 | INFO    | market_bot | Price: page=1 slot=3 price=3200 conf=1.00 raw='3200' (easyocr)
+2025-12-18 06:57:56 | INFO    | market_bot | Price: page=1 slot=4 price=3350 conf=1.00 raw='3350' (easyocr)
+2025-12-18 06:57:56 | INFO    | market_bot | Price: page=1 slot=5 price=3599 conf=1.00 raw='3599' (easyocr)
+2025-12-18 06:57:56 | INFO    | market_bot | Price: page=1 slot=6 price=3600 conf=0.77 raw='3600' (easyocr)
+2025-12-18 06:57:56 | INFO    | market_bot | Price: page=1 slot=7 price=3700 conf=1.00 raw='3700' (easyocr)
+2025-12-18 06:57:56 | INFO    | market_bot | Price: page=1 slot=8 price=3900 conf=0.77 raw='3900' (easyocr)
+2025-12-18 06:57:56 | INFO    | market_bot | Plan: not affordable at slot=1 price=3140 -> min_possible=47100 > reward=43072
+2025-12-18 06:57:56 | INFO    | market_bot | Item plan failed => skip quest. item='Голова снегобея' reason=cannot build plan on first page (qty/price mismatch or insufficient)
+2025-12-18 06:57:56 | INFO    | market_bot | ==== Quest: Больше соли! | reward_per_set=49299 | reward_total=49299 | cat=Трофеи ====
+2025-12-18 06:57:56 | INFO    | market_bot | Open category Трофеи at Point(x=1486, y=830) (dbl click)
+2025-12-18 06:57:57 | INFO    | market_bot | Collect/Plan item: 'Пещерная соль' required_qty=10 (one-page plan)
+2025-12-18 06:57:57 | INFO    | market_bot | Focus search field at Point(x=1392, y=516)
+2025-12-18 06:58:00 | INFO    | market_bot | Price: page=1 slot=1 price=11498 conf=1.00 raw='11498' (easyocr)
+2025-12-18 06:58:00 | INFO    | market_bot | Price: page=1 slot=3 price=11500 conf=0.95 raw='11500' (easyocr)
+2025-12-18 06:58:00 | INFO    | market_bot | Price: page=1 slot=2 price=11499 conf=1.00 raw='11499' (easyocr)
+2025-12-18 06:58:00 | INFO    | market_bot | Price: page=1 slot=4 price=11500 conf=0.92 raw='11500' (easyocr)
+2025-12-18 06:58:00 | INFO    | market_bot | Price: page=1 slot=5 price=11777 conf=1.00 raw='11777' (easyocr)
+2025-12-18 06:58:01 | INFO    | market_bot | Price: page=1 slot=6 price=12399 conf=0.80 raw='12399' (easyocr)
+2025-12-18 06:58:01 | INFO    | market_bot | Price: page=1 slot=7 price=12489 conf=0.71 raw='12489' (easyocr)
+2025-12-18 06:58:01 | INFO    | market_bot | Price: page=1 slot=8 price=12490 conf=1.00 raw='12490' (easyocr)
+2025-12-18 06:58:01 | INFO    | market_bot | Plan: not affordable at slot=1 price=11498 -> min_possible=114980 > reward=49299
+2025-12-18 06:58:01 | INFO    | market_bot | Item plan failed => skip quest. item='Пещерная соль' reason=cannot build plan on first page (qty/price mismatch or insufficient)
+2025-12-18 06:58:01 | INFO    | market_bot | ==== Quest: Больше хвостиков роек! | reward_per_set=40242 | reward_total=40242 | cat=Трофеи ====
+2025-12-18 06:58:01 | INFO    | market_bot | Open category Трофеи at Point(x=1486, y=830) (dbl click)
+2025-12-18 06:58:01 | INFO    | market_bot | Collect/Plan item: 'Хвостик ройки' required_qty=25 (one-page plan)
+2025-12-18 06:58:01 | INFO    | market_bot | Focus search field at Point(x=1392, y=516)
+2025-12-18 06:58:05 | WARNING | market_bot | OCR price failed: page=1 slot=1 conf=0.00 raw=''
+2025-12-18 06:58:07 | INFO    | market_bot | Logging initialized: logs\market_bot.log
+2025-12-18 06:58:12 | INFO    | market_bot | Logger already initialized, reusing existing configuration
+2025-12-18 06:58:16 | INFO    | market_bot | Bot started. level=60 sets=1 mode=simulate
+2025-12-18 06:58:17 | INFO    | market_bot | Anchor found. top_left=Point(x=1704, y=451) center=Point(x=1756, y=467) score=1.000
+2025-12-18 06:58:17 | INFO    | market_bot | ==== Quest: Больше голов снегобеев! | reward_per_set=43072 | reward_total=43072 | cat=Трофеи ====
+2025-12-18 06:58:17 | INFO    | market_bot | Open category Трофеи at Point(x=1486, y=830) (dbl click)
+2025-12-18 06:58:18 | INFO    | market_bot | Collect/Plan item: 'Голова снегобея' required_qty=15 (one-page plan)
+2025-12-18 06:58:18 | INFO    | market_bot | Focus search field at Point(x=1392, y=516)
+2025-12-18 06:58:21 | INFO    | market_bot | Price: page=1 slot=1 price=3140 conf=0.95 raw='3140' (easyocr)
+2025-12-18 06:58:21 | INFO    | market_bot | Price: page=1 slot=2 price=3150 conf=1.00 raw='3150' (easyocr)
+2025-12-18 06:58:21 | INFO    | market_bot | Price: page=1 slot=3 price=3200 conf=1.00 raw='3200' (easyocr)
+2025-12-18 06:58:21 | INFO    | market_bot | Price: page=1 slot=4 price=3350 conf=1.00 raw='3350' (easyocr)
+2025-12-18 06:58:21 | INFO    | market_bot | Price: page=1 slot=5 price=3599 conf=1.00 raw='3599' (easyocr)
+2025-12-18 06:58:21 | INFO    | market_bot | Price: page=1 slot=6 price=3600 conf=0.77 raw='3600' (easyocr)
+2025-12-18 06:58:21 | INFO    | market_bot | Price: page=1 slot=7 price=3700 conf=1.00 raw='3700' (easyocr)
+2025-12-18 06:58:21 | INFO    | market_bot | Price: page=1 slot=8 price=3900 conf=0.77 raw='3900' (easyocr)
+2025-12-18 06:58:21 | INFO    | market_bot | Plan: not affordable at slot=1 price=3140 -> min_possible=47100 > reward=43072
+2025-12-18 06:58:21 | INFO    | market_bot | Item plan failed => skip quest. item='Голова снегобея' reason=cannot build plan on first page (qty/price mismatch or insufficient)
+2025-12-18 06:58:21 | INFO    | market_bot | Bot finished.
+2025-12-18 06:58:27 | INFO    | market_bot | Logger already initialized, reusing existing configuration
+2025-12-18 06:58:28 | INFO    | market_bot | Bot started. level=60 sets=1 mode=simulate
+2025-12-18 06:58:29 | INFO    | market_bot | Anchor found. top_left=Point(x=1704, y=451) center=Point(x=1756, y=467) score=1.000
+2025-12-18 06:58:29 | INFO    | market_bot | ==== Quest: Больше голов снегобеев! | reward_per_set=43072 | reward_total=43072 | cat=Трофеи ====
+2025-12-18 06:58:29 | INFO    | market_bot | Open category Трофеи at Point(x=1486, y=830) (dbl click)
+2025-12-18 06:58:30 | INFO    | market_bot | Collect/Plan item: 'Голова снегобея' required_qty=15 (one-page plan)
+2025-12-18 06:58:30 | INFO    | market_bot | Focus search field at Point(x=1392, y=516)
+2025-12-18 06:58:33 | INFO    | market_bot | Price: page=1 slot=1 price=3140 conf=0.95 raw='3140' (easyocr)
+2025-12-18 06:58:33 | INFO    | market_bot | Price: page=1 slot=2 price=3150 conf=1.00 raw='3150' (easyocr)
+2025-12-18 06:58:33 | INFO    | market_bot | Price: page=1 slot=3 price=3200 conf=1.00 raw='3200' (easyocr)
+2025-12-18 06:58:33 | INFO    | market_bot | Price: page=1 slot=4 price=3350 conf=1.00 raw='3350' (easyocr)
+2025-12-18 06:58:33 | INFO    | market_bot | Price: page=1 slot=5 price=3599 conf=1.00 raw='3599' (easyocr)
+2025-12-18 06:58:33 | INFO    | market_bot | Price: page=1 slot=6 price=3600 conf=0.77 raw='3600' (easyocr)
+2025-12-18 06:58:33 | INFO    | market_bot | Price: page=1 slot=7 price=3700 conf=1.00 raw='3700' (easyocr)
+2025-12-18 06:58:33 | INFO    | market_bot | Price: page=1 slot=8 price=3900 conf=0.77 raw='3900' (easyocr)
+2025-12-18 06:58:33 | INFO    | market_bot | Plan: not affordable at slot=1 price=3140 -> min_possible=47100 > reward=43072
+2025-12-18 06:58:33 | INFO    | market_bot | Item plan failed => skip quest. item='Голова снегобея' reason=cannot build plan on first page (qty/price mismatch or insufficient)
+2025-12-18 06:58:33 | INFO    | market_bot | Bot finished.
+2025-12-18 06:58:38 | INFO    | market_bot | Logger already initialized, reusing existing configuration
+2025-12-18 06:58:40 | INFO    | market_bot | Bot started. level=60 sets=1 mode=simulate
+2025-12-18 06:58:40 | INFO    | market_bot | Anchor found. top_left=Point(x=1704, y=451) center=Point(x=1756, y=467) score=1.000
+2025-12-18 06:58:40 | INFO    | market_bot | ==== Quest: Больше голов снегобеев! | reward_per_set=43072 | reward_total=43072 | cat=Трофеи ====
+2025-12-18 06:58:40 | INFO    | market_bot | Open category Трофеи at Point(x=1486, y=830) (dbl click)
+2025-12-18 06:58:41 | INFO    | market_bot | Collect/Plan item: 'Голова снегобея' required_qty=15 (one-page plan)
+2025-12-18 06:58:41 | INFO    | market_bot | Focus search field at Point(x=1392, y=516)
+2025-12-18 06:58:44 | INFO    | market_bot | Price: page=1 slot=1 price=3140 conf=0.95 raw='3140' (easyocr)
+2025-12-18 06:58:45 | INFO    | market_bot | Price: page=1 slot=2 price=3150 conf=1.00 raw='3150' (easyocr)
+2025-12-18 06:58:45 | INFO    | market_bot | Price: page=1 slot=3 price=3200 conf=1.00 raw='3200' (easyocr)
+2025-12-18 06:58:45 | INFO    | market_bot | Price: page=1 slot=4 price=3350 conf=1.00 raw='3350' (easyocr)
+2025-12-18 06:58:45 | INFO    | market_bot | Price: page=1 slot=5 price=3599 conf=1.00 raw='3599' (easyocr)
+2025-12-18 06:58:45 | INFO    | market_bot | Price: page=1 slot=6 price=3600 conf=0.77 raw='3600' (easyocr)
+2025-12-18 06:58:45 | INFO    | market_bot | Price: page=1 slot=7 price=3700 conf=1.00 raw='3700' (easyocr)
+2025-12-18 06:58:45 | INFO    | market_bot | Price: page=1 slot=8 price=3900 conf=0.77 raw='3900' (easyocr)
+2025-12-18 06:58:45 | INFO    | market_bot | Plan: not affordable at slot=1 price=3140 -> min_possible=47100 > reward=43072
+2025-12-18 06:58:45 | INFO    | market_bot | Item plan failed => skip quest. item='Голова снегобея' reason=cannot build plan on first page (qty/price mismatch or insufficient)
+2025-12-18 06:58:45 | INFO    | market_bot | Bot finished.
+2025-12-18 07:05:35 | INFO    | market_bot | Logging initialized: logs\market_bot.log
+2025-12-18 07:05:42 | INFO    | market_bot | Logger already initialized, reusing existing configuration
+2025-12-18 07:05:47 | INFO    | market_bot | Bot started. level=60 sets=1 mode=simulate
+2025-12-18 07:05:47 | INFO    | market_bot | Anchor found. top_left=Point(x=1704, y=451) center=Point(x=1756, y=467) score=1.000
+2025-12-18 07:05:47 | INFO    | market_bot | ==== Quest: Больше голов снегобеев! | reward_per_set=43072 | reward_total=43072 | cat=Трофеи ====
+2025-12-18 07:05:47 | INFO    | market_bot | Open category Трофеи at Point(x=1486, y=830) (dbl click)
+2025-12-18 07:05:48 | INFO    | market_bot | Collect/Plan item: 'Голова снегобея' required_qty=15 (one-page plan)
+2025-12-18 07:05:48 | INFO    | market_bot | Focus search field at Point(x=1392, y=516)
+2025-12-18 07:05:52 | INFO    | market_bot | Price: page=1 slot=1 price=3140 conf=0.95 raw='3140' (easyocr)
+2025-12-18 07:05:52 | INFO    | market_bot | Price: page=1 slot=2 price=3150 conf=1.00 raw='3150' (easyocr)
+2025-12-18 07:05:52 | INFO    | market_bot | Price: page=1 slot=3 price=3200 conf=1.00 raw='3200' (easyocr)
+2025-12-18 07:05:52 | INFO    | market_bot | Price: page=1 slot=4 price=3350 conf=1.00 raw='3350' (easyocr)
+2025-12-18 07:05:52 | INFO    | market_bot | Price: page=1 slot=5 price=3599 conf=1.00 raw='3599' (easyocr)
+2025-12-18 07:05:52 | INFO    | market_bot | Price: page=1 slot=6 price=3600 conf=0.77 raw='3600' (easyocr)
+2025-12-18 07:05:52 | INFO    | market_bot | Price: page=1 slot=7 price=3700 conf=1.00 raw='3700' (easyocr)
+2025-12-18 07:05:52 | INFO    | market_bot | Price: page=1 slot=8 price=3900 conf=0.77 raw='3900' (easyocr)
+2025-12-18 07:05:52 | INFO    | market_bot | Plan: not affordable at slot=1 price=3140 -> min_possible=47100 > reward=43072
+2025-12-18 07:05:52 | INFO    | market_bot | Item plan failed => skip quest. item='Голова снегобея' reason=cannot build plan on first page (qty/price mismatch or insufficient)
+2025-12-18 07:05:52 | INFO    | market_bot | ==== Quest: Больше соли! | reward_per_set=49299 | reward_total=49299 | cat=Трофеи ====
+2025-12-18 07:05:52 | INFO    | market_bot | Open category Трофеи at Point(x=1486, y=830) (dbl click)
+2025-12-18 07:05:53 | INFO    | market_bot | Collect/Plan item: 'Пещерная соль' required_qty=10 (one-page plan)
+2025-12-18 07:05:53 | INFO    | market_bot | Focus search field at Point(x=1392, y=516)
+2025-12-18 07:05:56 | INFO    | market_bot | Price: page=1 slot=1 price=11498 conf=1.00 raw='11498' (easyocr)
+2025-12-18 07:05:56 | INFO    | market_bot | Price: page=1 slot=3 price=11500 conf=0.95 raw='11500' (easyocr)
+2025-12-18 07:05:56 | INFO    | market_bot | Price: page=1 slot=2 price=11499 conf=1.00 raw='11499' (easyocr)
+2025-12-18 07:05:56 | INFO    | market_bot | Price: page=1 slot=4 price=11500 conf=0.92 raw='11500' (easyocr)
+2025-12-18 07:05:56 | INFO    | market_bot | Price: page=1 slot=5 price=11777 conf=1.00 raw='11777' (easyocr)
+2025-12-18 07:05:56 | INFO    | market_bot | Price: page=1 slot=6 price=12399 conf=0.80 raw='12399' (easyocr)
+2025-12-18 07:05:56 | INFO    | market_bot | Price: page=1 slot=7 price=12489 conf=0.71 raw='12489' (easyocr)
+2025-12-18 07:05:56 | INFO    | market_bot | Price: page=1 slot=8 price=12490 conf=1.00 raw='12490' (easyocr)
+2025-12-18 07:05:56 | INFO    | market_bot | Plan: not affordable at slot=1 price=11498 -> min_possible=114980 > reward=49299
+2025-12-18 07:05:56 | INFO    | market_bot | Item plan failed => skip quest. item='Пещерная соль' reason=cannot build plan on first page (qty/price mismatch or insufficient)
+2025-12-18 07:05:56 | INFO    | market_bot | ==== Quest: Больше хвостиков роек! | reward_per_set=40242 | reward_total=40242 | cat=Трофеи ====
+2025-12-18 07:05:56 | INFO    | market_bot | Open category Трофеи at Point(x=1486, y=830) (dbl click)
+2025-12-18 07:05:57 | INFO    | market_bot | Collect/Plan item: 'Хвостик ройки' required_qty=25 (one-page plan)
+2025-12-18 07:05:57 | INFO    | market_bot | Focus search field at Point(x=1392, y=516)
+2025-12-18 07:06:00 | INFO    | market_bot | Price: page=1 slot=3 price=2000 conf=0.66 raw='2000' (easyocr)
+2025-12-18 07:06:01 | INFO    | market_bot | Price: page=1 slot=2 price=2000 conf=0.99 raw='2000' (easyocr)
+2025-12-18 07:06:01 | INFO    | market_bot | Price: page=1 slot=1 price=2000 conf=0.99 raw='2000' (easyocr)
+2025-12-18 07:06:01 | INFO    | market_bot | Price: page=1 slot=4 price=2000 conf=0.99 raw='2000' (easyocr)
+2025-12-18 07:06:01 | INFO    | market_bot | Price: page=1 slot=5 price=2090 conf=0.65 raw='2090' (easyocr)
+2025-12-18 07:06:01 | INFO    | market_bot | Price: page=1 slot=6 price=2090 conf=1.00 raw='2090' (easyocr)
+2025-12-18 07:06:01 | INFO    | market_bot | Price: page=1 slot=7 price=2095 conf=0.97 raw='2095' (easyocr)
+2025-12-18 07:06:01 | INFO    | market_bot | Price: page=1 slot=8 price=2100 conf=1.00 raw='2100' (easyocr)
+2025-12-18 07:06:01 | INFO    | market_bot | Plan: not affordable at slot=1 price=2000 -> min_possible=50000 > reward=40242
+2025-12-18 07:06:01 | INFO    | market_bot | Item plan failed => skip quest. item='Хвостик ройки' reason=cannot build plan on first page (qty/price mismatch or insufficient)
+2025-12-18 07:06:01 | INFO    | market_bot | ==== Quest: В поисках ценной оптики | reward_per_set=46137 | reward_total=46137 | cat=Трофеи ====
+2025-12-18 07:06:01 | INFO    | market_bot | Open category Трофеи at Point(x=1486, y=830) (dbl click)
+2025-12-18 07:06:02 | INFO    | market_bot | Collect/Plan item: 'Пристрелочный монокуляр' required_qty=8 (one-page plan)
+2025-12-18 07:06:02 | INFO    | market_bot | Focus search field at Point(x=1392, y=516)
+2025-12-18 07:06:05 | INFO    | market_bot | Price: page=1 slot=1 price=5554 conf=0.99 raw='5554' (easyocr)
+2025-12-18 07:06:05 | INFO    | market_bot | Price: page=1 slot=3 price=5799 conf=1.00 raw='5799' (easyocr)
+2025-12-18 07:06:05 | INFO    | market_bot | Price: page=1 slot=2 price=5555 conf=1.00 raw='5555' (easyocr)
+2025-12-18 07:06:05 | INFO    | market_bot | Price: page=1 slot=4 price=5800 conf=1.00 raw='5800' (easyocr)
+2025-12-18 07:06:05 | INFO    | market_bot | Price: page=1 slot=5 price=5999 conf=1.00 raw='5999' (easyocr)
+2025-12-18 07:06:05 | INFO    | market_bot | Price: page=1 slot=6 price=6000 conf=1.00 raw='6000' (easyocr)
+2025-12-18 07:06:05 | INFO    | market_bot | Price: page=1 slot=7 price=6000 conf=0.72 raw='6000' (easyocr)
+2025-12-18 07:06:05 | INFO    | market_bot | Price: page=1 slot=8 price=6333 conf=1.00 raw='6333' (easyocr)
+2025-12-18 07:06:05 | INFO    | market_bot | Open lot modal: slot=1 at Point(x=1766, y=596) (dbl click)
+2025-12-18 07:06:08 | INFO    | market_bot | Buy button found by template at Point(x=1208, y=790) (score=1.000)
+2025-12-18 07:06:08 | INFO    | market_bot | Cancel button found by template at Point(x=1347, y=791) (score=1.000)
+2025-12-18 07:06:08 | INFO    | market_bot | Read seller qty: click input at Point(x=1388, y=703)
+2025-12-18 07:06:09 | INFO    | market_bot | Seller qty from clipboard: 82 (raw='82')
+2025-12-18 07:06:09 | INFO    | market_bot | Click CANCEL at Point(x=1347, y=791)
+2025-12-18 07:06:10 | INFO    | market_bot | Quest cost estimate: 44432 | reward_total=46137 | delta=1705
+2025-12-18 07:06:10 | INFO    | market_bot | Decision: PROFITABLE => proceed.
+2025-12-18 07:06:10 | INFO    | market_bot | Quest summary: reward=46137 planned_cost=44432 expected_profit=1705 (plans=44432 items_est=0)
+2025-12-18 07:06:10 | INFO    | market_bot | Profit check (PERCENT): expected=1705 required>=6921 (15.00% of reward=46137)
+2025-12-18 07:06:10 | WARNING | market_bot | Quest skipped: profit threshold not met (reward=46137 cost=44432)
+2025-12-18 07:06:10 | INFO    | market_bot | ==== Quest: Голодающий егерь | reward_per_set=49299 | reward_total=49299 | cat=Трофеи ====
+2025-12-18 07:06:10 | INFO    | market_bot | Open category Трофеи at Point(x=1486, y=830) (dbl click)
+2025-12-18 07:06:10 | INFO    | market_bot | Collect/Plan item: 'Мясо снежной жужи' required_qty=10 (one-page plan)
+2025-12-18 07:06:10 | INFO    | market_bot | Focus search field at Point(x=1392, y=516)
+2025-12-18 07:06:14 | INFO    | market_bot | Price: page=1 slot=1 price=5794 conf=1.00 raw='5794' (easyocr)
+2025-12-18 07:06:14 | INFO    | market_bot | Price: page=1 slot=2 price=5795 conf=1.00 raw='5795' (easyocr)
+2025-12-18 07:06:14 | INFO    | market_bot | Price: page=1 slot=3 price=5799 conf=1.00 raw='5799' (easyocr)
+2025-12-18 07:06:14 | INFO    | market_bot | Price: page=1 slot=4 price=5800 conf=1.00 raw='5800' (easyocr)
+2025-12-18 07:06:14 | INFO    | market_bot | Price: page=1 slot=5 price=5914 conf=1.00 raw='5914' (easyocr)
+2025-12-18 07:06:14 | INFO    | market_bot | Price: page=1 slot=6 price=5915 conf=1.00 raw='5915' (easyocr)
+2025-12-18 07:06:14 | INFO    | market_bot | Price: page=1 slot=7 price=5920 conf=1.00 raw='5920' (easyocr)
+2025-12-18 07:06:14 | INFO    | market_bot | Price: page=1 slot=8 price=5930 conf=1.00 raw='5930' (easyocr)
+2025-12-18 07:06:14 | INFO    | market_bot | Plan: not affordable at slot=1 price=5794 -> min_possible=57940 > reward=49299
+2025-12-18 07:06:14 | INFO    | market_bot | Item plan failed => skip quest. item='Мясо снежной жужи' reason=cannot build plan on first page (qty/price mismatch or insufficient)
+2025-12-18 07:06:14 | INFO    | market_bot | ==== Quest: Добыча звёздной руды | reward_per_set=37500 | reward_total=37500 | cat=Ресурсы ====
+2025-12-18 07:06:14 | INFO    | market_bot | Open category Ресурсы at Point(x=1476, y=935) (dbl click)
+2025-12-18 07:06:15 | INFO    | market_bot | Collect/Plan item: 'Звездная руда' required_qty=9 (one-page plan)
+2025-12-18 07:06:15 | INFO    | market_bot | Focus search field at Point(x=1392, y=516)
+2025-12-18 07:06:18 | INFO    | market_bot | Price: page=1 slot=1 price=5685 conf=1.00 raw='5685' (easyocr)
+2025-12-18 07:06:18 | INFO    | market_bot | Price: page=1 slot=2 price=5690 conf=1.00 raw='5690' (easyocr)
+2025-12-18 07:06:18 | INFO    | market_bot | Price: page=1 slot=3 price=5198 conf=0.93 raw='5198' (easyocr)
+2025-12-18 07:06:18 | INFO    | market_bot | Price: page=1 slot=4 price=5800 conf=1.00 raw='5800' (easyocr)
+2025-12-18 07:06:18 | INFO    | market_bot | Price: page=1 slot=5 price=5900 conf=1.00 raw='5900' (easyocr)
+2025-12-18 07:06:18 | INFO    | market_bot | Price: page=1 slot=6 price=6000 conf=1.00 raw='6000' (easyocr)
+2025-12-18 07:06:18 | INFO    | market_bot | Price: page=1 slot=7 price=6129 conf=0.76 raw='6129' (easyocr)
+2025-12-18 07:06:18 | INFO    | market_bot | Price: page=1 slot=8 price=6138 conf=1.00 raw='6138' (easyocr)
+2025-12-18 07:06:18 | INFO    | market_bot | Plan: not affordable at slot=1 price=5685 -> min_possible=51165 > reward=37500
+2025-12-18 07:06:18 | INFO    | market_bot | Item plan failed => skip quest. item='Звездная руда' reason=cannot build plan on first page (qty/price mismatch or insufficient)
+2025-12-18 07:06:18 | INFO    | market_bot | ==== Quest: Добыча зеленороста | reward_per_set=37500 | reward_total=37500 | cat=Трофеи ====
+2025-12-18 07:06:18 | INFO    | market_bot | Open category Трофеи at Point(x=1486, y=830) (dbl click)
+2025-12-18 07:06:19 | INFO    | market_bot | Collect/Plan(image) item: 'Зеленорост' required_qty=9 budget_left=37500
+2025-12-18 07:06:19 | INFO    | market_bot | Focus search field at Point(x=1392, y=516)
+2025-12-18 07:06:22 | INFO    | market_bot | Icon slots found: item='Зеленорост' slots=[(4, 0.9459228515625), (7, 0.9459227323532104)]
+2025-12-18 07:06:22 | INFO    | market_bot | Item data incomplete => skip quest. item='Зеленорост' reason=unprofitable: cost=0 price=4652 remain=9 budget_left=37500
+2025-12-18 07:06:22 | INFO    | market_bot | ==== Quest: Добыча ледового серпантина | reward_per_set=37500 | reward_total=37500 | cat=Трофеи ====
+2025-12-18 07:06:22 | INFO    | market_bot | Open category Трофеи at Point(x=1486, y=830) (dbl click)
+2025-12-18 07:06:23 | INFO    | market_bot | Collect/Plan item: 'Ледовый серпантин' required_qty=6 (one-page plan)
+2025-12-18 07:06:23 | INFO    | market_bot | Focus search field at Point(x=1392, y=516)
+2025-12-18 07:06:26 | INFO    | market_bot | Price: page=1 slot=2 price=2850 conf=1.00 raw='2850' (easyocr)
+2025-12-18 07:06:26 | INFO    | market_bot | Price: page=1 slot=1 price=2849 conf=0.93 raw='2849' (easyocr)
+2025-12-18 07:06:26 | INFO    | market_bot | Price: page=1 slot=3 price=2897 conf=1.00 raw='2897' (easyocr)
+2025-12-18 07:06:26 | INFO    | market_bot | Price: page=1 slot=4 price=2899 conf=1.00 raw='2899' (easyocr)
+2025-12-18 07:06:27 | INFO    | market_bot | Price: page=1 slot=5 price=2900 conf=1.00 raw='2900' (easyocr)
+2025-12-18 07:06:27 | INFO    | market_bot | Price: page=1 slot=6 price=300 conf=0.84 raw='300' (easyocr)
+2025-12-18 07:06:27 | INFO    | market_bot | Price: page=1 slot=7 price=3001 conf=1.00 raw='3001' (easyocr)
+2025-12-18 07:06:27 | INFO    | market_bot | Price: page=1 slot=8 price=3333 conf=1.00 raw='3333' (easyocr)
+2025-12-18 07:06:27 | WARNING | market_bot | Context fix: page=1 slot=6 300->3000 (neighbors avg=3033, conf=0.84)
+2025-12-18 07:06:27 | INFO    | market_bot | Open lot modal: slot=1 at Point(x=1766, y=596) (dbl click)
+2025-12-18 07:06:29 | INFO    | market_bot | Buy button found by template at Point(x=1208, y=790) (score=1.000)
+2025-12-18 07:06:29 | INFO    | market_bot | Cancel button found by template at Point(x=1347, y=791) (score=1.000)
+2025-12-18 07:06:29 | INFO    | market_bot | Read seller qty: click input at Point(x=1388, y=703)
+2025-12-18 07:06:30 | INFO    | market_bot | Seller qty from clipboard: 1 (raw='1')
+2025-12-18 07:06:30 | INFO    | market_bot | Click CANCEL at Point(x=1347, y=791)
+2025-12-18 07:06:31 | INFO    | market_bot | Open lot modal: slot=2 at Point(x=1766, y=655) (dbl click)
+2025-12-18 07:06:33 | INFO    | market_bot | Buy button found by template at Point(x=1208, y=790) (score=1.000)
+2025-12-18 07:06:33 | INFO    | market_bot | Cancel button found by template at Point(x=1347, y=791) (score=1.000)
+2025-12-18 07:06:33 | INFO    | market_bot | Read seller qty: click input at Point(x=1388, y=703)
+2025-12-18 07:06:34 | INFO    | market_bot | Seller qty from clipboard: 12 (raw='12')
+2025-12-18 07:06:34 | INFO    | market_bot | Click CANCEL at Point(x=1347, y=791)
+2025-12-18 07:06:35 | INFO    | market_bot | Quest cost estimate: 17099 | reward_total=37500 | delta=20401
+2025-12-18 07:06:35 | INFO    | market_bot | Decision: PROFITABLE => proceed.
+2025-12-18 07:06:35 | INFO    | market_bot | Quest summary: reward=37500 planned_cost=17099 expected_profit=20401 (plans=17099 items_est=0)
+2025-12-18 07:06:35 | INFO    | market_bot | Profit check (PERCENT): expected=20401 required>=5625 (15.00% of reward=37500)
+2025-12-18 07:06:35 | INFO    | market_bot | [SIM-UI] Performing navigation but will NOT click BUY. item='Ледовый серпантин'
+2025-12-18 07:06:35 | INFO    | market_bot | BUY step 1/2: planned slot=1 take=1 price=2849
+2025-12-18 07:06:35 | INFO    | market_bot | Open lot modal: slot=1 at Point(x=1766, y=596) (dbl click)
+2025-12-18 07:06:37 | INFO    | market_bot | Buy button fallback point: Point(x=1693, y=744)
+2025-12-18 07:06:37 | INFO    | market_bot | Cancel button fallback point: Point(x=1874, y=662)
+2025-12-18 07:06:37 | INFO    | market_bot | Read seller qty: click input at Point(x=1873, y=657)
+2025-12-18 07:06:38 | INFO    | market_bot | Seller qty from clipboard: 12 (raw='12')
+2025-12-18 07:06:38 | INFO    | market_bot | [SIM] Would set qty=1 and click BUY now.
+2025-12-18 07:06:38 | INFO    | market_bot | Click CANCEL at Point(x=1874, y=662)
+2025-12-18 07:06:39 | INFO    | market_bot | BUY step 2/2: planned slot=2 take=5 price=2850
+2025-12-18 07:06:39 | INFO    | market_bot | Open lot modal: slot=2 at Point(x=1766, y=655) (dbl click)
+2025-12-18 07:07:42 | INFO    | market_bot | Logging initialized: logs\market_bot.log
+2025-12-18 07:07:54 | INFO    | market_bot | Logger already initialized, reusing existing configuration
+2025-12-18 07:07:59 | INFO    | market_bot | Bot started. level=60 sets=1 mode=simulate
+2025-12-18 07:07:59 | INFO    | market_bot | Anchor found. top_left=Point(x=1704, y=451) center=Point(x=1756, y=467) score=1.000
+2025-12-18 07:07:59 | INFO    | market_bot | ==== Quest: Добыча ледового серпантина | reward_per_set=37500 | reward_total=37500 | cat=Трофеи ====
+2025-12-18 07:07:59 | INFO    | market_bot | Open category Трофеи at Point(x=1486, y=830) (dbl click)
+2025-12-18 07:08:00 | INFO    | market_bot | Collect/Plan item: 'Ледовый серпантин' required_qty=6 (one-page plan)
+2025-12-18 07:08:00 | INFO    | market_bot | Focus search field at Point(x=1392, y=516)
+2025-12-18 07:08:04 | INFO    | market_bot | Price: page=1 slot=1 price=2849 conf=0.93 raw='2849' (easyocr)
+2025-12-18 07:08:04 | INFO    | market_bot | Price: page=1 slot=2 price=2850 conf=1.00 raw='2850' (easyocr)
+2025-12-18 07:08:04 | INFO    | market_bot | Price: page=1 slot=3 price=2897 conf=1.00 raw='2897' (easyocr)
+2025-12-18 07:08:04 | INFO    | market_bot | Price: page=1 slot=4 price=2899 conf=1.00 raw='2899' (easyocr)
+2025-12-18 07:08:04 | INFO    | market_bot | Price: page=1 slot=5 price=2900 conf=1.00 raw='2900' (easyocr)
+2025-12-18 07:08:04 | INFO    | market_bot | Price: page=1 slot=6 price=300 conf=0.84 raw='300' (easyocr)
+2025-12-18 07:08:04 | INFO    | market_bot | Price: page=1 slot=7 price=3001 conf=1.00 raw='3001' (easyocr)
+2025-12-18 07:08:04 | INFO    | market_bot | Price: page=1 slot=8 price=3333 conf=1.00 raw='3333' (easyocr)
+2025-12-18 07:08:04 | WARNING | market_bot | Context fix: page=1 slot=6 300->3000 (neighbors avg=3033, conf=0.84)
+2025-12-18 07:08:04 | INFO    | market_bot | Open lot modal: slot=1 at Point(x=1766, y=596) (dbl click)
+2025-12-18 07:08:06 | INFO    | market_bot | Buy button found by template at Point(x=1208, y=790) (score=1.000)
+2025-12-18 07:08:07 | INFO    | market_bot | Cancel button found by template at Point(x=1347, y=791) (score=1.000)
+2025-12-18 07:08:07 | INFO    | market_bot | Read seller qty: click input at Point(x=1388, y=703)
+2025-12-18 07:08:08 | INFO    | market_bot | Seller qty OCR fallback: 2840 conf=0.07 raw='02840'
+2025-12-18 07:08:08 | INFO    | market_bot | Click CANCEL at Point(x=1347, y=791)
+2025-12-18 07:08:08 | INFO    | market_bot | Quest cost estimate: 17094 | reward_total=37500 | delta=20406
+2025-12-18 07:08:08 | INFO    | market_bot | Decision: PROFITABLE => proceed.
+2025-12-18 07:08:08 | INFO    | market_bot | Quest summary: reward=37500 planned_cost=17094 expected_profit=20406 (plans=17094 items_est=0)
+2025-12-18 07:08:08 | INFO    | market_bot | Profit check (PERCENT): expected=20406 required>=5625 (15.00% of reward=37500)
+2025-12-18 07:08:08 | INFO    | market_bot | [SIM-UI] Performing navigation but will NOT click BUY. item='Ледовый серпантин'
+2025-12-18 07:08:08 | INFO    | market_bot | BUY step 1/1: planned slot=1 take=6 price=2849
+2025-12-18 07:08:08 | INFO    | market_bot | Open lot modal: slot=1 at Point(x=1766, y=596) (dbl click)
+2025-12-18 07:08:11 | INFO    | market_bot | Buy button fallback point: Point(x=1693, y=744)
+2025-12-18 07:08:11 | INFO    | market_bot | Cancel button fallback point: Point(x=1874, y=662)
+2025-12-18 07:08:11 | INFO    | market_bot | Read seller qty: click input at Point(x=1873, y=657)
+2025-12-18 07:08:12 | INFO    | market_bot | Seller qty OCR fallback: None conf=0.00 raw=''
+2025-12-18 07:08:12 | WARNING | market_bot | Buy: qty mismatch on step=1. avail=None needed=6. Abort.
+2025-12-18 07:08:13 | INFO    | market_bot | Purchase result: item='Ледовый серпантин' required=6 bought=0 spent=0 success=False reason=plan execution failed / partial buy

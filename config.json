@@ -6,7 +6,7 @@
   "wait_medium": 0.25,
   "wait_open_modal": 0.3,
   "wait_after_search": 1.7,
-  "wait_ocr_timeout": 0.5,
+  "wait_ocr_timeout": 0.3,
   "wait_page_flip": 1.0,
   "wait_after_buy": 0.45,
   "wait_after_cancel": 0.15,
@@ -63,11 +63,8 @@
     "easyocr_gpu": true,
     "use_tesseract_fallback": true,
     "min_confidence": 0.75,
-    "variants": 4,
-    "scale_factors": [
-      3,
-      4
-    ]
+    "variants": 2,
+    "scale_factors": [3]
   },
   "templates": {
     "templates_dir": "templates",

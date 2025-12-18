@@ -33,7 +33,7 @@ def build_plan_one_page(
     Слоты 1..8: для каждого слота сначала проверяем min_possible,
     и только потом (если выгодно) открываем модалку и читаем qty.
     """
-    prices_raw = ui.scan_prices_on_page(page=page)
+    prices_raw = ui.scan_prices_on_page_parallel(page=page)
     price_by_slot: dict[int, int] = {slot: price for (slot, price, _conf, _raw) in prices_raw}
 
     remaining = need_total

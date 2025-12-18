@@ -192,7 +192,7 @@ class MarketBot:
 
             # если мы не можем открывать модалки (pure simulate), делаем только грубую оценку p1*need
             if not can_open_modals:
-                scanned = ui.scan_prices_on_page(page=1)
+                scanned = ui.scan_prices_on_page_parallel(page=1)
                 p1 = next((p for (slot, p, _c, _r) in scanned if slot == 1), None)
                 if not p1:
                     data = ItemMarketData(item=item2, required_qty=required_qty, lots=[], total_available=None,

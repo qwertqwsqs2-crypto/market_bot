@@ -61,9 +61,10 @@ class MainWindow(tk.Tk):
 
         self.configure(bg=self._bg)
 
-        # Logging
-        self.logger = logging.getLogger("market_gui")
-        self.logger.setLevel(logging.INFO)
+        # Logging - setup once
+        from logger import setup_logging
+        setup_logging(level=logging.INFO)
+        self.logger = logging.getLogger("market_bot")
 
         # Load config (raw and typed)
         try:
@@ -479,13 +480,7 @@ class MainWindow(tk.Tk):
             left_btns, "⏸ PAUSE", self._on_pause, self._warning, width=10
         )
         self.pause_btn.config(state="disabled")
-        self.pause_btn.pack(side="left", padx=(0, 10))
-
-        self.stop_btn = self._create_modern_button(
-            left_btns, "⏹ STOP", self._on_stop, self._danger, width=10
-        )
-        self.stop_btn.config(state="disabled")
-        self.stop_btn.pack(side="left")
+        self.pause_btn.pack(side="left")
 
         self.save_btn = self._create_modern_button(
             control_frame, "💾 Save Settings", self._save_settings, self._accent, width=14
@@ -559,21 +554,15 @@ class MainWindow(tk.Tk):
         mode_str = "simulate" if self.simulate_ui.get() else "run"
 
         try:
-            from logger import setup_logging
             from config import AppConfig
             from input_controller import GameInput, SimulatedInput
             from ocr_utils import OCRReader
             from ui import MarketUI
             from bot import MarketBot, BotContext
             from models import Mode
-            import quests_db
         except Exception as e:
             messagebox.showerror("Import Error", f"Cannot start bot: {e}")
             return
-
-        root_logger = logging.getLogger()
-        root_logger.setLevel(logging.INFO)
-        setup_logging(level=logging.INFO)
 
         cfg = self.cfg
 
@@ -627,13 +616,18 @@ class MainWindow(tk.Tk):
         self._bot_thread = threading.Thread(target=_run_bot, daemon=True)
         self._bot_thread.start()
 
-        self.runtime_win = RuntimeWindow(self, events_queue=events_q, logger=self.logger)
+        # Create runtime window with stop callback
+        self.runtime_win = RuntimeWindow(
+            self,
+            events_queue=events_q,
+            logger=self.logger,
+            stop_callback=self._on_stop
+        )
 
         # Minimize main window when bot starts
         self.iconify()
 
         self.start_btn.config(state="disabled")
-        self.stop_btn.config(state="normal")
         self.pause_btn.config(state="normal")
 
     def _on_thread_finished(self):
@@ -642,21 +636,25 @@ class MainWindow(tk.Tk):
         self.lift()
 
         self.start_btn.config(state="normal")
-        self.stop_btn.config(state="disabled")
         self.pause_btn.config(state="disabled")
         self.status_var.set("⚪ Stopped")
         self.status_label.configure(fg=self._fg_secondary)
         if self.runtime_win:
             try:
-                self.runtime_win.stop()
+                self.runtime_win.destroy()  # Destroy instead of stop
+                self.runtime_win = None
             except Exception:
                 pass
 
     def _on_stop(self):
+        """Called when STOP button is pressed (from Runtime window)"""
         if self._stop_event:
             self._stop_event.set()
             self.status_var.set("🟡 Stopping...")
             self.status_label.configure(fg=self._warning)
+            # Disable pause while stopping
+            if hasattr(self, 'pause_btn'):
+                self.pause_btn.config(state="disabled")
         else:
             self.status_var.set("⚪ Idle")
             self.status_label.configure(fg=self._fg_secondary)

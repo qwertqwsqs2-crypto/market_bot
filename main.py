@@ -94,7 +94,10 @@ def main() -> None:
     startup_delay = cfg.timing.startup_delay
     logger.info("Startup delay %.1fs — переключитесь на окно игры.", startup_delay)
     time.sleep(startup_delay)
-    bot.run(quests)
+    try:
+        bot.run(quests)
+    finally:
+        ui.cleanup()
 
 
 if __name__ == "__main__":
