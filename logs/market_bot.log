@@ -8380,3 +8380,869 @@ TypeError: MarketBot.check_profit_threshold() takes 0 positional arguments but 1
 2025-12-18 10:46:49 | INFO    | market_bot | Plan: not affordable at slot=1 price=9983 -> min_possible=638912 > reward=239912
 2025-12-18 10:46:49 | INFO    | market_bot | Item plan failed => skip quest. item='Жгучее щупальце' reason=cannot build plan on first page (qty/price mismatch or insufficient)
 2025-12-18 10:46:49 | INFO    | market_bot | Bot finished.
+2025-12-18 11:14:10 | INFO    | market_bot | Logging initialized: logs\market_bot.log
+2025-12-18 11:14:34 | INFO    | market_bot | Bot started. level=65 sets=1 mode=simulate
+2025-12-18 11:14:35 | ERROR   | market_bot | Anchor not found (threshold=0.80).
+2025-12-18 11:14:35 | ERROR   | market_bot | Cannot start: Cannot continue: market anchor not found.
+2025-12-18 11:14:47 | INFO    | market_bot | Bot started. level=65 sets=1 mode=simulate
+2025-12-18 11:14:48 | INFO    | market_bot | Anchor found. top_left=Point(x=1475, y=447) center=Point(x=1527, y=463) score=1.000
+2025-12-18 11:14:48 | INFO    | market_bot | ==== Quest: Больше голов снегобеев! | reward_per_set=55994 | reward_total=55994 | cat=Трофеи ====
+2025-12-18 11:14:48 | INFO    | market_bot | Collect/Plan item: 'Голова снегобея' required_qty=15 (one-page plan)
+2025-12-18 11:14:48 | WARNING | market_bot | OCR price failed: page=1 slot=1 conf=0.00 raw=''
+2025-12-18 11:14:48 | WARNING | market_bot | OCR price failed: page=1 slot=2 conf=0.00 raw=''
+2025-12-18 11:14:49 | WARNING | market_bot | OCR price failed: page=1 slot=3 conf=0.00 raw=''
+2025-12-18 11:14:49 | WARNING | market_bot | OCR price failed: page=1 slot=4 conf=0.00 raw=''
+2025-12-18 11:14:49 | WARNING | market_bot | OCR price failed: page=1 slot=5 conf=0.00 raw=''
+2025-12-18 11:14:49 | WARNING | market_bot | OCR price failed: page=1 slot=6 conf=0.00 raw=''
+2025-12-18 11:14:49 | WARNING | market_bot | OCR price failed: page=1 slot=7 conf=0.00 raw=''
+2025-12-18 11:14:49 | WARNING | market_bot | OCR price failed: page=1 slot=8 conf=0.00 raw=''
+2025-12-18 11:14:49 | INFO    | market_bot | Item data incomplete => skip quest. item='Голова снегобея' reason=cannot read slot1 price in pure simulate
+2025-12-18 11:14:49 | INFO    | market_bot | ==== Quest: Больше соли! | reward_per_set=64089 | reward_total=64089 | cat=Трофеи ====
+2025-12-18 11:14:49 | INFO    | market_bot | Collect/Plan item: 'Пещерная соль' required_qty=10 (one-page plan)
+2025-12-18 11:14:49 | WARNING | market_bot | OCR price failed: page=1 slot=1 conf=0.00 raw=''
+2025-12-18 11:14:49 | WARNING | market_bot | OCR price failed: page=1 slot=2 conf=0.00 raw=''
+2025-12-18 11:14:49 | WARNING | market_bot | OCR price failed: page=1 slot=3 conf=0.00 raw=''
+2025-12-18 11:14:50 | WARNING | market_bot | OCR price failed: page=1 slot=4 conf=0.00 raw=''
+2025-12-18 11:14:50 | WARNING | market_bot | OCR price failed: page=1 slot=5 conf=0.00 raw=''
+2025-12-18 11:14:50 | WARNING | market_bot | OCR price failed: page=1 slot=6 conf=0.00 raw=''
+2025-12-18 11:14:50 | WARNING | market_bot | OCR price failed: page=1 slot=7 conf=0.00 raw=''
+2025-12-18 11:14:50 | WARNING | market_bot | OCR price failed: page=1 slot=8 conf=0.00 raw=''
+2025-12-18 11:14:50 | INFO    | market_bot | Item data incomplete => skip quest. item='Пещерная соль' reason=cannot read slot1 price in pure simulate
+2025-12-18 11:14:50 | INFO    | market_bot | ==== Quest: Больше хвостиков роек! | reward_per_set=52315 | reward_total=52315 | cat=Трофеи ====
+2025-12-18 11:14:50 | INFO    | market_bot | Collect/Plan item: 'Хвостик ройки' required_qty=25 (one-page plan)
+2025-12-18 11:14:50 | WARNING | market_bot | OCR price failed: page=1 slot=1 conf=0.00 raw=''
+2025-12-18 11:14:50 | WARNING | market_bot | OCR price failed: page=1 slot=3 conf=0.00 raw=''
+2025-12-18 11:14:50 | WARNING | market_bot | OCR price failed: page=1 slot=2 conf=0.00 raw=''
+2025-12-18 11:14:50 | WARNING | market_bot | OCR price failed: page=1 slot=4 conf=0.00 raw=''
+2025-12-18 11:14:50 | WARNING | market_bot | OCR price failed: page=1 slot=5 conf=0.00 raw=''
+2025-12-18 11:14:51 | WARNING | market_bot | OCR price failed: page=1 slot=6 conf=0.00 raw=''
+2025-12-18 11:14:51 | WARNING | market_bot | OCR price failed: page=1 slot=7 conf=0.00 raw=''
+2025-12-18 11:14:51 | WARNING | market_bot | OCR price failed: page=1 slot=8 conf=0.00 raw=''
+2025-12-18 11:14:51 | INFO    | market_bot | Item data incomplete => skip quest. item='Хвостик ройки' reason=cannot read slot1 price in pure simulate
+2025-12-18 11:14:51 | INFO    | market_bot | ==== Quest: В поисках ценной оптики | reward_per_set=59978 | reward_total=59978 | cat=Трофеи ====
+2025-12-18 11:14:51 | INFO    | market_bot | Collect/Plan item: 'Пристрелочный монокуляр' required_qty=8 (one-page plan)
+2025-12-18 11:14:51 | WARNING | market_bot | OCR price failed: page=1 slot=3 conf=0.00 raw=''
+2025-12-18 11:14:51 | WARNING | market_bot | OCR price failed: page=1 slot=1 conf=0.00 raw=''
+2025-12-18 11:14:51 | WARNING | market_bot | OCR price failed: page=1 slot=2 conf=0.00 raw=''
+2025-12-18 11:14:51 | WARNING | market_bot | OCR price failed: page=1 slot=4 conf=0.00 raw=''
+2025-12-18 11:14:51 | WARNING | market_bot | OCR price failed: page=1 slot=5 conf=0.00 raw=''
+2025-12-18 11:14:51 | WARNING | market_bot | OCR price failed: page=1 slot=6 conf=0.00 raw=''
+2025-12-18 11:14:51 | WARNING | market_bot | OCR price failed: page=1 slot=7 conf=0.00 raw=''
+2025-12-18 11:14:52 | WARNING | market_bot | OCR price failed: page=1 slot=8 conf=0.00 raw=''
+2025-12-18 11:14:52 | INFO    | market_bot | Item data incomplete => skip quest. item='Пристрелочный монокуляр' reason=cannot read slot1 price in pure simulate
+2025-12-18 11:14:52 | INFO    | market_bot | ==== Quest: Голодающий егерь | reward_per_set=64089 | reward_total=64089 | cat=Трофеи ====
+2025-12-18 11:14:52 | INFO    | market_bot | Collect/Plan item: 'Мясо снежной жужи' required_qty=10 (one-page plan)
+2025-12-18 11:14:52 | WARNING | market_bot | OCR price failed: page=1 slot=3 conf=0.00 raw=''
+2025-12-18 11:14:52 | WARNING | market_bot | OCR price failed: page=1 slot=1 conf=0.00 raw=''
+2025-12-18 11:14:52 | WARNING | market_bot | OCR price failed: page=1 slot=2 conf=0.00 raw=''
+2025-12-18 11:14:52 | WARNING | market_bot | OCR price failed: page=1 slot=4 conf=0.00 raw=''
+2025-12-18 11:14:52 | WARNING | market_bot | OCR price failed: page=1 slot=5 conf=0.00 raw=''
+2025-12-18 11:14:52 | WARNING | market_bot | OCR price failed: page=1 slot=6 conf=0.00 raw=''
+2025-12-18 11:14:52 | WARNING | market_bot | OCR price failed: page=1 slot=7 conf=0.00 raw=''
+2025-12-18 11:14:52 | WARNING | market_bot | OCR price failed: page=1 slot=8 conf=0.00 raw=''
+2025-12-18 11:14:52 | INFO    | market_bot | Item data incomplete => skip quest. item='Мясо снежной жужи' reason=cannot read slot1 price in pure simulate
+2025-12-18 11:14:52 | INFO    | market_bot | ==== Quest: Добыча звёздной руды | reward_per_set=48750 | reward_total=48750 | cat=Ресурсы ====
+2025-12-18 11:14:52 | INFO    | market_bot | Collect/Plan item: 'Звездная руда' required_qty=9 (one-page plan)
+2025-12-18 11:14:52 | WARNING | market_bot | OCR price failed: page=1 slot=1 conf=0.00 raw=''
+2025-12-18 11:14:53 | WARNING | market_bot | OCR price failed: page=1 slot=3 conf=0.00 raw=''
+2025-12-18 11:14:53 | WARNING | market_bot | OCR price failed: page=1 slot=2 conf=0.00 raw=''
+2025-12-18 11:14:53 | WARNING | market_bot | OCR price failed: page=1 slot=4 conf=0.00 raw=''
+2025-12-18 11:14:53 | WARNING | market_bot | OCR price failed: page=1 slot=5 conf=0.00 raw=''
+2025-12-18 11:14:53 | WARNING | market_bot | OCR price failed: page=1 slot=6 conf=0.00 raw=''
+2025-12-18 11:14:53 | WARNING | market_bot | OCR price failed: page=1 slot=7 conf=0.00 raw=''
+2025-12-18 11:14:53 | WARNING | market_bot | OCR price failed: page=1 slot=8 conf=0.00 raw=''
+2025-12-18 11:14:53 | INFO    | market_bot | Item data incomplete => skip quest. item='Звездная руда' reason=cannot read slot1 price in pure simulate
+2025-12-18 11:14:53 | INFO    | market_bot | ==== Quest: Добыча зеленороста | reward_per_set=48750 | reward_total=48750 | cat=Трофеи ====
+2025-12-18 11:14:53 | INFO    | market_bot | Collect/Plan(image) item: 'Зеленорост' required_qty=9 budget_left=43875
+2025-12-18 11:14:53 | INFO    | market_bot | No icon matches >= thr on this page: item='Зеленорост' thr=0.86
+2025-12-18 11:14:53 | INFO    | market_bot | Item data incomplete => skip quest. item='Зеленорост' reason=insufficient supply: need=9 have=0
+2025-12-18 11:14:53 | INFO    | market_bot | ==== Quest: Добыча ледового серпантина | reward_per_set=48750 | reward_total=48750 | cat=Трофеи ====
+2025-12-18 11:14:53 | INFO    | market_bot | Collect/Plan item: 'Ледовый серпантин' required_qty=6 (one-page plan)
+2025-12-18 11:14:53 | WARNING | market_bot | OCR price failed: page=1 slot=1 conf=0.00 raw=''
+2025-12-18 11:14:53 | WARNING | market_bot | OCR price failed: page=1 slot=2 conf=0.00 raw=''
+2025-12-18 11:14:54 | WARNING | market_bot | OCR price failed: page=1 slot=3 conf=0.00 raw=''
+2025-12-18 11:14:54 | WARNING | market_bot | OCR price failed: page=1 slot=4 conf=0.00 raw=''
+2025-12-18 11:14:54 | WARNING | market_bot | OCR price failed: page=1 slot=5 conf=0.00 raw=''
+2025-12-18 11:14:54 | WARNING | market_bot | OCR price failed: page=1 slot=6 conf=0.00 raw=''
+2025-12-18 11:14:54 | WARNING | market_bot | OCR price failed: page=1 slot=7 conf=0.00 raw=''
+2025-12-18 11:14:54 | WARNING | market_bot | OCR price failed: page=1 slot=8 conf=0.00 raw=''
+2025-12-18 11:14:54 | INFO    | market_bot | Item data incomplete => skip quest. item='Ледовый серпантин' reason=cannot read slot1 price in pure simulate
+2025-12-18 11:14:54 | INFO    | market_bot | ==== Quest: Добыча магниевой руды | reward_per_set=48750 | reward_total=48750 | cat=Ресурсы ====
+2025-12-18 11:14:54 | INFO    | market_bot | Collect/Plan item: 'Магниевая руда' required_qty=5 (one-page plan)
+2025-12-18 11:14:54 | WARNING | market_bot | OCR price failed: page=1 slot=1 conf=0.00 raw=''
+2025-12-18 11:14:54 | WARNING | market_bot | OCR price failed: page=1 slot=2 conf=0.00 raw=''
+2025-12-18 11:14:54 | WARNING | market_bot | OCR price failed: page=1 slot=3 conf=0.00 raw=''
+2025-12-18 11:14:54 | WARNING | market_bot | OCR price failed: page=1 slot=4 conf=0.00 raw=''
+2025-12-18 11:14:55 | WARNING | market_bot | OCR price failed: page=1 slot=5 conf=0.00 raw=''
+2025-12-18 11:14:55 | WARNING | market_bot | OCR price failed: page=1 slot=6 conf=0.00 raw=''
+2025-12-18 11:14:55 | WARNING | market_bot | OCR price failed: page=1 slot=7 conf=0.00 raw=''
+2025-12-18 11:14:55 | WARNING | market_bot | OCR price failed: page=1 slot=8 conf=0.00 raw=''
+2025-12-18 11:14:55 | INFO    | market_bot | Item data incomplete => skip quest. item='Магниевая руда' reason=cannot read slot1 price in pure simulate
+2025-12-18 11:14:55 | INFO    | market_bot | ==== Quest: Добыча обыканской морошки | reward_per_set=48750 | reward_total=48750 | cat=Трофеи ====
+2025-12-18 11:14:55 | INFO    | market_bot | Collect/Plan item: 'Обыканская морошка' required_qty=5 (one-page plan)
+2025-12-18 11:14:55 | WARNING | market_bot | OCR price failed: page=1 slot=1 conf=0.00 raw=''
+2025-12-18 11:14:55 | WARNING | market_bot | OCR price failed: page=1 slot=3 conf=0.00 raw=''
+2025-12-18 11:14:55 | WARNING | market_bot | OCR price failed: page=1 slot=2 conf=0.00 raw=''
+2025-12-18 11:14:55 | WARNING | market_bot | OCR price failed: page=1 slot=4 conf=0.00 raw=''
+2025-12-18 11:14:56 | WARNING | market_bot | OCR price failed: page=1 slot=5 conf=0.00 raw=''
+2025-12-18 11:14:56 | WARNING | market_bot | OCR price failed: page=1 slot=6 conf=0.00 raw=''
+2025-12-18 11:14:56 | WARNING | market_bot | OCR price failed: page=1 slot=7 conf=0.00 raw=''
+2025-12-18 11:14:56 | WARNING | market_bot | OCR price failed: page=1 slot=8 conf=0.00 raw=''
+2025-12-18 11:14:56 | INFO    | market_bot | Item data incomplete => skip quest. item='Обыканская морошка' reason=cannot read slot1 price in pure simulate
+2025-12-18 11:14:56 | INFO    | market_bot | ==== Quest: Добыча ройкиного глаза | reward_per_set=48750 | reward_total=48750 | cat=Трофеи ====
+2025-12-18 11:14:56 | INFO    | market_bot | Collect/Plan item: 'Ройкин глаз' required_qty=6 (one-page plan)
+2025-12-18 11:14:56 | WARNING | market_bot | OCR price failed: page=1 slot=1 conf=0.00 raw=''
+2025-12-18 11:14:56 | WARNING | market_bot | OCR price failed: page=1 slot=3 conf=0.00 raw=''
+2025-12-18 11:14:57 | WARNING | market_bot | OCR price failed: page=1 slot=2 conf=0.00 raw=''
+2025-12-18 11:14:57 | WARNING | market_bot | OCR price failed: page=1 slot=4 conf=0.00 raw=''
+2025-12-18 11:14:57 | WARNING | market_bot | OCR price failed: page=1 slot=5 conf=0.00 raw=''
+2025-12-18 11:14:57 | WARNING | market_bot | OCR price failed: page=1 slot=6 conf=0.00 raw=''
+2025-12-18 11:14:57 | WARNING | market_bot | OCR price failed: page=1 slot=7 conf=0.00 raw=''
+2025-12-18 11:14:57 | WARNING | market_bot | OCR price failed: page=1 slot=8 conf=0.00 raw=''
+2025-12-18 11:14:57 | INFO    | market_bot | Item data incomplete => skip quest. item='Ройкин глаз' reason=cannot read slot1 price in pure simulate
+2025-12-18 11:14:57 | INFO    | market_bot | ==== Quest: Добыча стланика | reward_per_set=48750 | reward_total=48750 | cat=Трофеи ====
+2025-12-18 11:14:57 | INFO    | market_bot | Collect/Plan(image) item: 'Стланик' required_qty=7 budget_left=43875
+2025-12-18 11:14:57 | INFO    | market_bot | No icon matches >= thr on this page: item='Стланик' thr=0.86
+2025-12-18 11:14:57 | INFO    | market_bot | Item data incomplete => skip quest. item='Стланик' reason=insufficient supply: need=7 have=0
+2025-12-18 11:14:57 | INFO    | market_bot | ==== Quest: Добыча толстоцвета | reward_per_set=48750 | reward_total=48750 | cat=Трофеи ====
+2025-12-18 11:14:57 | INFO    | market_bot | Collect/Plan(image) item: 'Толстоцвет' required_qty=8 budget_left=43875
+2025-12-18 11:14:57 | INFO    | market_bot | No icon matches >= thr on this page: item='Толстоцвет' thr=0.86
+2025-12-18 11:14:57 | INFO    | market_bot | Item data incomplete => skip quest. item='Толстоцвет' reason=insufficient supply: need=8 have=0
+2025-12-18 11:14:57 | INFO    | market_bot | ==== Quest: Добыча хабульского корунда | reward_per_set=48750 | reward_total=48750 | cat=Трофеи ====
+2025-12-18 11:14:57 | INFO    | market_bot | Collect/Plan item: 'Хабульский корунд' required_qty=7 (one-page plan)
+2025-12-18 11:14:57 | WARNING | market_bot | OCR price failed: page=1 slot=1 conf=0.00 raw=''
+2025-12-18 11:14:58 | WARNING | market_bot | OCR price failed: page=1 slot=3 conf=0.00 raw=''
+2025-12-18 11:14:58 | WARNING | market_bot | OCR price failed: page=1 slot=2 conf=0.00 raw=''
+2025-12-18 11:14:58 | WARNING | market_bot | OCR price failed: page=1 slot=4 conf=0.00 raw=''
+2025-12-18 11:14:58 | WARNING | market_bot | OCR price failed: page=1 slot=5 conf=0.00 raw=''
+2025-12-18 11:14:58 | WARNING | market_bot | OCR price failed: page=1 slot=6 conf=0.00 raw=''
+2025-12-18 11:14:58 | WARNING | market_bot | OCR price failed: page=1 slot=7 conf=0.00 raw=''
+2025-12-18 11:14:58 | WARNING | market_bot | OCR price failed: page=1 slot=8 conf=0.00 raw=''
+2025-12-18 11:14:58 | INFO    | market_bot | Item data incomplete => skip quest. item='Хабульский корунд' reason=cannot read slot1 price in pure simulate
+2025-12-18 11:14:58 | INFO    | market_bot | ==== Quest: Ещё панцирей северных жуж! | reward_per_set=52315 | reward_total=52315 | cat=Трофеи ====
+2025-12-18 11:14:58 | INFO    | market_bot | Collect/Plan item: 'Панцирь северной жужи' required_qty=8 (one-page plan)
+2025-12-18 11:14:58 | WARNING | market_bot | OCR price failed: page=1 slot=1 conf=0.00 raw=''
+2025-12-18 11:14:58 | WARNING | market_bot | OCR price failed: page=1 slot=2 conf=0.00 raw=''
+2025-12-18 11:14:59 | WARNING | market_bot | OCR price failed: page=1 slot=3 conf=0.00 raw=''
+2025-12-18 11:14:59 | WARNING | market_bot | OCR price failed: page=1 slot=4 conf=0.00 raw=''
+2025-12-18 11:14:59 | WARNING | market_bot | OCR price failed: page=1 slot=5 conf=0.00 raw=''
+2025-12-18 11:14:59 | WARNING | market_bot | OCR price failed: page=1 slot=6 conf=0.00 raw=''
+2025-12-18 11:14:59 | WARNING | market_bot | OCR price failed: page=1 slot=7 conf=0.00 raw=''
+2025-12-18 11:14:59 | WARNING | market_bot | OCR price failed: page=1 slot=8 conf=0.00 raw=''
+2025-12-18 11:14:59 | INFO    | market_bot | Item data incomplete => skip quest. item='Панцирь северной жужи' reason=cannot read slot1 price in pure simulate
+2025-12-18 11:14:59 | INFO    | market_bot | ==== Quest: Запасы на будущее | reward_per_set=64089 | reward_total=64089 | cat=Трофеи ====
+2025-12-18 11:14:59 | INFO    | market_bot | Collect/Plan item: 'Альфа-бур' required_qty=15 (one-page plan)
+2025-12-18 11:14:59 | WARNING | market_bot | OCR price failed: page=1 slot=1 conf=0.00 raw=''
+2025-12-18 11:14:59 | WARNING | market_bot | OCR price failed: page=1 slot=2 conf=0.00 raw=''
+2025-12-18 11:14:59 | WARNING | market_bot | OCR price failed: page=1 slot=3 conf=0.00 raw=''
+2025-12-18 11:14:59 | WARNING | market_bot | OCR price failed: page=1 slot=4 conf=0.00 raw=''
+2025-12-18 11:15:00 | WARNING | market_bot | OCR price failed: page=1 slot=5 conf=0.00 raw=''
+2025-12-18 11:15:00 | WARNING | market_bot | OCR price failed: page=1 slot=6 conf=0.00 raw=''
+2025-12-18 11:15:00 | WARNING | market_bot | OCR price failed: page=1 slot=7 conf=0.00 raw=''
+2025-12-18 11:15:00 | WARNING | market_bot | OCR price failed: page=1 slot=8 conf=0.00 raw=''
+2025-12-18 11:15:00 | INFO    | market_bot | Item data incomplete => skip quest. item='Альфа-бур' reason=cannot read slot1 price in pure simulate
+2025-12-18 11:15:00 | INFO    | market_bot | ==== Quest: Зубы крылозуба | reward_per_set=59978 | reward_total=59978 | cat=Трофеи ====
+2025-12-18 11:15:00 | INFO    | market_bot | Collect/Plan item: 'Челюсть крылозуба' required_qty=40 (one-page plan)
+2025-12-18 11:15:00 | WARNING | market_bot | OCR price failed: page=1 slot=2 conf=0.00 raw=''
+2025-12-18 11:15:00 | WARNING | market_bot | OCR price failed: page=1 slot=1 conf=0.00 raw=''
+2025-12-18 11:15:00 | WARNING | market_bot | OCR price failed: page=1 slot=3 conf=0.00 raw=''
+2025-12-18 11:15:00 | WARNING | market_bot | OCR price failed: page=1 slot=4 conf=0.00 raw=''
+2025-12-18 11:15:00 | WARNING | market_bot | OCR price failed: page=1 slot=5 conf=0.00 raw=''
+2025-12-18 11:15:00 | WARNING | market_bot | OCR price failed: page=1 slot=6 conf=0.00 raw=''
+2025-12-18 11:15:01 | WARNING | market_bot | OCR price failed: page=1 slot=7 conf=0.00 raw=''
+2025-12-18 11:15:01 | WARNING | market_bot | OCR price failed: page=1 slot=8 conf=0.00 raw=''
+2025-12-18 11:15:01 | INFO    | market_bot | Item data incomplete => skip quest. item='Челюсть крылозуба' reason=cannot read slot1 price in pure simulate
+2025-12-18 11:15:01 | INFO    | market_bot | ==== Quest: Красота и противоядие | reward_per_set=64089 | reward_total=64089 | cat=Трофеи ====
+2025-12-18 11:15:01 | INFO    | market_bot | Collect/Plan item: 'Красивое перо' required_qty=25 (one-page plan)
+2025-12-18 11:15:01 | WARNING | market_bot | OCR price failed: page=1 slot=3 conf=0.00 raw=''
+2025-12-18 11:15:01 | WARNING | market_bot | OCR price failed: page=1 slot=2 conf=0.00 raw=''
+2025-12-18 11:15:01 | WARNING | market_bot | OCR price failed: page=1 slot=1 conf=0.00 raw=''
+2025-12-18 11:15:01 | WARNING | market_bot | OCR price failed: page=1 slot=4 conf=0.00 raw=''
+2025-12-18 11:15:01 | WARNING | market_bot | OCR price failed: page=1 slot=5 conf=0.00 raw=''
+2025-12-18 11:15:01 | WARNING | market_bot | OCR price failed: page=1 slot=6 conf=0.00 raw=''
+2025-12-18 11:15:01 | WARNING | market_bot | OCR price failed: page=1 slot=7 conf=0.00 raw=''
+2025-12-18 11:15:01 | WARNING | market_bot | OCR price failed: page=1 slot=8 conf=0.00 raw=''
+2025-12-18 11:15:01 | INFO    | market_bot | Item data incomplete => skip quest. item='Красивое перо' reason=cannot read slot1 price in pure simulate
+2025-12-18 11:15:01 | INFO    | market_bot | ==== Quest: Материал для потешных фигурок | reward_per_set=59978 | reward_total=59978 | cat=Трофеи ====
+2025-12-18 11:15:01 | INFO    | market_bot | Collect/Plan item: 'Регулятор снегобея' required_qty=14 (one-page plan)
+2025-12-18 11:15:02 | WARNING | market_bot | OCR price failed: page=1 slot=1 conf=0.00 raw=''
+2025-12-18 11:15:02 | WARNING | market_bot | OCR price failed: page=1 slot=3 conf=0.00 raw=''
+2025-12-18 11:15:02 | WARNING | market_bot | OCR price failed: page=1 slot=2 conf=0.00 raw=''
+2025-12-18 11:15:02 | WARNING | market_bot | OCR price failed: page=1 slot=4 conf=0.00 raw=''
+2025-12-18 11:15:02 | WARNING | market_bot | OCR price failed: page=1 slot=5 conf=0.00 raw=''
+2025-12-18 11:15:02 | WARNING | market_bot | OCR price failed: page=1 slot=6 conf=0.00 raw=''
+2025-12-18 11:15:02 | WARNING | market_bot | OCR price failed: page=1 slot=7 conf=0.00 raw=''
+2025-12-18 11:15:02 | WARNING | market_bot | OCR price failed: page=1 slot=8 conf=0.00 raw=''
+2025-12-18 11:15:02 | INFO    | market_bot | Item data incomplete => skip quest. item='Регулятор снегобея' reason=cannot read slot1 price in pure simulate
+2025-12-18 11:15:02 | INFO    | market_bot | ==== Quest: Надоедливые провокаторы | reward_per_set=64089 | reward_total=64089 | cat=Трофеи ====
+2025-12-18 11:15:02 | INFO    | market_bot | Collect/Plan item: 'Заклинившая бомба' required_qty=15 (one-page plan)
+2025-12-18 11:15:02 | WARNING | market_bot | OCR price failed: page=1 slot=1 conf=0.00 raw=''
+2025-12-18 11:15:03 | WARNING | market_bot | OCR price failed: page=1 slot=2 conf=0.00 raw=''
+2025-12-18 11:15:03 | WARNING | market_bot | OCR price failed: page=1 slot=3 conf=0.00 raw=''
+2025-12-18 11:15:03 | WARNING | market_bot | OCR price failed: page=1 slot=4 conf=0.00 raw=''
+2025-12-18 11:15:03 | WARNING | market_bot | OCR price failed: page=1 slot=5 conf=0.00 raw=''
+2025-12-18 11:15:03 | WARNING | market_bot | OCR price failed: page=1 slot=6 conf=0.00 raw=''
+2025-12-18 11:15:03 | WARNING | market_bot | OCR price failed: page=1 slot=7 conf=0.00 raw=''
+2025-12-18 11:15:03 | WARNING | market_bot | OCR price failed: page=1 slot=8 conf=0.00 raw=''
+2025-12-18 11:15:03 | INFO    | market_bot | Item data incomplete => skip quest. item='Заклинившая бомба' reason=cannot read slot1 price in pure simulate
+2025-12-18 11:15:03 | INFO    | market_bot | ==== Quest: Невыносимая пыль | reward_per_set=64089 | reward_total=64089 | cat=Трофеи ====
+2025-12-18 11:15:03 | INFO    | market_bot | Collect/Plan item: 'Кучка старой пыли' required_qty=20 (one-page plan)
+2025-12-18 11:15:03 | WARNING | market_bot | OCR price failed: page=1 slot=1 conf=0.00 raw=''
+2025-12-18 11:15:03 | WARNING | market_bot | OCR price failed: page=1 slot=2 conf=0.00 raw=''
+2025-12-18 11:15:03 | WARNING | market_bot | OCR price failed: page=1 slot=3 conf=0.00 raw=''
+2025-12-18 11:15:04 | WARNING | market_bot | OCR price failed: page=1 slot=4 conf=0.00 raw=''
+2025-12-18 11:15:04 | WARNING | market_bot | OCR price failed: page=1 slot=5 conf=0.00 raw=''
+2025-12-18 11:15:04 | WARNING | market_bot | OCR price failed: page=1 slot=6 conf=0.00 raw=''
+2025-12-18 11:15:04 | WARNING | market_bot | OCR price failed: page=1 slot=7 conf=0.00 raw=''
+2025-12-18 11:15:04 | WARNING | market_bot | OCR price failed: page=1 slot=8 conf=0.00 raw=''
+2025-12-18 11:15:04 | INFO    | market_bot | Item data incomplete => skip quest. item='Кучка старой пыли' reason=cannot read slot1 price in pure simulate
+2025-12-18 11:15:04 | INFO    | market_bot | ==== Quest: Охота на вальдерстая | reward_per_set=55994 | reward_total=55994 | cat=Трофеи ====
+2025-12-18 11:15:04 | INFO    | market_bot | Collect/Plan item: 'Шкура вальдерстая' required_qty=10 (one-page plan)
+2025-12-18 11:15:04 | WARNING | market_bot | OCR price failed: page=1 slot=3 conf=0.00 raw=''
+2025-12-18 11:15:04 | WARNING | market_bot | OCR price failed: page=1 slot=1 conf=0.00 raw=''
+2025-12-18 11:15:04 | WARNING | market_bot | OCR price failed: page=1 slot=2 conf=0.00 raw=''
+2025-12-18 11:15:04 | WARNING | market_bot | OCR price failed: page=1 slot=4 conf=0.00 raw=''
+2025-12-18 11:15:04 | WARNING | market_bot | OCR price failed: page=1 slot=5 conf=0.00 raw=''
+2025-12-18 11:15:05 | WARNING | market_bot | OCR price failed: page=1 slot=6 conf=0.00 raw=''
+2025-12-18 11:15:05 | WARNING | market_bot | OCR price failed: page=1 slot=7 conf=0.00 raw=''
+2025-12-18 11:15:05 | WARNING | market_bot | OCR price failed: page=1 slot=8 conf=0.00 raw=''
+2025-12-18 11:15:05 | INFO    | market_bot | Item data incomplete => skip quest. item='Шкура вальдерстая' reason=cannot read slot1 price in pure simulate
+2025-12-18 11:15:05 | INFO    | market_bot | ==== Quest: Ошейник, как символ преданности | reward_per_set=64089 | reward_total=64089 | cat=Трофеи ====
+2025-12-18 11:15:05 | INFO    | market_bot | Collect/Plan item: 'Ошейник вальдерстая' required_qty=10 (one-page plan)
+2025-12-18 11:15:05 | WARNING | market_bot | OCR price failed: page=1 slot=1 conf=0.00 raw=''
+2025-12-18 11:15:05 | WARNING | market_bot | OCR price failed: page=1 slot=3 conf=0.00 raw=''
+2025-12-18 11:15:05 | WARNING | market_bot | OCR price failed: page=1 slot=2 conf=0.00 raw=''
+2025-12-18 11:15:05 | WARNING | market_bot | OCR price failed: page=1 slot=4 conf=0.00 raw=''
+2025-12-18 11:15:05 | WARNING | market_bot | OCR price failed: page=1 slot=5 conf=0.00 raw=''
+2025-12-18 11:15:05 | WARNING | market_bot | OCR price failed: page=1 slot=6 conf=0.00 raw=''
+2025-12-18 11:15:05 | WARNING | market_bot | OCR price failed: page=1 slot=7 conf=0.00 raw=''
+2025-12-18 11:15:05 | WARNING | market_bot | OCR price failed: page=1 slot=8 conf=0.00 raw=''
+2025-12-18 11:15:05 | INFO    | market_bot | Item data incomplete => skip quest. item='Ошейник вальдерстая' reason=cannot read slot1 price in pure simulate
+2025-12-18 11:15:05 | INFO    | market_bot | ==== Quest: Панцири для спекулянта | reward_per_set=68522 | reward_total=68522 | cat=Трофеи ====
+2025-12-18 11:15:05 | INFO    | market_bot | Collect/Plan item: 'Панцирь снегобея' required_qty=20 (one-page plan)
+2025-12-18 11:15:06 | WARNING | market_bot | OCR price failed: page=1 slot=1 conf=0.00 raw=''
+2025-12-18 11:15:06 | WARNING | market_bot | OCR price failed: page=1 slot=3 conf=0.00 raw=''
+2025-12-18 11:15:06 | WARNING | market_bot | OCR price failed: page=1 slot=2 conf=0.00 raw=''
+2025-12-18 11:15:06 | WARNING | market_bot | OCR price failed: page=1 slot=4 conf=0.00 raw=''
+2025-12-18 11:15:06 | WARNING | market_bot | OCR price failed: page=1 slot=5 conf=0.00 raw=''
+2025-12-18 11:15:06 | WARNING | market_bot | OCR price failed: page=1 slot=6 conf=0.00 raw=''
+2025-12-18 11:15:06 | WARNING | market_bot | OCR price failed: page=1 slot=7 conf=0.00 raw=''
+2025-12-18 11:15:06 | WARNING | market_bot | OCR price failed: page=1 slot=8 conf=0.00 raw=''
+2025-12-18 11:15:06 | INFO    | market_bot | Item data incomplete => skip quest. item='Панцирь снегобея' reason=cannot read slot1 price in pure simulate
+2025-12-18 11:15:06 | INFO    | market_bot | Stop requested by user. Exiting run loop.
+2025-12-18 11:15:06 | INFO    | market_bot | Bot finished.
+2025-12-18 11:15:10 | INFO    | market_bot | Bot started. level=65 sets=1 mode=simulate
+2025-12-18 11:15:11 | INFO    | market_bot | Anchor found. top_left=Point(x=1475, y=447) center=Point(x=1527, y=463) score=1.000
+2025-12-18 11:15:11 | INFO    | market_bot | ==== Quest: Больше голов снегобеев! | reward_per_set=55994 | reward_total=55994 | cat=Трофеи ====
+2025-12-18 11:15:11 | INFO    | market_bot | Collect/Plan item: 'Голова снегобея' required_qty=15 (one-page plan)
+2025-12-18 11:15:11 | WARNING | market_bot | OCR price failed: page=1 slot=1 conf=0.00 raw=''
+2025-12-18 11:15:12 | WARNING | market_bot | OCR price failed: page=1 slot=2 conf=0.00 raw=''
+2025-12-18 11:15:12 | WARNING | market_bot | OCR price failed: page=1 slot=3 conf=0.00 raw=''
+2025-12-18 11:15:12 | WARNING | market_bot | OCR price failed: page=1 slot=4 conf=0.00 raw=''
+2025-12-18 11:15:12 | WARNING | market_bot | OCR price failed: page=1 slot=5 conf=0.00 raw=''
+2025-12-18 11:15:12 | WARNING | market_bot | OCR price failed: page=1 slot=6 conf=0.00 raw=''
+2025-12-18 11:15:12 | WARNING | market_bot | OCR price failed: page=1 slot=7 conf=0.00 raw=''
+2025-12-18 11:15:12 | WARNING | market_bot | OCR price failed: page=1 slot=8 conf=0.00 raw=''
+2025-12-18 11:15:12 | INFO    | market_bot | Item data incomplete => skip quest. item='Голова снегобея' reason=cannot read slot1 price in pure simulate
+2025-12-18 11:15:12 | INFO    | market_bot | ==== Quest: Больше соли! | reward_per_set=64089 | reward_total=64089 | cat=Трофеи ====
+2025-12-18 11:15:12 | INFO    | market_bot | Collect/Plan item: 'Пещерная соль' required_qty=10 (one-page plan)
+2025-12-18 11:15:12 | WARNING | market_bot | OCR price failed: page=1 slot=1 conf=0.00 raw=''
+2025-12-18 11:15:13 | WARNING | market_bot | OCR price failed: page=1 slot=2 conf=0.00 raw=''
+2025-12-18 11:15:13 | WARNING | market_bot | OCR price failed: page=1 slot=3 conf=0.00 raw=''
+2025-12-18 11:15:13 | WARNING | market_bot | OCR price failed: page=1 slot=4 conf=0.00 raw=''
+2025-12-18 11:15:13 | WARNING | market_bot | OCR price failed: page=1 slot=5 conf=0.00 raw=''
+2025-12-18 11:15:13 | WARNING | market_bot | OCR price failed: page=1 slot=6 conf=0.00 raw=''
+2025-12-18 11:15:13 | WARNING | market_bot | OCR price failed: page=1 slot=7 conf=0.00 raw=''
+2025-12-18 11:15:13 | WARNING | market_bot | OCR price failed: page=1 slot=8 conf=0.00 raw=''
+2025-12-18 11:15:13 | INFO    | market_bot | Item data incomplete => skip quest. item='Пещерная соль' reason=cannot read slot1 price in pure simulate
+2025-12-18 11:15:13 | INFO    | market_bot | ==== Quest: Больше хвостиков роек! | reward_per_set=52315 | reward_total=52315 | cat=Трофеи ====
+2025-12-18 11:15:13 | INFO    | market_bot | Collect/Plan item: 'Хвостик ройки' required_qty=25 (one-page plan)
+2025-12-18 11:15:13 | WARNING | market_bot | OCR price failed: page=1 slot=2 conf=0.00 raw=''
+2025-12-18 11:15:13 | WARNING | market_bot | OCR price failed: page=1 slot=1 conf=0.00 raw=''
+2025-12-18 11:15:14 | WARNING | market_bot | OCR price failed: page=1 slot=3 conf=0.00 raw=''
+2025-12-18 11:15:14 | WARNING | market_bot | OCR price failed: page=1 slot=4 conf=0.00 raw=''
+2025-12-18 11:15:14 | WARNING | market_bot | OCR price failed: page=1 slot=5 conf=0.00 raw=''
+2025-12-18 11:15:14 | WARNING | market_bot | OCR price failed: page=1 slot=6 conf=0.00 raw=''
+2025-12-18 11:15:14 | WARNING | market_bot | OCR price failed: page=1 slot=7 conf=0.00 raw=''
+2025-12-18 11:15:14 | WARNING | market_bot | OCR price failed: page=1 slot=8 conf=0.00 raw=''
+2025-12-18 11:15:14 | INFO    | market_bot | Item data incomplete => skip quest. item='Хвостик ройки' reason=cannot read slot1 price in pure simulate
+2025-12-18 11:15:14 | INFO    | market_bot | ==== Quest: В поисках ценной оптики | reward_per_set=59978 | reward_total=59978 | cat=Трофеи ====
+2025-12-18 11:15:14 | INFO    | market_bot | Collect/Plan item: 'Пристрелочный монокуляр' required_qty=8 (one-page plan)
+2025-12-18 11:15:14 | WARNING | market_bot | OCR price failed: page=1 slot=3 conf=0.00 raw=''
+2025-12-18 11:15:14 | WARNING | market_bot | OCR price failed: page=1 slot=2 conf=0.00 raw=''
+2025-12-18 11:15:14 | WARNING | market_bot | OCR price failed: page=1 slot=1 conf=0.00 raw=''
+2025-12-18 11:15:14 | WARNING | market_bot | OCR price failed: page=1 slot=4 conf=0.00 raw=''
+2025-12-18 11:15:15 | WARNING | market_bot | OCR price failed: page=1 slot=5 conf=0.00 raw=''
+2025-12-18 11:15:15 | WARNING | market_bot | OCR price failed: page=1 slot=6 conf=0.00 raw=''
+2025-12-18 11:15:15 | WARNING | market_bot | OCR price failed: page=1 slot=7 conf=0.00 raw=''
+2025-12-18 11:15:15 | WARNING | market_bot | OCR price failed: page=1 slot=8 conf=0.00 raw=''
+2025-12-18 11:15:15 | INFO    | market_bot | Item data incomplete => skip quest. item='Пристрелочный монокуляр' reason=cannot read slot1 price in pure simulate
+2025-12-18 11:15:15 | INFO    | market_bot | ==== Quest: Голодающий егерь | reward_per_set=64089 | reward_total=64089 | cat=Трофеи ====
+2025-12-18 11:15:15 | INFO    | market_bot | Collect/Plan item: 'Мясо снежной жужи' required_qty=10 (one-page plan)
+2025-12-18 11:15:15 | WARNING | market_bot | OCR price failed: page=1 slot=2 conf=0.00 raw=''
+2025-12-18 11:15:15 | WARNING | market_bot | OCR price failed: page=1 slot=3 conf=0.00 raw=''
+2025-12-18 11:15:15 | WARNING | market_bot | OCR price failed: page=1 slot=1 conf=0.00 raw=''
+2025-12-18 11:15:15 | WARNING | market_bot | OCR price failed: page=1 slot=4 conf=0.00 raw=''
+2025-12-18 11:15:15 | WARNING | market_bot | OCR price failed: page=1 slot=5 conf=0.00 raw=''
+2025-12-18 11:15:15 | WARNING | market_bot | OCR price failed: page=1 slot=6 conf=0.00 raw=''
+2025-12-18 11:15:15 | WARNING | market_bot | OCR price failed: page=1 slot=7 conf=0.00 raw=''
+2025-12-18 11:15:16 | WARNING | market_bot | OCR price failed: page=1 slot=8 conf=0.00 raw=''
+2025-12-18 11:15:16 | INFO    | market_bot | Item data incomplete => skip quest. item='Мясо снежной жужи' reason=cannot read slot1 price in pure simulate
+2025-12-18 11:15:16 | INFO    | market_bot | ==== Quest: Добыча звёздной руды | reward_per_set=48750 | reward_total=48750 | cat=Ресурсы ====
+2025-12-18 11:15:16 | INFO    | market_bot | Collect/Plan item: 'Звездная руда' required_qty=9 (one-page plan)
+2025-12-18 11:15:16 | WARNING | market_bot | OCR price failed: page=1 slot=2 conf=0.00 raw=''
+2025-12-18 11:15:16 | WARNING | market_bot | OCR price failed: page=1 slot=3 conf=0.00 raw=''
+2025-12-18 11:15:16 | WARNING | market_bot | OCR price failed: page=1 slot=1 conf=0.00 raw=''
+2025-12-18 11:15:16 | WARNING | market_bot | OCR price failed: page=1 slot=4 conf=0.00 raw=''
+2025-12-18 11:15:16 | WARNING | market_bot | OCR price failed: page=1 slot=5 conf=0.00 raw=''
+2025-12-18 11:15:16 | WARNING | market_bot | OCR price failed: page=1 slot=6 conf=0.00 raw=''
+2025-12-18 11:15:16 | WARNING | market_bot | OCR price failed: page=1 slot=7 conf=0.00 raw=''
+2025-12-18 11:15:16 | WARNING | market_bot | OCR price failed: page=1 slot=8 conf=0.00 raw=''
+2025-12-18 11:15:16 | INFO    | market_bot | Item data incomplete => skip quest. item='Звездная руда' reason=cannot read slot1 price in pure simulate
+2025-12-18 11:15:16 | INFO    | market_bot | ==== Quest: Добыча зеленороста | reward_per_set=48750 | reward_total=48750 | cat=Трофеи ====
+2025-12-18 11:15:16 | INFO    | market_bot | Collect/Plan(image) item: 'Зеленорост' required_qty=9 budget_left=43875
+2025-12-18 11:15:16 | INFO    | market_bot | No icon matches >= thr on this page: item='Зеленорост' thr=0.86
+2025-12-18 11:15:16 | INFO    | market_bot | Item data incomplete => skip quest. item='Зеленорост' reason=insufficient supply: need=9 have=0
+2025-12-18 11:15:16 | INFO    | market_bot | ==== Quest: Добыча ледового серпантина | reward_per_set=48750 | reward_total=48750 | cat=Трофеи ====
+2025-12-18 11:15:16 | INFO    | market_bot | Collect/Plan item: 'Ледовый серпантин' required_qty=6 (one-page plan)
+2025-12-18 11:15:16 | WARNING | market_bot | OCR price failed: page=1 slot=1 conf=0.00 raw=''
+2025-12-18 11:15:17 | WARNING | market_bot | OCR price failed: page=1 slot=2 conf=0.00 raw=''
+2025-12-18 11:15:17 | WARNING | market_bot | OCR price failed: page=1 slot=3 conf=0.00 raw=''
+2025-12-18 11:15:17 | WARNING | market_bot | OCR price failed: page=1 slot=4 conf=0.00 raw=''
+2025-12-18 11:15:17 | WARNING | market_bot | OCR price failed: page=1 slot=5 conf=0.00 raw=''
+2025-12-18 11:15:17 | WARNING | market_bot | OCR price failed: page=1 slot=6 conf=0.00 raw=''
+2025-12-18 11:15:17 | WARNING | market_bot | OCR price failed: page=1 slot=7 conf=0.00 raw=''
+2025-12-18 11:15:17 | WARNING | market_bot | OCR price failed: page=1 slot=8 conf=0.00 raw=''
+2025-12-18 11:15:17 | INFO    | market_bot | Item data incomplete => skip quest. item='Ледовый серпантин' reason=cannot read slot1 price in pure simulate
+2025-12-18 11:15:17 | INFO    | market_bot | ==== Quest: Добыча магниевой руды | reward_per_set=48750 | reward_total=48750 | cat=Ресурсы ====
+2025-12-18 11:15:17 | INFO    | market_bot | Collect/Plan item: 'Магниевая руда' required_qty=5 (one-page plan)
+2025-12-18 11:15:17 | WARNING | market_bot | OCR price failed: page=1 slot=1 conf=0.00 raw=''
+2025-12-18 11:15:17 | WARNING | market_bot | OCR price failed: page=1 slot=3 conf=0.00 raw=''
+2025-12-18 11:15:17 | WARNING | market_bot | OCR price failed: page=1 slot=2 conf=0.00 raw=''
+2025-12-18 11:15:17 | WARNING | market_bot | OCR price failed: page=1 slot=4 conf=0.00 raw=''
+2025-12-18 11:15:18 | WARNING | market_bot | OCR price failed: page=1 slot=5 conf=0.00 raw=''
+2025-12-18 11:15:18 | WARNING | market_bot | OCR price failed: page=1 slot=6 conf=0.00 raw=''
+2025-12-18 11:15:18 | WARNING | market_bot | OCR price failed: page=1 slot=7 conf=0.00 raw=''
+2025-12-18 11:15:18 | WARNING | market_bot | OCR price failed: page=1 slot=8 conf=0.00 raw=''
+2025-12-18 11:15:18 | INFO    | market_bot | Item data incomplete => skip quest. item='Магниевая руда' reason=cannot read slot1 price in pure simulate
+2025-12-18 11:15:18 | INFO    | market_bot | ==== Quest: Добыча обыканской морошки | reward_per_set=48750 | reward_total=48750 | cat=Трофеи ====
+2025-12-18 11:15:18 | INFO    | market_bot | Collect/Plan item: 'Обыканская морошка' required_qty=5 (one-page plan)
+2025-12-18 11:15:18 | WARNING | market_bot | OCR price failed: page=1 slot=1 conf=0.00 raw=''
+2025-12-18 11:15:18 | WARNING | market_bot | OCR price failed: page=1 slot=3 conf=0.00 raw=''
+2025-12-18 11:15:18 | WARNING | market_bot | OCR price failed: page=1 slot=2 conf=0.00 raw=''
+2025-12-18 11:15:18 | WARNING | market_bot | OCR price failed: page=1 slot=4 conf=0.00 raw=''
+2025-12-18 11:15:18 | WARNING | market_bot | OCR price failed: page=1 slot=5 conf=0.00 raw=''
+2025-12-18 11:15:18 | WARNING | market_bot | OCR price failed: page=1 slot=6 conf=0.00 raw=''
+2025-12-18 11:15:18 | WARNING | market_bot | OCR price failed: page=1 slot=7 conf=0.00 raw=''
+2025-12-18 11:15:19 | WARNING | market_bot | OCR price failed: page=1 slot=8 conf=0.00 raw=''
+2025-12-18 11:15:19 | INFO    | market_bot | Item data incomplete => skip quest. item='Обыканская морошка' reason=cannot read slot1 price in pure simulate
+2025-12-18 11:15:19 | INFO    | market_bot | ==== Quest: Добыча ройкиного глаза | reward_per_set=48750 | reward_total=48750 | cat=Трофеи ====
+2025-12-18 11:15:19 | INFO    | market_bot | Collect/Plan item: 'Ройкин глаз' required_qty=6 (one-page plan)
+2025-12-18 11:15:19 | WARNING | market_bot | OCR price failed: page=1 slot=2 conf=0.00 raw=''
+2025-12-18 11:15:19 | WARNING | market_bot | OCR price failed: page=1 slot=1 conf=0.00 raw=''
+2025-12-18 11:15:19 | WARNING | market_bot | OCR price failed: page=1 slot=3 conf=0.00 raw=''
+2025-12-18 11:15:19 | WARNING | market_bot | OCR price failed: page=1 slot=4 conf=0.00 raw=''
+2025-12-18 11:15:19 | WARNING | market_bot | OCR price failed: page=1 slot=5 conf=0.00 raw=''
+2025-12-18 11:15:19 | WARNING | market_bot | OCR price failed: page=1 slot=6 conf=0.00 raw=''
+2025-12-18 11:15:19 | WARNING | market_bot | OCR price failed: page=1 slot=7 conf=0.00 raw=''
+2025-12-18 11:15:19 | WARNING | market_bot | OCR price failed: page=1 slot=8 conf=0.00 raw=''
+2025-12-18 11:15:19 | INFO    | market_bot | Item data incomplete => skip quest. item='Ройкин глаз' reason=cannot read slot1 price in pure simulate
+2025-12-18 11:15:19 | INFO    | market_bot | ==== Quest: Добыча стланика | reward_per_set=48750 | reward_total=48750 | cat=Трофеи ====
+2025-12-18 11:15:19 | INFO    | market_bot | Collect/Plan(image) item: 'Стланик' required_qty=7 budget_left=43875
+2025-12-18 11:15:19 | INFO    | market_bot | No icon matches >= thr on this page: item='Стланик' thr=0.86
+2025-12-18 11:15:19 | INFO    | market_bot | Item data incomplete => skip quest. item='Стланик' reason=insufficient supply: need=7 have=0
+2025-12-18 11:15:19 | INFO    | market_bot | ==== Quest: Добыча толстоцвета | reward_per_set=48750 | reward_total=48750 | cat=Трофеи ====
+2025-12-18 11:15:19 | INFO    | market_bot | Collect/Plan(image) item: 'Толстоцвет' required_qty=8 budget_left=43875
+2025-12-18 11:15:19 | INFO    | market_bot | No icon matches >= thr on this page: item='Толстоцвет' thr=0.86
+2025-12-18 11:15:19 | INFO    | market_bot | Item data incomplete => skip quest. item='Толстоцвет' reason=insufficient supply: need=8 have=0
+2025-12-18 11:15:19 | INFO    | market_bot | ==== Quest: Добыча хабульского корунда | reward_per_set=48750 | reward_total=48750 | cat=Трофеи ====
+2025-12-18 11:15:19 | INFO    | market_bot | Collect/Plan item: 'Хабульский корунд' required_qty=7 (one-page plan)
+2025-12-18 11:15:20 | WARNING | market_bot | OCR price failed: page=1 slot=1 conf=0.00 raw=''
+2025-12-18 11:15:20 | WARNING | market_bot | OCR price failed: page=1 slot=3 conf=0.00 raw=''
+2025-12-18 11:15:20 | WARNING | market_bot | OCR price failed: page=1 slot=2 conf=0.00 raw=''
+2025-12-18 11:15:20 | WARNING | market_bot | OCR price failed: page=1 slot=4 conf=0.00 raw=''
+2025-12-18 11:15:20 | WARNING | market_bot | OCR price failed: page=1 slot=5 conf=0.00 raw=''
+2025-12-18 11:15:20 | WARNING | market_bot | OCR price failed: page=1 slot=6 conf=0.00 raw=''
+2025-12-18 11:15:20 | WARNING | market_bot | OCR price failed: page=1 slot=7 conf=0.00 raw=''
+2025-12-18 11:15:20 | WARNING | market_bot | OCR price failed: page=1 slot=8 conf=0.00 raw=''
+2025-12-18 11:15:20 | INFO    | market_bot | Item data incomplete => skip quest. item='Хабульский корунд' reason=cannot read slot1 price in pure simulate
+2025-12-18 11:15:20 | INFO    | market_bot | Stop requested by user. Exiting run loop.
+2025-12-18 11:15:20 | INFO    | market_bot | Bot finished.
+2025-12-18 11:15:26 | INFO    | market_bot | Bot started. level=65 sets=1 mode=run
+2025-12-18 11:15:27 | INFO    | market_bot | Anchor found. top_left=Point(x=1475, y=447) center=Point(x=1527, y=463) score=1.000
+2025-12-18 11:15:27 | INFO    | market_bot | ==== Quest: Больше голов снегобеев! | reward_per_set=55994 | reward_total=55994 | cat=Трофеи ====
+2025-12-18 11:15:27 | INFO    | market_bot | Open category Трофеи at Point(x=1257, y=826) (dbl click)
+2025-12-18 11:15:28 | INFO    | market_bot | Collect/Plan item: 'Голова снегобея' required_qty=15 (one-page plan)
+2025-12-18 11:15:28 | INFO    | market_bot | Focus search field at Point(x=1163, y=512)
+2025-12-18 11:15:31 | INFO    | market_bot | Price: page=1 slot=1 price=3099 conf=1.00 raw='3099' (easyocr)
+2025-12-18 11:15:31 | INFO    | market_bot | Price: page=1 slot=2 price=8100 conf=0.96 raw='8100' (easyocr)
+2025-12-18 11:15:31 | INFO    | market_bot | Price: page=1 slot=3 price=8100 conf=0.92 raw='8100' (easyocr)
+2025-12-18 11:15:31 | INFO    | market_bot | Price: page=1 slot=4 price=3150 conf=1.00 raw='3150' (easyocr)
+2025-12-18 11:15:32 | INFO    | market_bot | Price: page=1 slot=5 price=3200 conf=1.00 raw='3200' (easyocr)
+2025-12-18 11:15:32 | INFO    | market_bot | Price: page=1 slot=6 price=3350 conf=1.00 raw='3350' (easyocr)
+2025-12-18 11:15:32 | INFO    | market_bot | Price: page=1 slot=7 price=3599 conf=1.00 raw='3599' (easyocr)
+2025-12-18 11:15:32 | INFO    | market_bot | Price: page=1 slot=8 price=3600 conf=0.74 raw='3600' (easyocr)
+2025-12-18 11:15:32 | INFO    | market_bot | Open lot modal: slot=1 at Point(x=1537, y=592) (dbl click)
+2025-12-18 11:15:34 | INFO    | market_bot | Buy button found by template at Point(x=1208, y=790) (score=1.000)
+2025-12-18 11:15:34 | INFO    | market_bot | Cancel button found by template at Point(x=1347, y=791) (score=1.000)
+2025-12-18 11:15:34 | INFO    | market_bot | Read seller qty: click input at Point(x=1388, y=703)
+2025-12-18 11:15:35 | INFO    | market_bot | Seller qty OCR fallback: None conf=0.00 raw=''
+2025-12-18 11:15:35 | INFO    | market_bot | Click CANCEL at Point(x=1347, y=791)
+2025-12-18 11:15:36 | INFO    | market_bot | Plan: not affordable at slot=2 price=8100 -> min_possible=121500 > max_budget=50395
+2025-12-18 11:15:36 | INFO    | market_bot | Item plan failed => skip quest. item='Голова снегобея' reason=cannot build plan on first page (qty/price mismatch or insufficient)
+2025-12-18 11:15:36 | INFO    | market_bot | ==== Quest: Больше соли! | reward_per_set=64089 | reward_total=64089 | cat=Трофеи ====
+2025-12-18 11:15:36 | INFO    | market_bot | Open category Трофеи at Point(x=1257, y=826) (dbl click)
+2025-12-18 11:15:36 | INFO    | market_bot | Collect/Plan item: 'Пещерная соль' required_qty=10 (one-page plan)
+2025-12-18 11:15:36 | INFO    | market_bot | Focus search field at Point(x=1163, y=512)
+2025-12-18 11:15:39 | INFO    | market_bot | Price: page=1 slot=1 price=3099 conf=1.00 raw='3099' (easyocr)
+2025-12-18 11:15:39 | INFO    | market_bot | Price: page=1 slot=2 price=8100 conf=0.96 raw='8100' (easyocr)
+2025-12-18 11:15:39 | INFO    | market_bot | Price: page=1 slot=3 price=8100 conf=0.92 raw='8100' (easyocr)
+2025-12-18 11:15:39 | INFO    | market_bot | Price: page=1 slot=4 price=3150 conf=1.00 raw='3150' (easyocr)
+2025-12-18 11:15:39 | INFO    | market_bot | Price: page=1 slot=5 price=3200 conf=1.00 raw='3200' (easyocr)
+2025-12-18 11:15:39 | INFO    | market_bot | Price: page=1 slot=6 price=3350 conf=1.00 raw='3350' (easyocr)
+2025-12-18 11:15:39 | INFO    | market_bot | Price: page=1 slot=7 price=3599 conf=1.00 raw='3599' (easyocr)
+2025-12-18 11:15:39 | INFO    | market_bot | Price: page=1 slot=8 price=3600 conf=0.74 raw='3600' (easyocr)
+2025-12-18 11:15:39 | INFO    | market_bot | Open lot modal: slot=1 at Point(x=1537, y=592) (dbl click)
+2025-12-18 11:15:42 | INFO    | market_bot | Buy button fallback point: Point(x=1464, y=740)
+2025-12-18 11:15:42 | INFO    | market_bot | Cancel button fallback point: Point(x=1645, y=658)
+2025-12-18 11:15:42 | INFO    | market_bot | Read seller qty: click input at Point(x=1644, y=653)
+2025-12-18 11:15:43 | INFO    | market_bot | Seller qty OCR fallback: 3100 conf=1.00 raw='3100'
+2025-12-18 11:15:43 | INFO    | market_bot | Click CANCEL at Point(x=1645, y=658)
+2025-12-18 11:15:44 | INFO    | market_bot | Quest cost estimate: 30990 | reward_total=64089 | delta=33099
+2025-12-18 11:15:44 | INFO    | market_bot | Decision: PROFITABLE => proceed.
+2025-12-18 11:15:44 | INFO    | market_bot | Quest summary: reward=64089 planned_cost=30990 expected_profit=33099 (plans=30990 items_est=0)
+2025-12-18 11:15:44 | INFO    | market_bot | Profit check (PERCENT): expected=33099 required>=6409 (10.00% of reward=64089)
+2025-12-18 11:15:44 | INFO    | market_bot | BUY step 1/1: planned slot=1 take=10 price=3099
+2025-12-18 11:15:44 | INFO    | market_bot | Open lot modal: slot=1 at Point(x=1537, y=592) (dbl click)
+2025-12-18 11:15:49 | INFO    | market_bot | Logging initialized: logs\market_bot.log
+2025-12-18 11:15:55 | INFO    | market_bot | Bot started. level=60 sets=1 mode=simulate
+2025-12-18 11:15:56 | ERROR   | market_bot | Anchor not found (threshold=0.80).
+2025-12-18 11:15:56 | ERROR   | market_bot | Cannot start: Cannot continue: market anchor not found.
+2025-12-18 11:16:04 | INFO    | market_bot | Bot started. level=60 sets=1 mode=simulate
+2025-12-18 11:16:05 | INFO    | market_bot | Anchor found. top_left=Point(x=1475, y=447) center=Point(x=1527, y=463) score=1.000
+2025-12-18 11:16:05 | INFO    | market_bot | ==== Quest: Больше голов снегобеев! | reward_per_set=43072 | reward_total=43072 | cat=Трофеи ====
+2025-12-18 11:16:05 | INFO    | market_bot | Collect/Plan item: 'Голова снегобея' required_qty=15 (one-page plan)
+2025-12-18 11:16:05 | INFO    | market_bot | Price: page=1 slot=1 price=3099 conf=1.00 raw='3099' (easyocr)
+2025-12-18 11:16:05 | INFO    | market_bot | Price: page=1 slot=2 price=8100 conf=0.96 raw='8100' (easyocr)
+2025-12-18 11:16:05 | INFO    | market_bot | Price: page=1 slot=3 price=8100 conf=0.92 raw='8100' (easyocr)
+2025-12-18 11:16:05 | INFO    | market_bot | Price: page=1 slot=4 price=3150 conf=1.00 raw='3150' (easyocr)
+2025-12-18 11:16:05 | INFO    | market_bot | Price: page=1 slot=5 price=3200 conf=1.00 raw='3200' (easyocr)
+2025-12-18 11:16:05 | INFO    | market_bot | Price: page=1 slot=6 price=3350 conf=1.00 raw='3350' (easyocr)
+2025-12-18 11:16:05 | INFO    | market_bot | Price: page=1 slot=7 price=3599 conf=1.00 raw='3599' (easyocr)
+2025-12-18 11:16:05 | INFO    | market_bot | Price: page=1 slot=8 price=3600 conf=0.74 raw='3600' (easyocr)
+2025-12-18 11:16:05 | INFO    | market_bot | Quest cost estimate: 46485 | reward_total=43072 | delta=-3413
+2025-12-18 11:16:05 | INFO    | market_bot | Decision: SKIP (not profitable).
+2025-12-18 11:16:05 | INFO    | market_bot | ==== Quest: Больше соли! | reward_per_set=49299 | reward_total=49299 | cat=Трофеи ====
+2025-12-18 11:16:05 | INFO    | market_bot | Collect/Plan item: 'Пещерная соль' required_qty=10 (one-page plan)
+2025-12-18 11:16:05 | INFO    | market_bot | Price: page=1 slot=1 price=3099 conf=1.00 raw='3099' (easyocr)
+2025-12-18 11:16:06 | INFO    | market_bot | Price: page=1 slot=2 price=8100 conf=0.96 raw='8100' (easyocr)
+2025-12-18 11:16:06 | INFO    | market_bot | Price: page=1 slot=3 price=8100 conf=0.92 raw='8100' (easyocr)
+2025-12-18 11:16:06 | INFO    | market_bot | Price: page=1 slot=4 price=3150 conf=1.00 raw='3150' (easyocr)
+2025-12-18 11:16:06 | INFO    | market_bot | Price: page=1 slot=5 price=3200 conf=1.00 raw='3200' (easyocr)
+2025-12-18 11:16:06 | INFO    | market_bot | Price: page=1 slot=6 price=3350 conf=1.00 raw='3350' (easyocr)
+2025-12-18 11:16:06 | INFO    | market_bot | Price: page=1 slot=7 price=3599 conf=1.00 raw='3599' (easyocr)
+2025-12-18 11:16:06 | INFO    | market_bot | Price: page=1 slot=8 price=3600 conf=0.74 raw='3600' (easyocr)
+2025-12-18 11:16:06 | INFO    | market_bot | Quest cost estimate: 30990 | reward_total=49299 | delta=18309
+2025-12-18 11:16:06 | INFO    | market_bot | Decision: PROFITABLE => proceed.
+2025-12-18 11:16:06 | INFO    | market_bot | SIMULATE mode: no inputs. Would buy items: ['Пещерная соль']
+2025-12-18 11:16:06 | INFO    | market_bot | ==== Quest: Больше хвостиков роек! | reward_per_set=40242 | reward_total=40242 | cat=Трофеи ====
+2025-12-18 11:16:06 | INFO    | market_bot | Collect/Plan item: 'Хвостик ройки' required_qty=25 (one-page plan)
+2025-12-18 11:16:06 | INFO    | market_bot | Price: page=1 slot=3 price=8100 conf=0.92 raw='8100' (easyocr)
+2025-12-18 11:16:06 | INFO    | market_bot | Price: page=1 slot=1 price=3099 conf=1.00 raw='3099' (easyocr)
+2025-12-18 11:16:06 | INFO    | market_bot | Price: page=1 slot=2 price=8100 conf=0.96 raw='8100' (easyocr)
+2025-12-18 11:16:06 | INFO    | market_bot | Price: page=1 slot=4 price=3150 conf=1.00 raw='3150' (easyocr)
+2025-12-18 11:16:06 | INFO    | market_bot | Price: page=1 slot=5 price=3200 conf=1.00 raw='3200' (easyocr)
+2025-12-18 11:16:06 | INFO    | market_bot | Price: page=1 slot=6 price=3350 conf=1.00 raw='3350' (easyocr)
+2025-12-18 11:16:06 | INFO    | market_bot | Price: page=1 slot=7 price=3599 conf=1.00 raw='3599' (easyocr)
+2025-12-18 11:16:06 | INFO    | market_bot | Price: page=1 slot=8 price=3600 conf=0.74 raw='3600' (easyocr)
+2025-12-18 11:16:06 | INFO    | market_bot | Quest cost estimate: 77475 | reward_total=40242 | delta=-37233
+2025-12-18 11:16:06 | INFO    | market_bot | Decision: SKIP (not profitable).
+2025-12-18 11:16:06 | INFO    | market_bot | ==== Quest: В поисках ценной оптики | reward_per_set=46137 | reward_total=46137 | cat=Трофеи ====
+2025-12-18 11:16:06 | INFO    | market_bot | Collect/Plan item: 'Пристрелочный монокуляр' required_qty=8 (one-page plan)
+2025-12-18 11:16:07 | INFO    | market_bot | Price: page=1 slot=1 price=3099 conf=1.00 raw='3099' (easyocr)
+2025-12-18 11:16:07 | INFO    | market_bot | Price: page=1 slot=2 price=8100 conf=0.96 raw='8100' (easyocr)
+2025-12-18 11:16:07 | INFO    | market_bot | Price: page=1 slot=3 price=8100 conf=0.92 raw='8100' (easyocr)
+2025-12-18 11:16:07 | INFO    | market_bot | Price: page=1 slot=4 price=3150 conf=1.00 raw='3150' (easyocr)
+2025-12-18 11:16:07 | INFO    | market_bot | Price: page=1 slot=5 price=3200 conf=1.00 raw='3200' (easyocr)
+2025-12-18 11:16:07 | INFO    | market_bot | Price: page=1 slot=6 price=3350 conf=1.00 raw='3350' (easyocr)
+2025-12-18 11:16:07 | INFO    | market_bot | Price: page=1 slot=7 price=3599 conf=1.00 raw='3599' (easyocr)
+2025-12-18 11:16:07 | INFO    | market_bot | Price: page=1 slot=8 price=3600 conf=0.74 raw='3600' (easyocr)
+2025-12-18 11:16:07 | INFO    | market_bot | Quest cost estimate: 24792 | reward_total=46137 | delta=21345
+2025-12-18 11:16:07 | INFO    | market_bot | Decision: PROFITABLE => proceed.
+2025-12-18 11:16:07 | INFO    | market_bot | SIMULATE mode: no inputs. Would buy items: ['Пристрелочный монокуляр']
+2025-12-18 11:16:07 | INFO    | market_bot | ==== Quest: Голодающий егерь | reward_per_set=49299 | reward_total=49299 | cat=Трофеи ====
+2025-12-18 11:16:07 | INFO    | market_bot | Collect/Plan item: 'Мясо снежной жужи' required_qty=10 (one-page plan)
+2025-12-18 11:16:07 | INFO    | market_bot | Price: page=1 slot=1 price=3099 conf=1.00 raw='3099' (easyocr)
+2025-12-18 11:16:07 | INFO    | market_bot | Price: page=1 slot=2 price=8100 conf=0.96 raw='8100' (easyocr)
+2025-12-18 11:16:07 | INFO    | market_bot | Price: page=1 slot=3 price=8100 conf=0.92 raw='8100' (easyocr)
+2025-12-18 11:16:07 | INFO    | market_bot | Price: page=1 slot=4 price=3150 conf=1.00 raw='3150' (easyocr)
+2025-12-18 11:16:07 | INFO    | market_bot | Price: page=1 slot=5 price=3200 conf=1.00 raw='3200' (easyocr)
+2025-12-18 11:16:07 | INFO    | market_bot | Price: page=1 slot=6 price=3350 conf=1.00 raw='3350' (easyocr)
+2025-12-18 11:16:07 | INFO    | market_bot | Price: page=1 slot=7 price=3599 conf=1.00 raw='3599' (easyocr)
+2025-12-18 11:16:07 | INFO    | market_bot | Price: page=1 slot=8 price=3600 conf=0.74 raw='3600' (easyocr)
+2025-12-18 11:16:07 | INFO    | market_bot | Quest cost estimate: 30990 | reward_total=49299 | delta=18309
+2025-12-18 11:16:07 | INFO    | market_bot | Decision: PROFITABLE => proceed.
+2025-12-18 11:16:07 | INFO    | market_bot | SIMULATE mode: no inputs. Would buy items: ['Мясо снежной жужи']
+2025-12-18 11:16:07 | INFO    | market_bot | ==== Quest: Добыча звёздной руды | reward_per_set=37500 | reward_total=37500 | cat=Ресурсы ====
+2025-12-18 11:16:07 | INFO    | market_bot | Collect/Plan item: 'Звездная руда' required_qty=9 (one-page plan)
+2025-12-18 11:16:08 | INFO    | market_bot | Price: page=1 slot=1 price=3099 conf=1.00 raw='3099' (easyocr)
+2025-12-18 11:16:08 | INFO    | market_bot | Price: page=1 slot=2 price=8100 conf=0.96 raw='8100' (easyocr)
+2025-12-18 11:16:08 | INFO    | market_bot | Price: page=1 slot=3 price=8100 conf=0.92 raw='8100' (easyocr)
+2025-12-18 11:16:08 | INFO    | market_bot | Price: page=1 slot=4 price=3150 conf=1.00 raw='3150' (easyocr)
+2025-12-18 11:16:08 | INFO    | market_bot | Price: page=1 slot=5 price=3200 conf=1.00 raw='3200' (easyocr)
+2025-12-18 11:16:08 | INFO    | market_bot | Price: page=1 slot=6 price=3350 conf=1.00 raw='3350' (easyocr)
+2025-12-18 11:16:08 | INFO    | market_bot | Price: page=1 slot=7 price=3599 conf=1.00 raw='3599' (easyocr)
+2025-12-18 11:16:08 | INFO    | market_bot | Price: page=1 slot=8 price=3600 conf=0.74 raw='3600' (easyocr)
+2025-12-18 11:16:08 | INFO    | market_bot | Quest cost estimate: 27891 | reward_total=37500 | delta=9609
+2025-12-18 11:16:08 | INFO    | market_bot | Decision: PROFITABLE => proceed.
+2025-12-18 11:16:08 | INFO    | market_bot | SIMULATE mode: no inputs. Would buy items: ['Звездная руда']
+2025-12-18 11:16:08 | INFO    | market_bot | ==== Quest: Добыча зеленороста | reward_per_set=37500 | reward_total=37500 | cat=Трофеи ====
+2025-12-18 11:16:08 | INFO    | market_bot | Collect/Plan(image) item: 'Зеленорост' required_qty=9 budget_left=33750
+2025-12-18 11:16:08 | INFO    | market_bot | No icon matches >= thr on this page: item='Зеленорост' thr=0.86
+2025-12-18 11:16:08 | INFO    | market_bot | Item data incomplete => skip quest. item='Зеленорост' reason=insufficient supply: need=9 have=0
+2025-12-18 11:16:08 | INFO    | market_bot | ==== Quest: Добыча ледового серпантина | reward_per_set=37500 | reward_total=37500 | cat=Трофеи ====
+2025-12-18 11:16:08 | INFO    | market_bot | Collect/Plan item: 'Ледовый серпантин' required_qty=6 (one-page plan)
+2025-12-18 11:16:08 | INFO    | market_bot | Price: page=1 slot=1 price=3099 conf=1.00 raw='3099' (easyocr)
+2025-12-18 11:16:08 | INFO    | market_bot | Price: page=1 slot=3 price=8100 conf=0.92 raw='8100' (easyocr)
+2025-12-18 11:16:08 | INFO    | market_bot | Price: page=1 slot=2 price=8100 conf=0.96 raw='8100' (easyocr)
+2025-12-18 11:16:08 | INFO    | market_bot | Price: page=1 slot=4 price=3150 conf=1.00 raw='3150' (easyocr)
+2025-12-18 11:16:08 | INFO    | market_bot | Price: page=1 slot=5 price=3200 conf=1.00 raw='3200' (easyocr)
+2025-12-18 11:16:08 | INFO    | market_bot | Price: page=1 slot=6 price=3350 conf=1.00 raw='3350' (easyocr)
+2025-12-18 11:16:08 | INFO    | market_bot | Price: page=1 slot=7 price=3599 conf=1.00 raw='3599' (easyocr)
+2025-12-18 11:16:08 | INFO    | market_bot | Price: page=1 slot=8 price=3600 conf=0.74 raw='3600' (easyocr)
+2025-12-18 11:16:08 | INFO    | market_bot | Quest cost estimate: 18594 | reward_total=37500 | delta=18906
+2025-12-18 11:16:08 | INFO    | market_bot | Decision: PROFITABLE => proceed.
+2025-12-18 11:16:08 | INFO    | market_bot | SIMULATE mode: no inputs. Would buy items: ['Ледовый серпантин']
+2025-12-18 11:16:08 | INFO    | market_bot | ==== Quest: Добыча магниевой руды | reward_per_set=37500 | reward_total=37500 | cat=Ресурсы ====
+2025-12-18 11:16:08 | INFO    | market_bot | Collect/Plan item: 'Магниевая руда' required_qty=5 (one-page plan)
+2025-12-18 11:16:09 | INFO    | market_bot | Price: page=1 slot=1 price=3099 conf=1.00 raw='3099' (easyocr)
+2025-12-18 11:16:09 | INFO    | market_bot | Price: page=1 slot=3 price=8100 conf=0.92 raw='8100' (easyocr)
+2025-12-18 11:16:09 | INFO    | market_bot | Price: page=1 slot=2 price=8100 conf=0.96 raw='8100' (easyocr)
+2025-12-18 11:16:09 | INFO    | market_bot | Price: page=1 slot=4 price=3150 conf=1.00 raw='3150' (easyocr)
+2025-12-18 11:16:09 | INFO    | market_bot | Price: page=1 slot=5 price=3200 conf=1.00 raw='3200' (easyocr)
+2025-12-18 11:16:09 | INFO    | market_bot | Price: page=1 slot=6 price=3350 conf=1.00 raw='3350' (easyocr)
+2025-12-18 11:16:09 | INFO    | market_bot | Price: page=1 slot=7 price=3599 conf=1.00 raw='3599' (easyocr)
+2025-12-18 11:16:09 | INFO    | market_bot | Price: page=1 slot=8 price=3600 conf=0.74 raw='3600' (easyocr)
+2025-12-18 11:16:09 | INFO    | market_bot | Quest cost estimate: 15495 | reward_total=37500 | delta=22005
+2025-12-18 11:16:09 | INFO    | market_bot | Decision: PROFITABLE => proceed.
+2025-12-18 11:16:09 | INFO    | market_bot | SIMULATE mode: no inputs. Would buy items: ['Магниевая руда']
+2025-12-18 11:16:09 | INFO    | market_bot | ==== Quest: Добыча обыканской морошки | reward_per_set=37500 | reward_total=37500 | cat=Трофеи ====
+2025-12-18 11:16:09 | INFO    | market_bot | Collect/Plan item: 'Обыканская морошка' required_qty=5 (one-page plan)
+2025-12-18 11:16:09 | INFO    | market_bot | Price: page=1 slot=1 price=3099 conf=1.00 raw='3099' (easyocr)
+2025-12-18 11:16:09 | INFO    | market_bot | Price: page=1 slot=3 price=8100 conf=0.92 raw='8100' (easyocr)
+2025-12-18 11:16:09 | INFO    | market_bot | Price: page=1 slot=2 price=8100 conf=0.96 raw='8100' (easyocr)
+2025-12-18 11:16:09 | INFO    | market_bot | Price: page=1 slot=4 price=3150 conf=1.00 raw='3150' (easyocr)
+2025-12-18 11:16:09 | INFO    | market_bot | Price: page=1 slot=5 price=3200 conf=1.00 raw='3200' (easyocr)
+2025-12-18 11:16:09 | INFO    | market_bot | Price: page=1 slot=6 price=3350 conf=1.00 raw='3350' (easyocr)
+2025-12-18 11:16:09 | INFO    | market_bot | Price: page=1 slot=7 price=3599 conf=1.00 raw='3599' (easyocr)
+2025-12-18 11:16:09 | INFO    | market_bot | Price: page=1 slot=8 price=3600 conf=0.74 raw='3600' (easyocr)
+2025-12-18 11:16:09 | INFO    | market_bot | Quest cost estimate: 15495 | reward_total=37500 | delta=22005
+2025-12-18 11:16:09 | INFO    | market_bot | Decision: PROFITABLE => proceed.
+2025-12-18 11:16:09 | INFO    | market_bot | SIMULATE mode: no inputs. Would buy items: ['Обыканская морошка']
+2025-12-18 11:16:09 | INFO    | market_bot | ==== Quest: Добыча ройкиного глаза | reward_per_set=37500 | reward_total=37500 | cat=Трофеи ====
+2025-12-18 11:16:09 | INFO    | market_bot | Collect/Plan item: 'Ройкин глаз' required_qty=6 (one-page plan)
+2025-12-18 11:16:10 | INFO    | market_bot | Price: page=1 slot=3 price=8100 conf=0.92 raw='8100' (easyocr)
+2025-12-18 11:16:10 | INFO    | market_bot | Price: page=1 slot=1 price=3099 conf=1.00 raw='3099' (easyocr)
+2025-12-18 11:16:10 | INFO    | market_bot | Price: page=1 slot=2 price=8100 conf=0.96 raw='8100' (easyocr)
+2025-12-18 11:16:10 | INFO    | market_bot | Price: page=1 slot=4 price=3150 conf=1.00 raw='3150' (easyocr)
+2025-12-18 11:16:10 | INFO    | market_bot | Price: page=1 slot=5 price=3200 conf=1.00 raw='3200' (easyocr)
+2025-12-18 11:16:10 | INFO    | market_bot | Price: page=1 slot=6 price=3350 conf=1.00 raw='3350' (easyocr)
+2025-12-18 11:16:10 | INFO    | market_bot | Price: page=1 slot=7 price=3599 conf=1.00 raw='3599' (easyocr)
+2025-12-18 11:16:10 | INFO    | market_bot | Price: page=1 slot=8 price=3600 conf=0.74 raw='3600' (easyocr)
+2025-12-18 11:16:10 | INFO    | market_bot | Quest cost estimate: 18594 | reward_total=37500 | delta=18906
+2025-12-18 11:16:10 | INFO    | market_bot | Decision: PROFITABLE => proceed.
+2025-12-18 11:16:10 | INFO    | market_bot | SIMULATE mode: no inputs. Would buy items: ['Ройкин глаз']
+2025-12-18 11:16:10 | INFO    | market_bot | ==== Quest: Добыча стланика | reward_per_set=37500 | reward_total=37500 | cat=Трофеи ====
+2025-12-18 11:16:10 | INFO    | market_bot | Collect/Plan(image) item: 'Стланик' required_qty=7 budget_left=33750
+2025-12-18 11:16:10 | INFO    | market_bot | No icon matches >= thr on this page: item='Стланик' thr=0.86
+2025-12-18 11:16:10 | INFO    | market_bot | Item data incomplete => skip quest. item='Стланик' reason=insufficient supply: need=7 have=0
+2025-12-18 11:16:10 | INFO    | market_bot | ==== Quest: Добыча толстоцвета | reward_per_set=37500 | reward_total=37500 | cat=Трофеи ====
+2025-12-18 11:16:10 | INFO    | market_bot | Collect/Plan(image) item: 'Толстоцвет' required_qty=8 budget_left=33750
+2025-12-18 11:16:10 | INFO    | market_bot | No icon matches >= thr on this page: item='Толстоцвет' thr=0.86
+2025-12-18 11:16:10 | INFO    | market_bot | Item data incomplete => skip quest. item='Толстоцвет' reason=insufficient supply: need=8 have=0
+2025-12-18 11:16:10 | INFO    | market_bot | ==== Quest: Добыча хабульского корунда | reward_per_set=37500 | reward_total=37500 | cat=Трофеи ====
+2025-12-18 11:16:10 | INFO    | market_bot | Collect/Plan item: 'Хабульский корунд' required_qty=7 (one-page plan)
+2025-12-18 11:16:10 | INFO    | market_bot | Price: page=1 slot=1 price=3099 conf=1.00 raw='3099' (easyocr)
+2025-12-18 11:16:10 | INFO    | market_bot | Price: page=1 slot=3 price=8100 conf=0.92 raw='8100' (easyocr)
+2025-12-18 11:16:10 | INFO    | market_bot | Price: page=1 slot=2 price=8100 conf=0.96 raw='8100' (easyocr)
+2025-12-18 11:16:10 | INFO    | market_bot | Price: page=1 slot=4 price=3150 conf=1.00 raw='3150' (easyocr)
+2025-12-18 11:16:11 | INFO    | market_bot | Price: page=1 slot=5 price=3200 conf=1.00 raw='3200' (easyocr)
+2025-12-18 11:16:11 | INFO    | market_bot | Price: page=1 slot=6 price=3350 conf=1.00 raw='3350' (easyocr)
+2025-12-18 11:16:11 | INFO    | market_bot | Price: page=1 slot=7 price=3599 conf=1.00 raw='3599' (easyocr)
+2025-12-18 11:16:11 | INFO    | market_bot | Price: page=1 slot=8 price=3600 conf=0.74 raw='3600' (easyocr)
+2025-12-18 11:16:11 | INFO    | market_bot | Quest cost estimate: 21693 | reward_total=37500 | delta=15807
+2025-12-18 11:16:11 | INFO    | market_bot | Decision: PROFITABLE => proceed.
+2025-12-18 11:16:11 | INFO    | market_bot | SIMULATE mode: no inputs. Would buy items: ['Хабульский корунд']
+2025-12-18 11:16:11 | INFO    | market_bot | ==== Quest: Ещё панцирей северных жуж! | reward_per_set=40242 | reward_total=40242 | cat=Трофеи ====
+2025-12-18 11:16:11 | INFO    | market_bot | Collect/Plan item: 'Панцирь северной жужи' required_qty=8 (one-page plan)
+2025-12-18 11:16:11 | INFO    | market_bot | Price: page=1 slot=1 price=3099 conf=1.00 raw='3099' (easyocr)
+2025-12-18 11:16:11 | INFO    | market_bot | Price: page=1 slot=2 price=8100 conf=0.96 raw='8100' (easyocr)
+2025-12-18 11:16:11 | INFO    | market_bot | Price: page=1 slot=3 price=8100 conf=0.92 raw='8100' (easyocr)
+2025-12-18 11:16:11 | INFO    | market_bot | Price: page=1 slot=4 price=3150 conf=1.00 raw='3150' (easyocr)
+2025-12-18 11:16:11 | INFO    | market_bot | Price: page=1 slot=5 price=3200 conf=1.00 raw='3200' (easyocr)
+2025-12-18 11:16:11 | INFO    | market_bot | Price: page=1 slot=6 price=3350 conf=1.00 raw='3350' (easyocr)
+2025-12-18 11:16:11 | INFO    | market_bot | Price: page=1 slot=7 price=3599 conf=1.00 raw='3599' (easyocr)
+2025-12-18 11:16:11 | INFO    | market_bot | Price: page=1 slot=8 price=3600 conf=0.74 raw='3600' (easyocr)
+2025-12-18 11:16:11 | INFO    | market_bot | Quest cost estimate: 24792 | reward_total=40242 | delta=15450
+2025-12-18 11:16:11 | INFO    | market_bot | Decision: PROFITABLE => proceed.
+2025-12-18 11:16:11 | INFO    | market_bot | SIMULATE mode: no inputs. Would buy items: ['Панцирь северной жужи']
+2025-12-18 11:16:11 | INFO    | market_bot | ==== Quest: Запасы на будущее | reward_per_set=49299 | reward_total=49299 | cat=Трофеи ====
+2025-12-18 11:16:11 | INFO    | market_bot | Collect/Plan item: 'Альфа-бур' required_qty=15 (one-page plan)
+2025-12-18 11:16:11 | INFO    | market_bot | Price: page=1 slot=1 price=3099 conf=1.00 raw='3099' (easyocr)
+2025-12-18 11:16:11 | INFO    | market_bot | Price: page=1 slot=3 price=8100 conf=0.92 raw='8100' (easyocr)
+2025-12-18 11:16:11 | INFO    | market_bot | Price: page=1 slot=2 price=8100 conf=0.96 raw='8100' (easyocr)
+2025-12-18 11:16:12 | INFO    | market_bot | Price: page=1 slot=4 price=3150 conf=1.00 raw='3150' (easyocr)
+2025-12-18 11:16:12 | INFO    | market_bot | Price: page=1 slot=5 price=3200 conf=1.00 raw='3200' (easyocr)
+2025-12-18 11:16:12 | INFO    | market_bot | Price: page=1 slot=6 price=3350 conf=1.00 raw='3350' (easyocr)
+2025-12-18 11:16:12 | INFO    | market_bot | Price: page=1 slot=7 price=3599 conf=1.00 raw='3599' (easyocr)
+2025-12-18 11:16:12 | INFO    | market_bot | Price: page=1 slot=8 price=3600 conf=0.74 raw='3600' (easyocr)
+2025-12-18 11:16:12 | INFO    | market_bot | Quest cost estimate: 46485 | reward_total=49299 | delta=2814
+2025-12-18 11:16:12 | INFO    | market_bot | Decision: PROFITABLE => proceed.
+2025-12-18 11:16:12 | INFO    | market_bot | SIMULATE mode: no inputs. Would buy items: ['Альфа-бур']
+2025-12-18 11:16:12 | INFO    | market_bot | ==== Quest: Зубы крылозуба | reward_per_set=46137 | reward_total=46137 | cat=Трофеи ====
+2025-12-18 11:16:12 | INFO    | market_bot | Collect/Plan item: 'Челюсть крылозуба' required_qty=40 (one-page plan)
+2025-12-18 11:16:12 | INFO    | market_bot | Price: page=1 slot=1 price=3099 conf=1.00 raw='3099' (easyocr)
+2025-12-18 11:16:12 | INFO    | market_bot | Price: page=1 slot=3 price=8100 conf=0.92 raw='8100' (easyocr)
+2025-12-18 11:16:12 | INFO    | market_bot | Price: page=1 slot=2 price=8100 conf=0.96 raw='8100' (easyocr)
+2025-12-18 11:16:12 | INFO    | market_bot | Price: page=1 slot=4 price=3150 conf=1.00 raw='3150' (easyocr)
+2025-12-18 11:16:12 | INFO    | market_bot | Price: page=1 slot=5 price=3200 conf=1.00 raw='3200' (easyocr)
+2025-12-18 11:16:12 | INFO    | market_bot | Price: page=1 slot=6 price=3350 conf=1.00 raw='3350' (easyocr)
+2025-12-18 11:16:12 | INFO    | market_bot | Price: page=1 slot=7 price=3599 conf=1.00 raw='3599' (easyocr)
+2025-12-18 11:16:12 | INFO    | market_bot | Price: page=1 slot=8 price=3600 conf=0.74 raw='3600' (easyocr)
+2025-12-18 11:16:12 | INFO    | market_bot | Quest cost estimate: 123960 | reward_total=46137 | delta=-77823
+2025-12-18 11:16:12 | INFO    | market_bot | Decision: SKIP (not profitable).
+2025-12-18 11:16:12 | INFO    | market_bot | ==== Quest: Красота и противоядие | reward_per_set=49299 | reward_total=49299 | cat=Трофеи ====
+2025-12-18 11:16:12 | INFO    | market_bot | Collect/Plan item: 'Красивое перо' required_qty=25 (one-page plan)
+2025-12-18 11:16:12 | INFO    | market_bot | Price: page=1 slot=1 price=3099 conf=1.00 raw='3099' (easyocr)
+2025-12-18 11:16:12 | INFO    | market_bot | Price: page=1 slot=2 price=8100 conf=0.96 raw='8100' (easyocr)
+2025-12-18 11:16:13 | INFO    | market_bot | Price: page=1 slot=3 price=8100 conf=0.92 raw='8100' (easyocr)
+2025-12-18 11:16:13 | INFO    | market_bot | Price: page=1 slot=4 price=3150 conf=1.00 raw='3150' (easyocr)
+2025-12-18 11:16:13 | INFO    | market_bot | Price: page=1 slot=5 price=3200 conf=1.00 raw='3200' (easyocr)
+2025-12-18 11:16:13 | INFO    | market_bot | Price: page=1 slot=6 price=3350 conf=1.00 raw='3350' (easyocr)
+2025-12-18 11:16:13 | INFO    | market_bot | Price: page=1 slot=7 price=3599 conf=1.00 raw='3599' (easyocr)
+2025-12-18 11:16:13 | INFO    | market_bot | Price: page=1 slot=8 price=3600 conf=0.74 raw='3600' (easyocr)
+2025-12-18 11:16:13 | INFO    | market_bot | Quest cost estimate: 77475 | reward_total=49299 | delta=-28176
+2025-12-18 11:16:13 | INFO    | market_bot | Decision: SKIP (not profitable).
+2025-12-18 11:16:13 | INFO    | market_bot | ==== Quest: Материал для потешных фигурок | reward_per_set=46137 | reward_total=46137 | cat=Трофеи ====
+2025-12-18 11:16:13 | INFO    | market_bot | Collect/Plan item: 'Регулятор снегобея' required_qty=14 (one-page plan)
+2025-12-18 11:16:13 | INFO    | market_bot | Price: page=1 slot=1 price=3099 conf=1.00 raw='3099' (easyocr)
+2025-12-18 11:16:13 | INFO    | market_bot | Price: page=1 slot=3 price=8100 conf=0.92 raw='8100' (easyocr)
+2025-12-18 11:16:13 | INFO    | market_bot | Price: page=1 slot=2 price=8100 conf=0.96 raw='8100' (easyocr)
+2025-12-18 11:16:13 | INFO    | market_bot | Price: page=1 slot=4 price=3150 conf=1.00 raw='3150' (easyocr)
+2025-12-18 11:16:13 | INFO    | market_bot | Price: page=1 slot=5 price=3200 conf=1.00 raw='3200' (easyocr)
+2025-12-18 11:16:13 | INFO    | market_bot | Price: page=1 slot=6 price=3350 conf=1.00 raw='3350' (easyocr)
+2025-12-18 11:16:13 | INFO    | market_bot | Price: page=1 slot=7 price=3599 conf=1.00 raw='3599' (easyocr)
+2025-12-18 11:16:13 | INFO    | market_bot | Price: page=1 slot=8 price=3600 conf=0.74 raw='3600' (easyocr)
+2025-12-18 11:16:13 | INFO    | market_bot | Quest cost estimate: 43386 | reward_total=46137 | delta=2751
+2025-12-18 11:16:13 | INFO    | market_bot | Decision: PROFITABLE => proceed.
+2025-12-18 11:16:13 | INFO    | market_bot | SIMULATE mode: no inputs. Would buy items: ['Регулятор снегобея']
+2025-12-18 11:16:13 | INFO    | market_bot | ==== Quest: Надоедливые провокаторы | reward_per_set=49299 | reward_total=49299 | cat=Трофеи ====
+2025-12-18 11:16:13 | INFO    | market_bot | Collect/Plan item: 'Заклинившая бомба' required_qty=15 (one-page plan)
+2025-12-18 11:16:13 | INFO    | market_bot | Price: page=1 slot=1 price=3099 conf=1.00 raw='3099' (easyocr)
+2025-12-18 11:16:13 | INFO    | market_bot | Price: page=1 slot=3 price=8100 conf=0.92 raw='8100' (easyocr)
+2025-12-18 11:16:14 | INFO    | market_bot | Price: page=1 slot=2 price=8100 conf=0.96 raw='8100' (easyocr)
+2025-12-18 11:16:14 | INFO    | market_bot | Price: page=1 slot=4 price=3150 conf=1.00 raw='3150' (easyocr)
+2025-12-18 11:16:14 | INFO    | market_bot | Price: page=1 slot=5 price=3200 conf=1.00 raw='3200' (easyocr)
+2025-12-18 11:16:14 | INFO    | market_bot | Price: page=1 slot=6 price=3350 conf=1.00 raw='3350' (easyocr)
+2025-12-18 11:16:14 | INFO    | market_bot | Price: page=1 slot=7 price=3599 conf=1.00 raw='3599' (easyocr)
+2025-12-18 11:16:14 | INFO    | market_bot | Price: page=1 slot=8 price=3600 conf=0.74 raw='3600' (easyocr)
+2025-12-18 11:16:14 | INFO    | market_bot | Quest cost estimate: 46485 | reward_total=49299 | delta=2814
+2025-12-18 11:16:14 | INFO    | market_bot | Decision: PROFITABLE => proceed.
+2025-12-18 11:16:14 | INFO    | market_bot | SIMULATE mode: no inputs. Would buy items: ['Заклинившая бомба']
+2025-12-18 11:16:14 | INFO    | market_bot | ==== Quest: Невыносимая пыль | reward_per_set=49299 | reward_total=49299 | cat=Трофеи ====
+2025-12-18 11:16:14 | INFO    | market_bot | Collect/Plan item: 'Кучка старой пыли' required_qty=20 (one-page plan)
+2025-12-18 11:16:14 | INFO    | market_bot | Price: page=1 slot=1 price=3099 conf=1.00 raw='3099' (easyocr)
+2025-12-18 11:16:14 | INFO    | market_bot | Price: page=1 slot=3 price=8100 conf=0.92 raw='8100' (easyocr)
+2025-12-18 11:16:14 | INFO    | market_bot | Price: page=1 slot=2 price=8100 conf=0.96 raw='8100' (easyocr)
+2025-12-18 11:16:14 | INFO    | market_bot | Price: page=1 slot=4 price=3150 conf=1.00 raw='3150' (easyocr)
+2025-12-18 11:16:14 | INFO    | market_bot | Price: page=1 slot=5 price=3200 conf=1.00 raw='3200' (easyocr)
+2025-12-18 11:16:14 | INFO    | market_bot | Price: page=1 slot=6 price=3350 conf=1.00 raw='3350' (easyocr)
+2025-12-18 11:16:14 | INFO    | market_bot | Price: page=1 slot=7 price=3599 conf=1.00 raw='3599' (easyocr)
+2025-12-18 11:16:14 | INFO    | market_bot | Price: page=1 slot=8 price=3600 conf=0.74 raw='3600' (easyocr)
+2025-12-18 11:16:14 | INFO    | market_bot | Quest cost estimate: 61980 | reward_total=49299 | delta=-12681
+2025-12-18 11:16:14 | INFO    | market_bot | Decision: SKIP (not profitable).
+2025-12-18 11:16:14 | INFO    | market_bot | ==== Quest: Охота на вальдерстая | reward_per_set=43072 | reward_total=43072 | cat=Трофеи ====
+2025-12-18 11:16:14 | INFO    | market_bot | Collect/Plan item: 'Шкура вальдерстая' required_qty=10 (one-page plan)
+2025-12-18 11:16:14 | INFO    | market_bot | Price: page=1 slot=3 price=8100 conf=0.92 raw='8100' (easyocr)
+2025-12-18 11:16:15 | INFO    | market_bot | Price: page=1 slot=2 price=8100 conf=0.96 raw='8100' (easyocr)
+2025-12-18 11:16:15 | INFO    | market_bot | Price: page=1 slot=1 price=3099 conf=1.00 raw='3099' (easyocr)
+2025-12-18 11:16:15 | INFO    | market_bot | Price: page=1 slot=4 price=3150 conf=1.00 raw='3150' (easyocr)
+2025-12-18 11:16:15 | INFO    | market_bot | Price: page=1 slot=5 price=3200 conf=1.00 raw='3200' (easyocr)
+2025-12-18 11:16:15 | INFO    | market_bot | Price: page=1 slot=6 price=3350 conf=1.00 raw='3350' (easyocr)
+2025-12-18 11:16:15 | INFO    | market_bot | Price: page=1 slot=7 price=3599 conf=1.00 raw='3599' (easyocr)
+2025-12-18 11:16:15 | INFO    | market_bot | Price: page=1 slot=8 price=3600 conf=0.74 raw='3600' (easyocr)
+2025-12-18 11:16:15 | INFO    | market_bot | Quest cost estimate: 30990 | reward_total=43072 | delta=12082
+2025-12-18 11:16:15 | INFO    | market_bot | Decision: PROFITABLE => proceed.
+2025-12-18 11:16:15 | INFO    | market_bot | SIMULATE mode: no inputs. Would buy items: ['Шкура вальдерстая']
+2025-12-18 11:16:15 | INFO    | market_bot | ==== Quest: Ошейник, как символ преданности | reward_per_set=49299 | reward_total=49299 | cat=Трофеи ====
+2025-12-18 11:16:15 | INFO    | market_bot | Collect/Plan item: 'Ошейник вальдерстая' required_qty=10 (one-page plan)
+2025-12-18 11:16:15 | INFO    | market_bot | Price: page=1 slot=1 price=3099 conf=1.00 raw='3099' (easyocr)
+2025-12-18 11:16:15 | INFO    | market_bot | Price: page=1 slot=2 price=8100 conf=0.96 raw='8100' (easyocr)
+2025-12-18 11:16:15 | INFO    | market_bot | Price: page=1 slot=3 price=8100 conf=0.92 raw='8100' (easyocr)
+2025-12-18 11:16:15 | INFO    | market_bot | Price: page=1 slot=4 price=3150 conf=1.00 raw='3150' (easyocr)
+2025-12-18 11:16:15 | INFO    | market_bot | Price: page=1 slot=5 price=3200 conf=1.00 raw='3200' (easyocr)
+2025-12-18 11:16:16 | INFO    | market_bot | Price: page=1 slot=6 price=3350 conf=1.00 raw='3350' (easyocr)
+2025-12-18 11:16:16 | INFO    | market_bot | Price: page=1 slot=7 price=3599 conf=1.00 raw='3599' (easyocr)
+2025-12-18 11:16:16 | INFO    | market_bot | Price: page=1 slot=8 price=3600 conf=0.74 raw='3600' (easyocr)
+2025-12-18 11:16:16 | INFO    | market_bot | Quest cost estimate: 30990 | reward_total=49299 | delta=18309
+2025-12-18 11:16:16 | INFO    | market_bot | Decision: PROFITABLE => proceed.
+2025-12-18 11:16:16 | INFO    | market_bot | SIMULATE mode: no inputs. Would buy items: ['Ошейник вальдерстая']
+2025-12-18 11:16:16 | INFO    | market_bot | ==== Quest: Панцири для спекулянта | reward_per_set=52709 | reward_total=52709 | cat=Трофеи ====
+2025-12-18 11:16:16 | INFO    | market_bot | Collect/Plan item: 'Панцирь снегобея' required_qty=20 (one-page plan)
+2025-12-18 11:16:16 | INFO    | market_bot | Price: page=1 slot=1 price=3099 conf=1.00 raw='3099' (easyocr)
+2025-12-18 11:16:16 | INFO    | market_bot | Price: page=1 slot=2 price=8100 conf=0.96 raw='8100' (easyocr)
+2025-12-18 11:16:16 | INFO    | market_bot | Price: page=1 slot=3 price=8100 conf=0.92 raw='8100' (easyocr)
+2025-12-18 11:16:16 | INFO    | market_bot | Price: page=1 slot=4 price=3150 conf=1.00 raw='3150' (easyocr)
+2025-12-18 11:16:16 | INFO    | market_bot | Price: page=1 slot=5 price=3200 conf=1.00 raw='3200' (easyocr)
+2025-12-18 11:16:16 | INFO    | market_bot | Price: page=1 slot=6 price=3350 conf=1.00 raw='3350' (easyocr)
+2025-12-18 11:16:16 | INFO    | market_bot | Price: page=1 slot=7 price=3599 conf=1.00 raw='3599' (easyocr)
+2025-12-18 11:16:16 | INFO    | market_bot | Price: page=1 slot=8 price=3600 conf=0.74 raw='3600' (easyocr)
+2025-12-18 11:16:16 | INFO    | market_bot | Quest cost estimate: 61980 | reward_total=52709 | delta=-9271
+2025-12-18 11:16:16 | INFO    | market_bot | Decision: SKIP (not profitable).
+2025-12-18 11:16:16 | INFO    | market_bot | ==== Quest: Паразиты на страже иммунитета | reward_per_set=46137 | reward_total=46137 | cat=Трофеи ====
+2025-12-18 11:16:16 | INFO    | market_bot | Collect/Plan item: 'Индевень' required_qty=25 (one-page plan)
+2025-12-18 11:16:16 | INFO    | market_bot | Price: page=1 slot=1 price=3099 conf=1.00 raw='3099' (easyocr)
+2025-12-18 11:16:16 | INFO    | market_bot | Price: page=1 slot=3 price=8100 conf=0.92 raw='8100' (easyocr)
+2025-12-18 11:16:17 | INFO    | market_bot | Price: page=1 slot=2 price=8100 conf=0.96 raw='8100' (easyocr)
+2025-12-18 11:16:17 | INFO    | market_bot | Price: page=1 slot=4 price=3150 conf=1.00 raw='3150' (easyocr)
+2025-12-18 11:16:17 | INFO    | market_bot | Price: page=1 slot=5 price=3200 conf=1.00 raw='3200' (easyocr)
+2025-12-18 11:16:17 | INFO    | market_bot | Price: page=1 slot=6 price=3350 conf=1.00 raw='3350' (easyocr)
+2025-12-18 11:16:17 | INFO    | market_bot | Price: page=1 slot=7 price=3599 conf=1.00 raw='3599' (easyocr)
+2025-12-18 11:16:17 | INFO    | market_bot | Price: page=1 slot=8 price=3600 conf=0.74 raw='3600' (easyocr)
+2025-12-18 11:16:17 | INFO    | market_bot | Quest cost estimate: 77475 | reward_total=46137 | delta=-31338
+2025-12-18 11:16:17 | INFO    | market_bot | Decision: SKIP (not profitable).
+2025-12-18 11:16:17 | INFO    | market_bot | ==== Quest: Перья для спекулянта | reward_per_set=52709 | reward_total=52709 | cat=Трофеи ====
+2025-12-18 11:16:17 | INFO    | market_bot | Collect/Plan item: 'Ядовитое перо' required_qty=25 (one-page plan)
+2025-12-18 11:16:17 | INFO    | market_bot | Price: page=1 slot=2 price=8100 conf=0.96 raw='8100' (easyocr)
+2025-12-18 11:16:17 | INFO    | market_bot | Price: page=1 slot=1 price=3099 conf=1.00 raw='3099' (easyocr)
+2025-12-18 11:16:17 | INFO    | market_bot | Price: page=1 slot=3 price=8100 conf=0.92 raw='8100' (easyocr)
+2025-12-18 11:16:17 | INFO    | market_bot | Price: page=1 slot=4 price=3150 conf=1.00 raw='3150' (easyocr)
+2025-12-18 11:16:17 | INFO    | market_bot | Price: page=1 slot=5 price=3200 conf=1.00 raw='3200' (easyocr)
+2025-12-18 11:16:17 | INFO    | market_bot | Price: page=1 slot=6 price=3350 conf=1.00 raw='3350' (easyocr)
+2025-12-18 11:16:17 | INFO    | market_bot | Price: page=1 slot=7 price=3599 conf=1.00 raw='3599' (easyocr)
+2025-12-18 11:16:17 | INFO    | market_bot | Price: page=1 slot=8 price=3600 conf=0.74 raw='3600' (easyocr)
+2025-12-18 11:16:17 | INFO    | market_bot | Quest cost estimate: 77475 | reward_total=52709 | delta=-24766
+2025-12-18 11:16:17 | INFO    | market_bot | Decision: SKIP (not profitable).
+2025-12-18 11:16:17 | INFO    | market_bot | ==== Quest: Поиск особого бубна | reward_per_set=49299 | reward_total=49299 | cat=Трофеи ====
+2025-12-18 11:16:17 | INFO    | market_bot | Collect/Plan item: 'Бубен' required_qty=8 (one-page plan)
+2025-12-18 11:16:17 | INFO    | market_bot | Price: page=1 slot=1 price=3099 conf=1.00 raw='3099' (easyocr)
+2025-12-18 11:16:17 | INFO    | market_bot | Price: page=1 slot=2 price=8100 conf=0.96 raw='8100' (easyocr)
+2025-12-18 11:16:18 | INFO    | market_bot | Price: page=1 slot=3 price=8100 conf=0.92 raw='8100' (easyocr)
+2025-12-18 11:16:18 | INFO    | market_bot | Price: page=1 slot=4 price=3150 conf=1.00 raw='3150' (easyocr)
+2025-12-18 11:16:18 | INFO    | market_bot | Price: page=1 slot=5 price=3200 conf=1.00 raw='3200' (easyocr)
+2025-12-18 11:16:18 | INFO    | market_bot | Price: page=1 slot=6 price=3350 conf=1.00 raw='3350' (easyocr)
+2025-12-18 11:16:18 | INFO    | market_bot | Price: page=1 slot=7 price=3599 conf=1.00 raw='3599' (easyocr)
+2025-12-18 11:16:18 | INFO    | market_bot | Price: page=1 slot=8 price=3600 conf=0.74 raw='3600' (easyocr)
+2025-12-18 11:16:18 | INFO    | market_bot | Quest cost estimate: 24792 | reward_total=49299 | delta=24507
+2025-12-18 11:16:18 | INFO    | market_bot | Decision: PROFITABLE => proceed.
+2025-12-18 11:16:18 | INFO    | market_bot | SIMULATE mode: no inputs. Would buy items: ['Бубен']
+2025-12-18 11:16:18 | INFO    | market_bot | ==== Quest: Полезный в хозяйстве | reward_per_set=46137 | reward_total=46137 | cat=Трофеи ====
+2025-12-18 11:16:18 | INFO    | market_bot | Collect/Plan item: 'Серый песок' required_qty=18 (one-page plan)
+2025-12-18 11:16:18 | INFO    | market_bot | Price: page=1 slot=3 price=8100 conf=0.92 raw='8100' (easyocr)
+2025-12-18 11:16:18 | INFO    | market_bot | Price: page=1 slot=2 price=8100 conf=0.96 raw='8100' (easyocr)
+2025-12-18 11:16:18 | INFO    | market_bot | Price: page=1 slot=1 price=3099 conf=1.00 raw='3099' (easyocr)
+2025-12-18 11:16:18 | INFO    | market_bot | Price: page=1 slot=4 price=3150 conf=1.00 raw='3150' (easyocr)
+2025-12-18 11:16:18 | INFO    | market_bot | Price: page=1 slot=5 price=3200 conf=1.00 raw='3200' (easyocr)
+2025-12-18 11:16:18 | INFO    | market_bot | Price: page=1 slot=6 price=3350 conf=1.00 raw='3350' (easyocr)
+2025-12-18 11:16:18 | INFO    | market_bot | Price: page=1 slot=7 price=3599 conf=1.00 raw='3599' (easyocr)
+2025-12-18 11:16:18 | INFO    | market_bot | Price: page=1 slot=8 price=3600 conf=0.74 raw='3600' (easyocr)
+2025-12-18 11:16:18 | INFO    | market_bot | Quest cost estimate: 55782 | reward_total=46137 | delta=-9645
+2025-12-18 11:16:18 | INFO    | market_bot | Decision: SKIP (not profitable).
+2025-12-18 11:16:18 | INFO    | market_bot | ==== Quest: Сомнительный ингредиент | reward_per_set=43072 | reward_total=43072 | cat=Трофеи ====
+2025-12-18 11:16:18 | INFO    | market_bot | Collect/Plan item: 'Слюна вальдерстая' required_qty=10 (one-page plan)
+2025-12-18 11:16:18 | INFO    | market_bot | Price: page=1 slot=1 price=3099 conf=1.00 raw='3099' (easyocr)
+2025-12-18 11:16:18 | INFO    | market_bot | Price: page=1 slot=2 price=8100 conf=0.96 raw='8100' (easyocr)
+2025-12-18 11:16:19 | INFO    | market_bot | Price: page=1 slot=3 price=8100 conf=0.92 raw='8100' (easyocr)
+2025-12-18 11:16:19 | INFO    | market_bot | Price: page=1 slot=4 price=3150 conf=1.00 raw='3150' (easyocr)
+2025-12-18 11:16:19 | INFO    | market_bot | Price: page=1 slot=5 price=3200 conf=1.00 raw='3200' (easyocr)
+2025-12-18 11:16:19 | INFO    | market_bot | Price: page=1 slot=6 price=3350 conf=1.00 raw='3350' (easyocr)
+2025-12-18 11:16:19 | INFO    | market_bot | Price: page=1 slot=7 price=3599 conf=1.00 raw='3599' (easyocr)
+2025-12-18 11:16:19 | INFO    | market_bot | Price: page=1 slot=8 price=3600 conf=0.74 raw='3600' (easyocr)
+2025-12-18 11:16:19 | INFO    | market_bot | Quest cost estimate: 30990 | reward_total=43072 | delta=12082
+2025-12-18 11:16:19 | INFO    | market_bot | Decision: PROFITABLE => proceed.
+2025-12-18 11:16:19 | INFO    | market_bot | SIMULATE mode: no inputs. Would buy items: ['Слюна вальдерстая']
+2025-12-18 11:16:19 | INFO    | market_bot | ==== Quest: Списки врагов | reward_per_set=46137 | reward_total=46137 | cat=Трофеи ====
+2025-12-18 11:16:19 | INFO    | market_bot | Collect/Plan item: 'Договор с Остином' required_qty=10 (one-page plan)
+2025-12-18 11:16:19 | INFO    | market_bot | Price: page=1 slot=1 price=3099 conf=1.00 raw='3099' (easyocr)
+2025-12-18 11:16:19 | INFO    | market_bot | Price: page=1 slot=2 price=8100 conf=0.96 raw='8100' (easyocr)
+2025-12-18 11:16:19 | INFO    | market_bot | Price: page=1 slot=3 price=8100 conf=0.92 raw='8100' (easyocr)
+2025-12-18 11:16:19 | INFO    | market_bot | Price: page=1 slot=4 price=3150 conf=1.00 raw='3150' (easyocr)
+2025-12-18 11:16:19 | INFO    | market_bot | Price: page=1 slot=5 price=3200 conf=1.00 raw='3200' (easyocr)
+2025-12-18 11:16:19 | INFO    | market_bot | Price: page=1 slot=6 price=3350 conf=1.00 raw='3350' (easyocr)
+2025-12-18 11:16:19 | INFO    | market_bot | Price: page=1 slot=7 price=3599 conf=1.00 raw='3599' (easyocr)
+2025-12-18 11:16:19 | INFO    | market_bot | Price: page=1 slot=8 price=3600 conf=0.74 raw='3600' (easyocr)
+2025-12-18 11:16:19 | INFO    | market_bot | Quest cost estimate: 30990 | reward_total=46137 | delta=15147
+2025-12-18 11:16:19 | INFO    | market_bot | Decision: PROFITABLE => proceed.
+2025-12-18 11:16:19 | INFO    | market_bot | SIMULATE mode: no inputs. Would buy items: ['Договор с Остином']
+2025-12-18 11:16:19 | INFO    | market_bot | ==== Quest: Твёрдые сплавы | reward_per_set=49299 | reward_total=49299 | cat=Трофеи ====
+2025-12-18 11:16:19 | INFO    | market_bot | Collect/Plan item: 'Твердый сплав' required_qty=10 (one-page plan)
+2025-12-18 11:16:20 | INFO    | market_bot | Price: page=1 slot=2 price=8100 conf=0.96 raw='8100' (easyocr)
+2025-12-18 11:16:20 | INFO    | market_bot | Price: page=1 slot=1 price=3099 conf=1.00 raw='3099' (easyocr)
+2025-12-18 11:16:20 | INFO    | market_bot | Price: page=1 slot=3 price=8100 conf=0.92 raw='8100' (easyocr)
+2025-12-18 11:16:20 | INFO    | market_bot | Price: page=1 slot=4 price=3150 conf=1.00 raw='3150' (easyocr)
+2025-12-18 11:16:20 | INFO    | market_bot | Price: page=1 slot=5 price=3200 conf=1.00 raw='3200' (easyocr)
+2025-12-18 11:16:20 | INFO    | market_bot | Price: page=1 slot=6 price=3350 conf=1.00 raw='3350' (easyocr)
+2025-12-18 11:16:20 | INFO    | market_bot | Price: page=1 slot=7 price=3599 conf=1.00 raw='3599' (easyocr)
+2025-12-18 11:16:20 | INFO    | market_bot | Price: page=1 slot=8 price=3600 conf=0.74 raw='3600' (easyocr)
+2025-12-18 11:16:20 | INFO    | market_bot | Quest cost estimate: 30990 | reward_total=49299 | delta=18309
+2025-12-18 11:16:20 | INFO    | market_bot | Decision: PROFITABLE => proceed.
+2025-12-18 11:16:20 | INFO    | market_bot | SIMULATE mode: no inputs. Would buy items: ['Твердый сплав']
+2025-12-18 11:16:20 | INFO    | market_bot | ==== Quest: Чёрная икра | reward_per_set=46137 | reward_total=46137 | cat=Трофеи ====
+2025-12-18 11:16:20 | INFO    | market_bot | Collect/Plan item: 'Черная икра' required_qty=16 (one-page plan)
+2025-12-18 11:16:20 | INFO    | market_bot | Price: page=1 slot=1 price=3099 conf=1.00 raw='3099' (easyocr)
+2025-12-18 11:16:20 | INFO    | market_bot | Price: page=1 slot=2 price=8100 conf=0.96 raw='8100' (easyocr)
+2025-12-18 11:16:20 | INFO    | market_bot | Price: page=1 slot=3 price=8100 conf=0.92 raw='8100' (easyocr)
+2025-12-18 11:16:20 | INFO    | market_bot | Price: page=1 slot=4 price=3150 conf=1.00 raw='3150' (easyocr)
+2025-12-18 11:16:20 | INFO    | market_bot | Price: page=1 slot=5 price=3200 conf=1.00 raw='3200' (easyocr)
+2025-12-18 11:16:20 | INFO    | market_bot | Price: page=1 slot=6 price=3350 conf=1.00 raw='3350' (easyocr)
+2025-12-18 11:16:20 | INFO    | market_bot | Price: page=1 slot=7 price=3599 conf=1.00 raw='3599' (easyocr)
+2025-12-18 11:16:20 | INFO    | market_bot | Price: page=1 slot=8 price=3600 conf=0.74 raw='3600' (easyocr)
+2025-12-18 11:16:20 | INFO    | market_bot | Quest cost estimate: 49584 | reward_total=46137 | delta=-3447
+2025-12-18 11:16:20 | INFO    | market_bot | Decision: SKIP (not profitable).
+2025-12-18 11:16:20 | INFO    | market_bot | ==== Quest: Шипы для копий | reward_per_set=49299 | reward_total=49299 | cat=Трофеи ====
+2025-12-18 11:16:20 | INFO    | market_bot | Collect/Plan item: 'Роговой шип' required_qty=16 (one-page plan)
+2025-12-18 11:16:21 | INFO    | market_bot | Price: page=1 slot=2 price=8100 conf=0.96 raw='8100' (easyocr)
+2025-12-18 11:16:21 | INFO    | market_bot | Price: page=1 slot=3 price=8100 conf=0.92 raw='8100' (easyocr)
+2025-12-18 11:16:21 | INFO    | market_bot | Price: page=1 slot=1 price=3099 conf=1.00 raw='3099' (easyocr)
+2025-12-18 11:16:21 | INFO    | market_bot | Price: page=1 slot=4 price=3150 conf=1.00 raw='3150' (easyocr)
+2025-12-18 11:16:21 | INFO    | market_bot | Price: page=1 slot=5 price=3200 conf=1.00 raw='3200' (easyocr)
+2025-12-18 11:16:21 | INFO    | market_bot | Price: page=1 slot=6 price=3350 conf=1.00 raw='3350' (easyocr)
+2025-12-18 11:16:21 | INFO    | market_bot | Price: page=1 slot=7 price=3599 conf=1.00 raw='3599' (easyocr)
+2025-12-18 11:16:21 | INFO    | market_bot | Price: page=1 slot=8 price=3600 conf=0.74 raw='3600' (easyocr)
+2025-12-18 11:16:21 | INFO    | market_bot | Quest cost estimate: 49584 | reward_total=49299 | delta=-285
+2025-12-18 11:16:21 | INFO    | market_bot | Decision: SKIP (not profitable).
+2025-12-18 11:16:21 | INFO    | market_bot | ==== Quest: Шкурные интересы | reward_per_set=46137 | reward_total=46137 | cat=Трофеи ====
+2025-12-18 11:16:21 | INFO    | market_bot | Collect/Plan item: 'Шкура голодного люпуса' required_qty=4 (one-page plan)
+2025-12-18 11:16:21 | INFO    | market_bot | Price: page=1 slot=1 price=3099 conf=1.00 raw='3099' (easyocr)
+2025-12-18 11:16:21 | INFO    | market_bot | Price: page=1 slot=2 price=8100 conf=0.96 raw='8100' (easyocr)
+2025-12-18 11:16:21 | INFO    | market_bot | Price: page=1 slot=3 price=8100 conf=0.92 raw='8100' (easyocr)
+2025-12-18 11:16:21 | INFO    | market_bot | Price: page=1 slot=4 price=3150 conf=1.00 raw='3150' (easyocr)
+2025-12-18 11:16:21 | INFO    | market_bot | Price: page=1 slot=5 price=3200 conf=1.00 raw='3200' (easyocr)
+2025-12-18 11:16:21 | INFO    | market_bot | Price: page=1 slot=6 price=3350 conf=1.00 raw='3350' (easyocr)
+2025-12-18 11:16:21 | INFO    | market_bot | Price: page=1 slot=7 price=3599 conf=1.00 raw='3599' (easyocr)
+2025-12-18 11:16:21 | INFO    | market_bot | Price: page=1 slot=8 price=3600 conf=0.74 raw='3600' (easyocr)
+2025-12-18 11:16:21 | INFO    | market_bot | Collect/Plan item: 'Шкура свирепого люпуса' required_qty=4 (one-page plan)
+2025-12-18 11:16:22 | INFO    | market_bot | Price: page=1 slot=1 price=3099 conf=1.00 raw='3099' (easyocr)
+2025-12-18 11:16:22 | INFO    | market_bot | Price: page=1 slot=2 price=8100 conf=0.96 raw='8100' (easyocr)
+2025-12-18 11:16:22 | INFO    | market_bot | Price: page=1 slot=3 price=8100 conf=0.92 raw='8100' (easyocr)
+2025-12-18 11:16:22 | INFO    | market_bot | Price: page=1 slot=4 price=3150 conf=1.00 raw='3150' (easyocr)
+2025-12-18 11:16:22 | INFO    | market_bot | Price: page=1 slot=5 price=3200 conf=1.00 raw='3200' (easyocr)
+2025-12-18 11:16:22 | INFO    | market_bot | Price: page=1 slot=6 price=3350 conf=1.00 raw='3350' (easyocr)
+2025-12-18 11:16:22 | INFO    | market_bot | Price: page=1 slot=7 price=3599 conf=1.00 raw='3599' (easyocr)
+2025-12-18 11:16:22 | INFO    | market_bot | Price: page=1 slot=8 price=3600 conf=0.74 raw='3600' (easyocr)
+2025-12-18 11:16:22 | INFO    | market_bot | Quest cost estimate: 24792 | reward_total=46137 | delta=21345
+2025-12-18 11:16:22 | INFO    | market_bot | Decision: PROFITABLE => proceed.
+2025-12-18 11:16:22 | INFO    | market_bot | SIMULATE mode: no inputs. Would buy items: ['Шкура голодного люпуса', 'Шкура свирепого люпуса']
+2025-12-18 11:16:22 | INFO    | market_bot | ==== Quest: Щупальца для стройки | reward_per_set=46137 | reward_total=46137 | cat=Трофеи ====
+2025-12-18 11:16:22 | INFO    | market_bot | Collect/Plan item: 'Жгучее щупальце' required_qty=16 (one-page plan)
+2025-12-18 11:16:22 | INFO    | market_bot | Price: page=1 slot=1 price=3099 conf=1.00 raw='3099' (easyocr)
+2025-12-18 11:16:22 | INFO    | market_bot | Price: page=1 slot=3 price=8100 conf=0.92 raw='8100' (easyocr)
+2025-12-18 11:16:22 | INFO    | market_bot | Price: page=1 slot=2 price=8100 conf=0.96 raw='8100' (easyocr)
+2025-12-18 11:16:22 | INFO    | market_bot | Price: page=1 slot=4 price=3150 conf=1.00 raw='3150' (easyocr)
+2025-12-18 11:16:22 | INFO    | market_bot | Price: page=1 slot=5 price=3200 conf=1.00 raw='3200' (easyocr)
+2025-12-18 11:16:22 | INFO    | market_bot | Price: page=1 slot=6 price=3350 conf=1.00 raw='3350' (easyocr)
+2025-12-18 11:16:22 | INFO    | market_bot | Price: page=1 slot=7 price=3599 conf=1.00 raw='3599' (easyocr)
+2025-12-18 11:16:22 | INFO    | market_bot | Price: page=1 slot=8 price=3600 conf=0.74 raw='3600' (easyocr)
+2025-12-18 11:16:22 | INFO    | market_bot | Quest cost estimate: 49584 | reward_total=46137 | delta=-3447
+2025-12-18 11:16:22 | INFO    | market_bot | Decision: SKIP (not profitable).
+2025-12-18 11:16:22 | INFO    | market_bot | Bot finished.

@@ -9,29 +9,31 @@ from ui import MarketUI
 
 @dataclass(frozen=True)
 class PlanStep:
-    slot: int          # слот, из которого планировали взять (для логов/отладки)
+    slot: int  # слот, из которого планировали взять (для логов/отладки)
     price: int
-    take: int          # сколько купить на этом шаге
+    take: int  # сколько купить на этом шаге
 
 
 @dataclass(frozen=True)
 class PlanResult:
     steps: list[PlanStep]
     total_cost: int
-    remaining: int     # 0 если план успешен
+    remaining: int  # 0 если план успешен
 
 
 def build_plan_one_page(
-    ui: MarketUI,
-    need_total: int,
-    reward_total: int,
-    *,
-    page: int = 1,
+        ui: MarketUI,
+        need_total: int,
+        max_budget: int,  # <-- теперь это может быть reward_total с учётом profit threshold
+        *,
+        page: int = 1,
 ) -> Optional[PlanResult]:
     """
     Фаза 1: строим план закупки на ОДНОЙ странице.
     Слоты 1..8: для каждого слота сначала проверяем min_possible,
     и только потом (если выгодно) открываем модалку и читаем qty.
+
+    max_budget — максимальная сумма, которую можем потратить (уже с учётом profit threshold)
     """
     prices_raw = ui.scan_prices_on_page_parallel(page=page)
     price_by_slot: dict[int, int] = {slot: price for (slot, price, _conf, _raw) in prices_raw}
@@ -46,6 +48,15 @@ def build_plan_one_page(
         ui.logger.info("Plan: slot1 price is not readable -> skip")
         return None
 
+    # РАННЯЯ ПРОВЕРКА: даже если купим ВСЁ по цене первого слота, влезем ли в бюджет?
+    min_cost_estimate = p1 * need_total
+    if min_cost_estimate > max_budget:
+        ui.logger.info(
+            "Plan: not affordable even at best price. p1=%d need=%d min_cost=%d max_budget=%d",
+            p1, need_total, min_cost_estimate, max_budget
+        )
+        return None
+
     for slot in range(1, ui.cfg.runtime.max_slots + 1):
         if remaining <= 0:
             break
@@ -54,13 +65,13 @@ def build_plan_one_page(
         if p <= 0:
             continue
 
-        # ключевая проверка (как ты описал):
-        # "если даже остаток * текущая цена не влезает, дальше только дороже => план невозможен"
+        # ключевая проверка: если даже остаток * текущая цена не влезает в бюджет,
+        # дальше только дороже => план невозможен
         min_possible = cost_so_far + remaining * p
-        if min_possible > reward_total:
+        if min_possible > max_budget:
             ui.logger.info(
-                "Plan: not affordable at slot=%d price=%d -> min_possible=%d > reward=%d",
-                slot, p, min_possible, reward_total
+                "Plan: not affordable at slot=%d price=%d -> min_possible=%d > max_budget=%d",
+                slot, p, min_possible, max_budget
             )
             return None
 
@@ -92,10 +103,10 @@ def build_plan_one_page(
 
 
 def execute_plan_one_page(
-    ui: MarketUI,
-    plan: PlanResult,
-    *,
-    do_buy: bool,
+        ui: MarketUI,
+        plan: PlanResult,
+        *,
+        do_buy: bool,
 ) -> tuple[bool, int, int]:
     """
     Фаза 2: выполняем план.
@@ -137,7 +148,7 @@ def execute_plan_one_page(
             return False, spent, bought
 
         if do_buy:
-            ok = ui.set_buy_quantity(buy_btn, step.take)  # <-- теперь bool
+            ok = ui.set_buy_quantity(buy_btn, step.take)
             if not ok:
                 ui.logger.warning("Buy: cannot set quantity reliably. Abort step=%d.", step_idx)
                 ui.close_modal_safely()
@@ -154,5 +165,3 @@ def execute_plan_one_page(
         ui.inp.sleep(ui.cfg.timing.wait_between_plan_steps)
 
     return True, spent, bought
-
-    

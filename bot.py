@@ -69,6 +69,39 @@ class MarketBot:
         default_path = Path("purchases_log.csv")
         self.purchase_logger = PurchaseLogger(default_path, append=True)
 
+    def _calculate_max_allowed_cost(self, reward_total: int) -> int:
+        """
+        Вычисляет максимально допустимую стоимость закупки с учётом profit threshold.
+        Возвращает: максимальную сумму, которую можно потратить.
+
+        Пример:
+          reward_total = 1000
+          profit.mode = "percent"
+          profit.min_profit_percent = 0.15
+          => required_profit = 150
+          => max_allowed_cost = 850
+        """
+        cfg = self.ctx.cfg
+
+        if not getattr(cfg, "profit", None) or not cfg.profit.enabled:
+            # Если profit threshold отключен, можно потратить всю награду
+            return reward_total
+
+        mode = (cfg.profit.mode or "percent").lower()
+
+        if mode == "percent":
+            required_profit = int(round(float(cfg.profit.min_profit_percent) * float(reward_total)))
+            max_cost = reward_total - required_profit
+            return max(0, max_cost)
+
+        if mode == "absolute":
+            required_profit = int(cfg.profit.min_profit_absolute)
+            max_cost = reward_total - required_profit
+            return max(0, max_cost)
+
+        # Unknown mode — fallback to full budget
+        return reward_total
+
     def reward_for_level(self, q: QuestDefinition) -> int:
         return q.reward60 if self.ctx.level == 60 else q.reward65
 
@@ -164,6 +197,7 @@ class MarketBot:
         plans_by_item: dict[str, object] = {}  # PlanResult, но без импорта типа (можно и типизировать)
 
         total_min_cost = 0
+        max_allowed_total_cost = self._calculate_max_allowed_cost(reward_total)
 
         # -------- Stage A: оценка выгодности --------
         for item in q.items:
@@ -172,7 +206,7 @@ class MarketBot:
 
             # --- image items: оставляем старую collect_item_data (там next_page допустим) ---
             if item2.use_image:
-                budget_left = reward_total - total_min_cost  # важно: это безопасный ранний отсев
+                budget_left = max_allowed_total_cost - total_min_cost
                 data = self.collect_image_item_data(item2, required_qty, budget_left=budget_left)
 
                 if data.min_cost is None:
@@ -209,7 +243,7 @@ class MarketBot:
                 continue
 
             # нормальный режим (RUN или simulate_ui_actions): строим план с qty
-            plan = build_plan_one_page(ui, required_qty, reward_total, page=1)
+            plan = build_plan_one_page(ui, required_qty, max_allowed_total_cost, page=1)
             if not plan or plan.remaining > 0:
                 data = ItemMarketData(item=item2, required_qty=required_qty, lots=[], total_available=None,
                                       min_cost=None,
