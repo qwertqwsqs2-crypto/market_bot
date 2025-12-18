@@ -96,5 +96,7 @@
     "mode": "percent",
     "min_profit_percent": 0.1,
     "min_profit_absolute": 500
-  }
+  },
+  "level": 65,
+  "sets": 4
 }

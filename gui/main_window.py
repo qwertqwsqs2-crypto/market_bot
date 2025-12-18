@@ -250,7 +250,9 @@ class MainWindow(tk.Tk):
         level_buttons = tk.Frame(level_frame, bg=self._bg_secondary)
         level_buttons.pack(anchor="w")
 
-        self.level_var = tk.IntVar(value=60)
+        # ИСПРАВЛЕНО: загружаем level из config или дефолт 60
+        default_level = self.raw_cfg.get("level", 60)
+        self.level_var = tk.IntVar(value=default_level)
         for val in [60, 65]:
             rb = tk.Radiobutton(
                 level_buttons,
@@ -274,7 +276,9 @@ class MainWindow(tk.Tk):
         tk.Label(sets_frame, text="Number of Sets:", bg=self._bg_secondary, fg=self._fg,
                  font=("Segoe UI", 10, "bold")).pack(anchor="w", pady=(0, 5))
 
-        self.sets_var = tk.IntVar(value=1)
+        # ИСПРАВЛЕНО: загружаем sets из config или дефолт 1
+        default_sets = self.raw_cfg.get("sets", 1)
+        self.sets_var = tk.IntVar(value=default_sets)
         sets_spinbox = tk.Spinbox(
             sets_frame,
             from_=1, to=999,
@@ -378,11 +382,12 @@ class MainWindow(tk.Tk):
         runtime_frame, runtime_content = self._create_label_frame(left_column, "🔧 Runtime Options")
         runtime_frame.pack(fill="both", expand=True)
 
-        self.simulate_ui = tk.BooleanVar(value=self.cfg.runtime.simulate_ui_actions)
-        simulate_cb = tk.Checkbutton(
+        # ИСПРАВЛЕНО: чекбокс теперь управляет режимом run/simulate
+        self.run_mode = tk.BooleanVar(value=False)  # False = simulate, True = run
+        run_mode_cb = tk.Checkbutton(
             runtime_content,
-            text="🧪 Simulate UI actions (testing mode)",
-            variable=self.simulate_ui,
+            text="🚀 Run Mode (perform actual purchases)",
+            variable=self.run_mode,
             bg=self._bg_secondary,
             fg=self._fg,
             selectcolor=self._bg_tertiary,
@@ -391,7 +396,18 @@ class MainWindow(tk.Tk):
             font=("Segoe UI", 9),
             relief="flat"
         )
-        simulate_cb.pack(anchor="w")
+        run_mode_cb.pack(anchor="w")
+
+        # Пояснение
+        info_label = tk.Label(
+            runtime_content,
+            text="⚠️ Unchecked = Simulate mode (safe testing, no purchases)\n   Checked = Run mode (actual purchases will be made)",
+            bg=self._bg_secondary,
+            fg=self._fg_secondary,
+            font=("Segoe UI", 8),
+            justify="left"
+        )
+        info_label.pack(anchor="w", pady=(5, 0))
 
         # RIGHT COLUMN - Quest Selection
         right_column = tk.Frame(columns_frame, bg=self._bg)
@@ -521,9 +537,16 @@ class MainWindow(tk.Tk):
             var.set(False)
 
     def _save_settings(self):
+        """ИСПРАВЛЕНО: сохраняет level, sets и profit настройки"""
         try:
             cfg_path = self.config_path
             raw = json.loads(cfg_path.read_text(encoding="utf-8"))
+
+            # Сохраняем level и sets
+            raw["level"] = int(self.level_var.get())
+            raw["sets"] = int(self.sets_var.get())
+
+            # Сохраняем profit настройки
             raw_profit = raw.get("profit", {})
             raw_profit["enabled"] = bool(self.profit_enabled.get())
             raw_profit["mode"] = str(self.profit_mode.get())
@@ -531,12 +554,11 @@ class MainWindow(tk.Tk):
             raw_profit["min_profit_absolute"] = int(self.profit_abs.get())
             raw["profit"] = raw_profit
 
-            runtime = raw.get("runtime", {})
-            runtime["simulate_ui_actions"] = bool(self.simulate_ui.get())
-            raw["runtime"] = runtime
+            # НЕ сохраняем simulate_ui_actions - он управляется только вручную в config.json
+            # Чекбокс run_mode используется только для запуска, не влияет на config
 
             cfg_path.write_text(json.dumps(raw, indent=2, ensure_ascii=False), encoding="utf-8")
-            messagebox.showinfo("Success", f"Settings saved successfully!")
+            messagebox.showinfo("Success", "Settings saved successfully!")
         except Exception as e:
             messagebox.showerror("Save Failed", str(e))
 
@@ -551,7 +573,9 @@ class MainWindow(tk.Tk):
         selected_quests = [self.quests[i] for i in selected_indices]
         level = int(self.level_var.get())
         sets = int(self.sets_var.get())
-        mode_str = "simulate" if self.simulate_ui.get() else "run"
+
+        # ИСПРАВЛЕНО: mode определяется чекбоксом run_mode
+        mode_str = "run" if self.run_mode.get() else "simulate"
 
         try:
             from config import AppConfig
@@ -566,7 +590,10 @@ class MainWindow(tk.Tk):
 
         cfg = self.cfg
 
-        if (mode_str == "simulate") and (not cfg.runtime.simulate_ui_actions):
+        # ИСПРАВЛЕНО: логика выбора input controller
+        # Если mode=simulate И simulate_ui_actions=False -> SimulatedInput
+        # Иначе -> GameInput (для run mode или simulate с UI actions)
+        if mode_str == "simulate" and not cfg.runtime.simulate_ui_actions:
             inp = SimulatedInput(logger=self.logger)
         else:
             if cfg.runtime.input_backend != "pyautogui":
@@ -641,7 +668,7 @@ class MainWindow(tk.Tk):
         self.status_label.configure(fg=self._fg_secondary)
         if self.runtime_win:
             try:
-                self.runtime_win.destroy()  # Destroy instead of stop
+                self.runtime_win.destroy()
                 self.runtime_win = None
             except Exception:
                 pass
