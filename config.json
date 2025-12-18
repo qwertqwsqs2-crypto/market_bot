@@ -64,7 +64,9 @@
     "use_tesseract_fallback": true,
     "min_confidence": 0.75,
     "variants": 2,
-    "scale_factors": [3]
+    "scale_factors": [
+      3
+    ]
   },
   "templates": {
     "templates_dir": "templates",
@@ -84,7 +86,7 @@
   },
   "runtime": {
     "input_backend": "pyautogui",
-    "simulate_ui_actions": true
+    "simulate_ui_actions": false
   },
   "safety": {
     "acknowledge_rights": false
@@ -92,7 +94,7 @@
   "profit": {
     "enabled": true,
     "mode": "percent",
-    "min_profit_percent": 0.15,
+    "min_profit_percent": 0.1,
     "min_profit_absolute": 500
   }
 }

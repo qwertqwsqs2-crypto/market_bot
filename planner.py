@@ -151,13 +151,6 @@ def execute_plan_one_page(
         spent += step.take * step.price
         bought += step.take
 
-        # close modal
-        if cancel_btn:
-            ui.click_cancel(cancel_btn)
-            ui.inp.sleep(ui.cfg.timing.wait_after_cancel)
-        else:
-            ui.close_modal_safely()
-
         ui.inp.sleep(ui.cfg.timing.wait_between_plan_steps)
 
     return True, spent, bought
