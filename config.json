@@ -13,61 +13,44 @@
   "wait_between_plan_steps": 0.3,
   "max_pages": 10,
   "max_slots": 8,
+
+  "humanization": {
+    "enabled": true,
+    "random_delay_min": 0.05,
+    "random_delay_max": 0.25,
+    "mouse_offset_range": 3,
+    "mouse_duration_min": 0.08,
+    "mouse_duration_max": 0.15,
+    "thinking_pause_chance": 0.15,
+    "thinking_pause_min": 0.3,
+    "thinking_pause_max": 1.2,
+    "anchor_check_interval": 5,
+    "anchor_recheck_on_fail": true
+  },
+
   "offs": {
-    "anchor_search": [
-      -312,
-      65
-    ],
-    "cat_trophy": [
-      -218,
-      379
-    ],
-    "cat_res": [
-      -228,
-      484
-    ],
-    "first_slot": [
-      62,
-      145
-    ],
-    "region_price": [
-      156,
-      118,
-      140,
-      44
-    ],
-    "buy_input_offset": [
-      180,
-      -87
-    ],
-    "buy_btn_fallback": [
-      -11,
-      293
-    ],
-    "buy_cancel_fallback": [
-      170,
-      211
-    ],
-    "next_page": [
-      30,
-      605
-    ],
+    "anchor_search": [-312, 65],
+    "cat_trophy": [-218, 379],
+    "cat_res": [-228, 484],
+    "first_slot": [62, 145],
+    "region_price": [156, 118, 140, 44],
+    "buy_input_offset": [180, -87],
+    "buy_btn_fallback": [-11, 293],
+    "buy_cancel_fallback": [170, 211],
+    "next_page": [30, 605],
     "slot_height": 59
   },
+
   "ocr": {
     "use_easyocr": true,
-    "easyocr_langs": [
-      "ru",
-      "en"
-    ],
+    "easyocr_langs": ["ru", "en"],
     "easyocr_gpu": true,
     "use_tesseract_fallback": true,
     "min_confidence": 0.75,
     "variants": 2,
-    "scale_factors": [
-      3
-    ]
+    "scale_factors": [3]
   },
+
   "templates": {
     "templates_dir": "templates",
     "anchor_market": "anchor_market.png",
@@ -84,19 +67,23 @@
     "threshold_item_icon": 0.86,
     "multi_scale": true
   },
+
   "runtime": {
     "input_backend": "pyautogui",
     "simulate_ui_actions": true
   },
+
   "safety": {
     "acknowledge_rights": false
   },
+
   "profit": {
     "enabled": true,
     "mode": "percent",
     "min_profit_percent": 0.1,
     "min_profit_absolute": 500
   },
+
   "level": 65,
   "sets": 4
 }

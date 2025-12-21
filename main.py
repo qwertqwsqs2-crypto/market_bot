@@ -1,4 +1,4 @@
-# main.py (обновлён)
+# main.py (обновлён с хуманизацией и проверкой якоря)
 from __future__ import annotations
 import argparse
 import logging
@@ -15,6 +15,7 @@ from ui import MarketUI  # type: ignore
 from quests_db import ALL_QUESTS  # type: ignore
 from models import Mode  # type: ignore
 
+
 def build_arg_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(description="Market quest items auto-buyer (OCR + template matching).")
     p.add_argument("--level", type=int, choices=[60, 65], help="Quest level: 60 or 65")
@@ -22,8 +23,10 @@ def build_arg_parser() -> argparse.ArgumentParser:
     p.add_argument("--mode", type=str, choices=[m.value for m in Mode], help="simulate or run")
     p.add_argument("--config", type=str, default="config.json", help="Path to config JSON")
     p.add_argument("--log-level", type=str, default="INFO", help="Logging level (INFO, DEBUG, ...)")
-    p.add_argument("--i-understand", action="store_true", help="Required for run mode: acknowledge responsibility/ToS risk.")
+    p.add_argument("--i-understand", action="store_true",
+                   help="Required for run mode: acknowledge responsibility/ToS risk.")
     p.add_argument("--gui", action="store_true", help="Launch GUI instead of CLI.")
+    p.add_argument("--no-humanize", action="store_true", help="Disable humanization features")
     return p
 
 
@@ -55,6 +58,12 @@ def main() -> None:
 
     cfg = AppConfig.load(cfg_path)
 
+    # Переопределение humanization если задан флаг --no-humanize
+    if args.no_humanize:
+        from dataclasses import replace
+        cfg = replace(cfg, humanization=replace(cfg.humanization, enabled=False))
+        logger.info("Humanization disabled via --no-humanize flag")
+
     mode = Mode(str(args.mode))
     level = int(args.level)
     sets = int(args.sets)
@@ -63,13 +72,28 @@ def main() -> None:
         logger.error("sets must be positive.")
         return
 
-    # Build input controller
+    # Build input controller with humanization
     if mode == Mode.SIMULATE and not cfg.runtime.simulate_ui_actions:
         inp = SimulatedInput(logger=logger)
     else:
         if cfg.runtime.input_backend != "pyautogui":
             logger.warning("Unknown input_backend=%r; fallback to pyautogui.", cfg.runtime.input_backend)
-        inp = GameInput(wait_between_clicks=cfg.timing.wait_between_clicks, logger=logger)
+        inp = GameInput(
+            wait_between_clicks=cfg.timing.wait_between_clicks,
+            logger=logger,
+            humanization_cfg=cfg.humanization
+        )
+
+        if cfg.humanization.enabled:
+            logger.info("✓ Humanization enabled:")
+            logger.info("  - Random delays: %.2f-%.2f sec",
+                        cfg.humanization.random_delay_min,
+                        cfg.humanization.random_delay_max)
+            logger.info("  - Mouse offset: ±%d pixels", cfg.humanization.mouse_offset_range)
+            logger.info("  - Thinking pauses: %.1f%% chance",
+                        cfg.humanization.thinking_pause_chance * 100)
+            logger.info("  - Anchor check: every %d actions",
+                        cfg.humanization.anchor_check_interval)
 
     ocr = OCRReader(
         use_easyocr=cfg.ocr.use_easyocr,
@@ -94,8 +118,30 @@ def main() -> None:
     startup_delay = cfg.timing.startup_delay
     logger.info("Startup delay %.1fs — переключитесь на окно игры.", startup_delay)
     time.sleep(startup_delay)
+
     try:
+        # Первичная проверка якоря перед началом работы
+        logger.info("Checking for market anchor...")
+        if not ui.verify_anchor_present(raise_on_fail=False):
+            logger.error("❌ Cannot start: market window not found!")
+            logger.error("Please open the market window and ensure it's visible on screen.")
+            return
+        logger.info("✓ Market anchor found. Starting bot...")
+
         bot.run(quests)
+    except RuntimeError as e:
+        if "anchor" in str(e).lower():
+            logger.error("❌ Bot stopped: %s", e)
+            logger.error("\nРекомендации:")
+            logger.error("1. Убедитесь, что окно рынка открыто и видно")
+            logger.error("2. Не переключайтесь на другие окна во время работы бота")
+            logger.error("3. Не сворачивайте окно игры")
+        else:
+            logger.exception("Bot failed with error: %s", e)
+    except KeyboardInterrupt:
+        logger.info("Bot stopped by user (Ctrl+C)")
+    except Exception as e:
+        logger.exception("Unexpected error: %s", e)
     finally:
         ui.cleanup()
 

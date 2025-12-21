@@ -131,6 +131,22 @@ class MarketUI:
         self._ocr_executor = ThreadPoolExecutor(max_workers=4)
         self._ocr_lock = threading.Lock()
 
+        self._anchor_check_counter = 0
+        self._last_anchor_check_time = 0
+
+    def should_check_anchor(self) -> bool:
+        """Определяет, нужно ли проверять якорь"""
+        if not self.cfg.humanization.enabled:
+            return False
+
+        self._anchor_check_counter += 1
+
+        # Проверяем каждые N действий
+        if self._anchor_check_counter >= self.cfg.humanization.anchor_check_interval:
+            self._anchor_check_counter = 0
+            return True
+
+        return False
     def _tpl_path(self, rel: str) -> Path:
         return (self.cfg.templates.templates_dir / rel).resolve()
 
@@ -174,6 +190,63 @@ class MarketUI:
                 raise RuntimeError("Cannot continue: market anchor not found.")
         return self._anchor  # type: ignore[return-value]
 
+    def verify_anchor_present(self, raise_on_fail: bool = True) -> bool:
+        """
+        Проверяет, что якорь рынка всё ещё виден на экране.
+        Если якорь не найден - бот должен остановиться.
+
+        Args:
+            raise_on_fail: если True, выбрасывает исключение при отсутствии якоря
+
+        Returns:
+            True если якорь найден, False если нет
+
+        Raises:
+            RuntimeError: если якорь не найден и raise_on_fail=True
+        """
+        try:
+            anchor_tpl = self._load_tpl(self.cfg.templates.anchor_market)
+        except Exception as e:
+            self.logger.error("Anchor template load failed: %s", e)
+            if raise_on_fail:
+                raise RuntimeError(f"Cannot load anchor template: {e}")
+            return False
+
+        screen = self.screen.screenshot_bgr()
+        m = self.matcher.match_template(
+            screen,
+            anchor_tpl,
+            threshold=self.cfg.templates.threshold_anchor,
+            multi_scale=self.cfg.templates.multi_scale,
+        )
+
+        if not m:
+            self.logger.error("⚠️ ANCHOR LOST! Market window not visible or has changed.")
+            if raise_on_fail:
+                raise RuntimeError(
+                    "Market anchor not found on screen. "
+                    "Возможные причины:\n"
+                    "1. Окно рынка было закрыто\n"
+                    "2. Окно было свернуто или перекрыто другими окнами\n"
+                    "3. Интерфейс игры изменился\n"
+                    "4. Произошло переключение окон\n\n"
+                    "Бот остановлен для безопасности."
+                )
+            return False
+
+        self.logger.debug("✓ Anchor verified at %s (score=%.3f)", m.center, m.score)
+        self._anchor = m.top_left
+        return True
+
+    def safe_action_with_anchor_check(self, action_name: str):
+        """
+        Декоратор-контекст для безопасного выполнения действий с проверкой якоря.
+        Используйте перед критичными операциями.
+        """
+        if self.should_check_anchor():
+            self.logger.info("Periodic anchor check before: %s", action_name)
+            self.verify_anchor_present(raise_on_fail=True)
+
     def rel_point(self, off: Point) -> Point:
         a = self.anchor()
         return Point(a.x + off.x, a.y + off.y)
@@ -194,6 +267,7 @@ class MarketUI:
         self.inp.click(p)
 
     def run_search(self, query: str) -> None:
+        self.safe_action_with_anchor_check("run_search")
         self.focus_search()
         self.inp.sleep(0.1)
 
@@ -383,6 +457,8 @@ class MarketUI:
         return fixed_results
 
     def next_page(self) -> None:
+        self.safe_action_with_anchor_check("next_page")
+
         p = self.rel_point(self.cfg.offs.next_page)
         self.logger.info("Next page click at %s", p)
         self.inp.click(p)
@@ -480,6 +556,8 @@ class MarketUI:
         return buy_p, cancel_p
 
     def open_lot_modal(self, slot_index_1based: int) -> None:
+        self.safe_action_with_anchor_check("open_lot_modal")
+
         p = self.slot_click_point(slot_index_1based)
         self.logger.info("Open lot modal: slot=%d at %s (dbl click)", slot_index_1based, p)
         self.inp.dblclick(p)

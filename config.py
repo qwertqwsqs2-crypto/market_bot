@@ -14,10 +14,10 @@ class TimingConfig:
     startup_delay: float = 3.0
 
     # клики / небольшие паузы
-    wait_between_clicks: float = 0.12   # существующее
-    wait_short: float = 0.03            # очень короткие паузы (нажатия/ctrl)
-    wait_small: float = 0.10            # мелкие паузы (проверки буфера, typewrite fallback)
-    wait_medium: float = 0.25           # средние паузы (подтверждения/остатки)
+    wait_between_clicks: float = 0.12
+    wait_short: float = 0.03
+    wait_small: float = 0.10
+    wait_medium: float = 0.25
 
     # модалки / перелистывание страниц
     wait_open_modal: float = 0.9
@@ -31,6 +31,32 @@ class TimingConfig:
     wait_after_buy: float = 0.45
     wait_after_cancel: float = 0.15
     wait_between_plan_steps: float = 0.6
+
+
+@dataclass(frozen=True)
+class HumanizationConfig:
+    """Настройки для хуманизации действий бота"""
+    enabled: bool = True
+
+    # Случайные задержки (добавляются к базовым)
+    random_delay_min: float = 0.05  # минимальная случайная задержка
+    random_delay_max: float = 0.25  # максимальная случайная задержка
+
+    # Отклонения курсора при движении
+    mouse_offset_range: int = 3  # пиксели отклонения от целевой точки
+
+    # Вариации скорости движения мыши
+    mouse_duration_min: float = 0.08
+    mouse_duration_max: float = 0.15
+
+    # Периодические паузы ("думает")
+    thinking_pause_chance: float = 0.15  # вероятность паузы 15%
+    thinking_pause_min: float = 0.3
+    thinking_pause_max: float = 1.2
+
+    # Проверка якоря
+    anchor_check_interval: int = 5  # проверять каждые N действий
+    anchor_recheck_on_fail: bool = True  # перепроверить якорь при ошибке
 
 
 @dataclass(frozen=True)
@@ -100,12 +126,14 @@ class RuntimeConfig:
 
     input_backend: str = "pyautogui"
 
+
 @dataclass(frozen=True)
 class ProfitConfig:
     enabled: bool = True
-    mode: str = "percent"   # "percent" | "absolute"
+    mode: str = "percent"  # "percent" | "absolute"
     min_profit_percent: float = 0.15
     min_profit_absolute: int = 0
+
 
 @dataclass(frozen=True)
 class SafetyConfig:
@@ -115,6 +143,7 @@ class SafetyConfig:
 @dataclass(frozen=True)
 class AppConfig:
     timing: TimingConfig = TimingConfig()
+    humanization: HumanizationConfig = HumanizationConfig()
     offs: OffsetsConfig = OffsetsConfig()
     ocr: OCRConfig = OCRConfig()
     templates: TemplateConfig = TemplateConfig()
@@ -146,8 +175,23 @@ class AppConfig:
             wait_between_plan_steps=float(d.get("wait_between_plan_steps", 0.6)),
         )
 
+        human_raw = d.get("humanization", {})
+        humanization = HumanizationConfig(
+            enabled=bool(human_raw.get("enabled", True)),
+            random_delay_min=float(human_raw.get("random_delay_min", 0.05)),
+            random_delay_max=float(human_raw.get("random_delay_max", 0.25)),
+            mouse_offset_range=int(human_raw.get("mouse_offset_range", 3)),
+            mouse_duration_min=float(human_raw.get("mouse_duration_min", 0.08)),
+            mouse_duration_max=float(human_raw.get("mouse_duration_max", 0.15)),
+            thinking_pause_chance=float(human_raw.get("thinking_pause_chance", 0.15)),
+            thinking_pause_min=float(human_raw.get("thinking_pause_min", 0.3)),
+            thinking_pause_max=float(human_raw.get("thinking_pause_max", 1.2)),
+            anchor_check_interval=int(human_raw.get("anchor_check_interval", 5)),
+            anchor_recheck_on_fail=bool(human_raw.get("anchor_recheck_on_fail", True)),
+        )
+
         offs_raw = d.get("offs", {})
-        rs = offs_raw.get("region_slots", None),
+        rs = offs_raw.get("region_slots", None)
         offs = OffsetsConfig(
             anchor_search=Point(*offs_raw.get("anchor_search", [-312, 65])),
             cat_trophy=Point(*offs_raw.get("cat_trophy", [-218, 379])),
@@ -158,7 +202,8 @@ class AppConfig:
             buy_btn_fallback=Point(*offs_raw.get("buy_btn_fallback", [-11, 293])),
             buy_cancel_fallback=Point(*offs_raw.get("buy_cancel_fallback", [170, 211])),
             next_page=Point(*offs_raw.get("next_page", [30, 605])),
-            region_slots = Rect(*rs) if isinstance(rs, (list, tuple)) and len(rs) == 4 else None
+            slot_height=int(offs_raw.get("slot_height", 59)),
+            region_slots=Rect(*rs) if isinstance(rs, (list, tuple)) and len(rs) == 4 else None
         )
 
         ocr_raw = d.get("ocr", {})
@@ -213,6 +258,7 @@ class AppConfig:
 
         return AppConfig(
             timing=timing,
+            humanization=humanization,
             offs=offs,
             ocr=ocr,
             templates=templates,

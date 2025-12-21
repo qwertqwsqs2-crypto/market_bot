@@ -8,6 +8,7 @@ logger = logging.getLogger(__name__)
 
 try:
     import pyperclip  # type: ignore
+
     HAS_PYPERCLIP = True
 except Exception:
     HAS_PYPERCLIP = False
@@ -16,6 +17,7 @@ try:
     import win32api  # type: ignore
     import win32con  # type: ignore
     import win32clipboard  # type: ignore
+
     HAS_WIN32 = True
 except Exception:
     HAS_WIN32 = False
@@ -26,6 +28,7 @@ class InputManager:
     @staticmethod
     def human_click(x: int, y: int, duration: float = 0.1):
         try:
+            # Плавное движение к точке
             pyautogui.moveTo(x, y, duration=duration)
             time.sleep(0.04)
             pyautogui.mouseDown()
@@ -36,10 +39,19 @@ class InputManager:
             logger.error(f"human_click error: {e}")
 
     @staticmethod
-    def human_double_click(x: int, y: int):
+    def human_double_click(x: int, y: int, duration: float = 0.1):
         try:
-            InputManager.human_click(x, y)
+            # Плавное движение
+            pyautogui.moveTo(x, y, duration=duration)
+            time.sleep(0.04)
+
+            # Первый клик
+            pyautogui.mouseDown()
+            time.sleep(0.06)
+            pyautogui.mouseUp()
             time.sleep(0.05)
+
+            # Второй клик
             pyautogui.mouseDown()
             time.sleep(0.05)
             pyautogui.mouseUp()
